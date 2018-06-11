@@ -1,12 +1,13 @@
 import { createSelector } from 'reselect';
-import config from 'config';
+import getModuleConfig from 'utils/get-module-config';
 
+const config = (state) => getModuleConfig(state.currentModule);
 const searchTerms = (state) => state.search.terms.toLowerCase();
 const items = (state) => state.items.items;
 
 export const applySearch = createSelector(
-    [ searchTerms, items ],
-    (searchTerms, items) => {
+    [ config, searchTerms, items ],
+    (config, searchTerms, items) => {
         const { filtering: { searchFields } } = config;
 
         if (!searchFields || !searchFields.length) {

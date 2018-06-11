@@ -1,12 +1,13 @@
 import { createSelector } from 'reselect';
-import config from 'config';
+import getModuleConfig from 'utils/get-module-config';
 
+const config = (state) => getModuleConfig(state.currentModule);
 const filters = (state) => state.filters;
 const items = (state) => state.items.items;
 
 export const applyFilters = createSelector(
-    [ filters, items ],
-    (filters, items) => {
+    [ config, filters, items ],
+    (config, filters, items) => {
         const { filtering: { filterFields } } = config;
 
         if (!filterFields || !filterFields.length) {

@@ -1,14 +1,15 @@
 import { createSelector } from 'reselect';
-import config from 'config';
 
 import { getFilteredItems } from './get-filtered-items';
+import getModuleConfig from 'utils/get-module-config';
 
+const config = (state) => getModuleConfig(state.currentModule);
 const filteredItems = (state) => getFilteredItems(state);
 const page = (state) => state.paginator.currentPage;
 
 export const getFilteredAndPaginatedItems = createSelector(
-    [ filteredItems, page ],
-    (filteredItems, page) => {
+    [ config, filteredItems, page ],
+    (config, filteredItems, page) => {
         if (page < 1) {
             page = 1;
         }

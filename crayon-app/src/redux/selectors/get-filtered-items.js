@@ -1,19 +1,20 @@
-import config from 'config';
 import moment from 'moment';
 
 import { createSelector } from 'reselect';
 
 import { applyFilters } from './apply-filters';
 import { applySearch } from './apply-search';
+import getModuleConfig from 'utils/get-module-config';
 
+const config = (state) => getModuleConfig(state.currentModule);
 const filteredItems = (state) => applyFilters(state);
 const searchItems = (state) => applySearch(state);
 const archive = (state) => state.archive;
 const sort = (state) => state.sort;
 
 export const getFilteredItems = createSelector(
-    [ filteredItems, searchItems, archive, sort ],
-    (filteredItems, searchItems, archiveMode, sort) => {
+    [ config, filteredItems, searchItems, archive, sort ],
+    (config, filteredItems, searchItems, archiveMode, sort) => {
         // be sure items in filteredItems are also in searchItems (in order to be displayed an item must be present in both);
         let items = filteredItems.filter((fItem) => {
             return searchItems.find((sItem) => fItem.id === sItem.id);

@@ -3,8 +3,6 @@ import { SortableElement } from 'react-sortable-hoc';
 import PropTypes from 'prop-types';
 import itemPropShape from 'utils/item-prop-shape';
 
-import config from 'config';
-
 import DragHandle from '../drag-handle';
 import TableCell from '../table-cell';
 import ButtonColumn from '../button-column';

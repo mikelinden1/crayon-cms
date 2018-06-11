@@ -12,6 +12,7 @@ function mapStateToProps(state, ownProps) {
         ...ownProps,
         datasources: state.datasources,
         filterVals: state.filters,
+        currentModule: state.currentModule,
         config: getCurrentModuleConfig(state, ownProps)
     };
 }

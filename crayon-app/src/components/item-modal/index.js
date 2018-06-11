@@ -5,7 +5,7 @@ import { closeItemModal } from 'redux/actions/item-modal';
 import { saveNewItem, saveEditItem } from 'redux/actions/items';
 import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 
-import NewItemModal from './new-item-modal';
+import ItemModal from './item-modal';
 
 function mapStateToProps(state, ownProps) {
     return {
@@ -17,6 +17,7 @@ function mapStateToProps(state, ownProps) {
         hasValidationErrors: state.itemModal.validationErrors && state.itemModal.validationErrors.length,
         editMode: state.modalItemProps.id !== undefined,
         changeMade: state.itemModal.changeMade,
+        currentModule: state.currentModule,
         config: getCurrentModuleConfig(state, ownProps)
     };
 }
@@ -31,4 +32,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NewItemModal);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemModal);

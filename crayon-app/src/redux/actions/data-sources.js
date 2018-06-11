@@ -4,16 +4,19 @@ import axios from 'axios';
 import getPropByName from 'utils/get-prop-by-name';
 
 export function fetchDatasource(name, source) {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch({
             type: ActionTypes.FETCH_DATA_SOURCE,
             payload: { name }
         });
 
+
         axios.get(source.url).then((res) => {
             const rawData = res.data;
 
-            const sourceProp = getPropByName(name);
+            const state = getState();
+
+            const sourceProp = getPropByName(state.currentModule, name);
 
             if (!sourceProp) {
                 console.error('Missing prop in datasource dispatch', name);

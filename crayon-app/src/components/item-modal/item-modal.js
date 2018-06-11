@@ -18,6 +18,7 @@ export default class NewItemModal extends React.Component {
         saving: PropTypes.bool,
         changeMade: PropTypes.bool,
         config: PropTypes.object.isRequired,
+        currentModule: PropTypes.string.isRequired,
         actions: PropTypes.shape({
             saveNewItem: PropTypes.func.isRequired,
             saveEditItem: PropTypes.func.isRequired,
@@ -46,7 +47,7 @@ export default class NewItemModal extends React.Component {
     }
 
     renderFields() {
-        const { saving, config: { itemProps, modalGrid } } = this.props;
+        const { saving, currentModule, config: { itemProps, modalGrid } } = this.props;
 
         if (!modalGrid) {
             return itemProps.map((prop) => <Field key={`${prop.name}-field`} {...prop} />);
@@ -57,7 +58,7 @@ export default class NewItemModal extends React.Component {
             const columnClass = `col-md-${12/columnCount}`;
 
             const rowHtml = row.map((col, e) => {
-                const field = getPropByName(col);
+                const field = getPropByName(currentModule, col);
 
                 if (!field) {
                     console.error('Missing prop in modal', col);

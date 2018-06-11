@@ -9,6 +9,7 @@ export default class Filter extends React.PureComponent {
         filterVals: PropTypes.object.isRequired,
         config: PropTypes.object.isRequired,
         datasources: PropTypes.object,
+        currentModule: PropTypes.string.isRequired,
         actions: PropTypes.shape({
             fetchDatasource: PropTypes.func.isRequired,
             setFilter: PropTypes.func.isRequired
@@ -16,7 +17,7 @@ export default class Filter extends React.PureComponent {
     };
 
     render() {
-        const { filterVals, datasources, config, actions } = this.props;
+        const { filterVals, currentModule, datasources, config, actions } = this.props;
         const { filtering: { filterFields: filters } } = config;
 
         if (!filters) {
@@ -24,7 +25,7 @@ export default class Filter extends React.PureComponent {
         }
 
         return filters.map((filter) => {
-            const filterProps = getPropByName(filter);
+            const filterProps = getPropByName(currentModule, filter);
 
             if (!filterProps) {
                 console.error('Missing prop in filters', filter);

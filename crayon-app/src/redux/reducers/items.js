@@ -2,8 +2,8 @@ import { ActionTypes } from 'utils/constants';
 
 const initialState = {
     fetching: false,
-    fetched: true,
-    items: []
+    fetched: false,
+    items: null
 };
 
 function itemsCreator(id) {

@@ -4,6 +4,7 @@ const config = {
     id: 'bits',
     moduleName: 'Manage Bits', // Displayed at the top of the module
     icon: faUser,
+    apiEndpoint: 'bit',
     itemName: 'Bit', // What are items called? (displayed in modal, delete confirmation, etc)
     itemNamePlural: 'Bits', // How do I say that in the plural form?
     capabilities: {

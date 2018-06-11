@@ -3,6 +3,7 @@ import BitConfig from './bit-config';
 
 const config = {
     clientName: 'Mike\'s Company',
+    apiBase: 'http://localhost',
     moduleOrder: ['bits', 'widgets'],
     modules: {
         widgets: WidgetConfig,

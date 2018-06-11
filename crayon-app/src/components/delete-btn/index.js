@@ -2,12 +2,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { deleteItem } from 'redux/actions/items';
+import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 
 import DeleteBtn from './delete-btn';
 
 function mapStateToProps(state, ownProps) {
     return {
-        ...ownProps
+        ...ownProps,
+        config: getCurrentModuleConfig(state, ownProps)
     };
 }
 

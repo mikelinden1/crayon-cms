@@ -1,7 +1,7 @@
-import config from 'config';
+import getModuleConfig from './get-module-config';
 
-export default function getPropByName(name) {
-    const { itemProps } = config;
+export default function getPropByName(moduleId, name) {
+    const { itemProps } = getModuleConfig(moduleId);
 
     if (!itemProps) {
         return;

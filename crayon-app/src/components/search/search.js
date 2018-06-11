@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import config from 'config';
 
 import { faSearch } from '@fortawesome/fontawesome-free-solid';
 import Icon from 'components/icon';
@@ -8,14 +7,14 @@ import Icon from 'components/icon';
 export default class Search extends React.PureComponent {
     static propTypes = {
         search: PropTypes.string,
+        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             setSearch: PropTypes.func.isRequired
         }).isRequired
     };
 
     render() {
-        const { search, actions: { setSearch } } = this.props;
-        const { filtering: { searchFields } } = config;
+        const { search, config: { filtering: { searchFields } }, actions: { setSearch } } = this.props;
 
         if (!searchFields) {
             return null;

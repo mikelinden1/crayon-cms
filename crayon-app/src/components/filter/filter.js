@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import config from 'config';
 import getPropByName from 'utils/get-prop-by-name';
 import { DropdownField } from 'components/field-types';
 
 export default class Filter extends React.PureComponent {
     static propTypes = {
         filterVals: PropTypes.object.isRequired,
+        config: PropTypes.object.isRequired,
         datasources: PropTypes.object,
         actions: PropTypes.shape({
             fetchDatasource: PropTypes.func.isRequired,
@@ -16,7 +16,7 @@ export default class Filter extends React.PureComponent {
     };
 
     render() {
-        const { filterVals, datasources, actions } = this.props;
+        const { filterVals, datasources, config, actions } = this.props;
         const { filtering: { filterFields: filters } } = config;
 
         if (!filters) {

@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { getFilteredItems } from 'redux/selectors/get-filtered-items';
+import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 
 import { setCurrentPage } from 'redux/actions/paginator';
 
@@ -11,7 +12,8 @@ function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
         currentPage: state.paginator.currentPage,
-        numOfItems: getFilteredItems(state, ownProps).length
+        numOfItems: getFilteredItems(state, ownProps).length,
+        config: getCurrentModuleConfig(state, ownProps)
     };
 }
 

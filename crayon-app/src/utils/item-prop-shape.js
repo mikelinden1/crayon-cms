@@ -2,7 +2,9 @@ import PropTypes from 'prop-types';
 import config from 'config';
 
 export default function itemPropShape(notRequired) {
-    return config.itemProps.reduce((collector, i) => {
+    const id = 'widgets';
+
+    return config.modules[id].itemProps.reduce((collector, i) => {
         switch (i.type) {
             case 'dropdown': {
                 if (i.multiple) {

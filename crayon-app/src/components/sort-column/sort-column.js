@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/icon';
-import config from 'config';
 
 import { faCaretUp, faCaretDown } from '@fortawesome/fontawesome-free-solid';
 
@@ -12,6 +11,7 @@ export default class SortColumn extends React.PureComponent {
             desc: PropTypes.bool
         }).isRequired,
         fieldName: PropTypes.string.isRequired,
+        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             setSort: PropTypes.func.isRequired
         }).isRequired
@@ -29,7 +29,7 @@ export default class SortColumn extends React.PureComponent {
     }
 
     render() {
-        const { capabilities: { reorderable }, filtering: { sortable } } = config;
+        const { config: { capabilities: { reorderable }, filtering: { sortable } } } = this.props;
 
         if (reorderable || !sortable) {
             return null;

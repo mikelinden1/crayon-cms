@@ -1,25 +1,14 @@
-import React from 'react';
+import { connect } from 'react-redux';
 
-import { Alert } from 'reactstrap';
-import config from 'config';
+import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 
-import TableHeader from './table-header';
-import TableBody from './table-body';
+import TableView from './table-view';
 
-export default class TableView extends React.PureComponent {
-    render() {
-        const { views: { table: tableConfig } } = config;
-
-        if (!tableConfig) {
-            console.error('Missing table view config');
-            return <Alert color="danger">Missing table view config</Alert>;
-        }
-
-        return (
-            <table className="table table-striped">
-                <TableHeader />
-                <TableBody />
-            </table>
-        );
-    }
+function mapStateToProps(state, ownProps) {
+    return {
+        ...ownProps,
+        config: getCurrentModuleConfig(state, ownProps)
+    };
 }
+
+export default connect(mapStateToProps)(TableView);

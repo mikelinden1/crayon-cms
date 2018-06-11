@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import config from 'config';
 
 export default class Paginator extends React.PureComponent {
     static propTypes = {
         currentPage: PropTypes.number.isRequired,
         numOfItems: PropTypes.number.isRequired,
+        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             setCurrentPage: PropTypes.func.isRequired
         }).isRequired
     };
 
     render() {
-        const { currentPage, numOfItems, actions: { setCurrentPage } } = this.props;
+        const { currentPage, numOfItems, config, actions: { setCurrentPage } } = this.props;
         const { itemsPerPage, capabilities: { reorderable } } = config;
 
         if (!itemsPerPage || reorderable) {

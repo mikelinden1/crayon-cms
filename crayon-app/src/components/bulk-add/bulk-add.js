@@ -6,8 +6,6 @@ import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'react
 
 import Spinner from 'components/spinner';
 
-import config from 'config';
-
 export default class BulkAdd extends React.Component {
     static propTypes = {
         columns: PropTypes.array.isRequired,
@@ -15,6 +13,7 @@ export default class BulkAdd extends React.Component {
         adding: PropTypes.bool.isRequired,
         csvContents: PropTypes.string,
         error: PropTypes.string,
+        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             setColumns: PropTypes.func.isRequired,
             addColumn: PropTypes.func.isRequired,
@@ -96,7 +95,7 @@ export default class BulkAdd extends React.Component {
 
 
     render() {
-        const { open, error, adding, columns, actions: { setColumns, addColumn, openDialog } } = this.props;
+        const { open, error, adding, columns, config, actions: { setColumns, addColumn, openDialog } } = this.props;
         const { capabilities: { bulkImport }, itemProps, itemName, itemNamePlural: itemP } = config;
 
         if (!bulkImport) {

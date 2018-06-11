@@ -10,7 +10,6 @@ import Field from 'components/field';
 import getPropByName from 'utils/get-prop-by-name';
 
 import { DEFAULT_ERROR_MESSAGE } from 'utils/constants';
-import config from 'config';
 
 export default class NewItemModal extends React.Component {
     static propTypes = {
@@ -18,6 +17,7 @@ export default class NewItemModal extends React.Component {
         editMode: PropTypes.bool,
         saving: PropTypes.bool,
         changeMade: PropTypes.bool,
+        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             saveNewItem: PropTypes.func.isRequired,
             saveEditItem: PropTypes.func.isRequired,
@@ -46,8 +46,7 @@ export default class NewItemModal extends React.Component {
     }
 
     renderFields() {
-        const { saving } = this.props;
-        const { itemProps, modalGrid } = config;
+        const { saving, config: { itemProps, modalGrid } } = this.props;
 
         if (!modalGrid) {
             return itemProps.map((prop) => <Field key={`${prop.name}-field`} {...prop} />);
@@ -73,8 +72,7 @@ export default class NewItemModal extends React.Component {
     }
 
     render() {
-        const { open, saving, error, editMode, hasValidationErrors } = this.props;
-        const { itemName } = config;
+        const { open, saving, error, editMode, hasValidationErrors, config: { itemName } } = this.props;
 
         const createBtn =   saving
                             ? <Button color="primary" disabled><Spinner /></Button>

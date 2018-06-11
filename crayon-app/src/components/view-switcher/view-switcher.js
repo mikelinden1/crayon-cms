@@ -4,20 +4,19 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import { faBars, faTh } from '@fortawesome/fontawesome-free-solid';
 
-import config from 'config';
-
 import Icon from 'components/icon';
 
 export default class ViewSwitcher extends React.PureComponent {
     static propTypes = {
         currentView: PropTypes.string.isRequired,
+        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             switchView: PropTypes.func.isRequired
         }).isRequired
     };
 
     render() {
-        const { currentView, actions: { switchView } } = this.props;
+        const { currentView, config, actions: { switchView } } = this.props;
         let { views: { displayType } } = config;
 
         if (!displayType) {

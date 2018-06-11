@@ -2,19 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Button } from 'reactstrap';
-import config from 'config';
 
 export default class NoMatchingItems extends React.PureComponent {
     static propTypes = {
+        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             clearFilters: PropTypes.func.isRequired
         }).isRequired
     };
 
     render() {
-        const { actions: { clearFilters } } = this.props;
-
-        const { itemName, itemNamePlural: itemP } = config;
+        const { actions: { clearFilters }, config: { itemName, itemNamePlural: itemP } } = this.props;
 
         const itemNamePlural = itemP ? itemP : itemName + 's';
 

@@ -3,21 +3,20 @@ import PropTypes from 'prop-types';
 
 import { Button } from 'reactstrap';
 import { faPlus } from '@fortawesome/fontawesome-free-solid';
-import config from 'config';
 
 import IconLeft from 'components/icon-left';
 
 export default class AddNew extends React.PureComponent {
     static propTypes = {
         displayAsJumbotron: PropTypes.bool,
+        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             openItemModal: PropTypes.func.isRequired
         }).isRequired
     };
 
     render() {
-        const { displayAsJumbotron, actions: { openItemModal } } = this.props;
-        const { itemName } = config;
+        const { displayAsJumbotron, config: { itemName }, actions: { openItemModal } } = this.props;
 
         if (displayAsJumbotron) {
             return (

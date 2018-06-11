@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Alert } from 'reactstrap';
-import checkConfigFile from 'utils/check-config';
-
-import config from 'config';
 
 import Spinner from 'components/spinner';
 
@@ -35,19 +32,7 @@ export default class Main extends React.PureComponent {
     }
 
     render() {
-        const configInValid = checkConfigFile();
-
-        if (configInValid) {
-            return <Alert color="danger">There are errors in the config file. See console.</Alert>;
-        }
-
-        const { pluginName, pluginVersion } = config;
-
-        const pluginVersionText =   pluginVersion
-                                    ? <p><strong>v{pluginVersion}</strong></p>
-                                    : null;
-
-        const { fetched, error } = this.props;
+        const { fetched, error, config } = this.props;
 
         if (!fetched) {
            return <p><Spinner /> Loading items...</p>;
@@ -62,9 +47,6 @@ export default class Main extends React.PureComponent {
 
         return (
             <div>
-                <h1>{pluginName}</h1>
-                {pluginVersionText}
-
                 <AddNew />
                 <FilterSortSearch />
                 <Switchers />

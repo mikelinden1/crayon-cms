@@ -2,12 +2,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { openItemModal } from 'redux/actions/item-modal';
+import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 
 import AddNew from './add-new';
 
 function mapStateToProps(state, ownProps) {
     return {
-        ...ownProps
+        ...ownProps,
+        config: getCurrentModuleConfig(state, ownProps)
     };
 }
 

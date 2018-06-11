@@ -4,15 +4,14 @@ import itemPropShape from 'utils/item-prop-shape';
 import ActionBtns from 'components/action-btns';
 import RenderPropValue from 'components/render-prop-value';
 
-import config from 'config';
-
 export default class GridViewCard extends React.PureComponent {
     static propTypes = {
-        item: PropTypes.PropTypes.shape(itemPropShape()).isRequired
+        item: PropTypes.PropTypes.shape(itemPropShape()).isRequired,
+        config: PropTypes.object.isRequired
     };
 
     render() {
-        const { item } = this.props;
+        const { item, config } = this.props;
         const { views: { grid: { layout: gridViewLayout, showId } } } = config;
 
         return (

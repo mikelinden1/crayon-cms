@@ -7,4 +7,4 @@ const config = {
     }
 };
 
-export default config.modules['widgets'];
+export default config;

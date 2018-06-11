@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import config from 'config';
-
 export default class RecordCount extends React.PureComponent {
     static propTypes = {
         numOfItems: PropTypes.number.isRequired,
@@ -10,8 +8,7 @@ export default class RecordCount extends React.PureComponent {
     };
 
     render() {
-        const { numOfItems, numOfItemsDisplayed } = this.props;
-        const { itemName, itemNamePlural: itemP } = config;
+        const { numOfItems, numOfItemsDisplayed, config: { itemName, itemNamePlural: itemP } } = this.props;
 
         const itemNamePlural = itemP ? itemP.toLowerCase() : itemName.toLowerCase() + 's';
         const itemName_total = numOfItems === 1 ? itemName.toLowerCase() : itemNamePlural;

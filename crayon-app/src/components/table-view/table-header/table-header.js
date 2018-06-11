@@ -1,10 +1,9 @@
 import React from 'react';
-import config from 'config';
 import SortColumn from 'components/sort-column';
 
 export default class ColumnHeadings extends React.PureComponent {
     render() {
-        const { views: { table: { columns: listColumns, showId } }, capabilities: { reorderable } } = config;
+        const { config: { views: { table: { columns: listColumns, showId } }, capabilities: { reorderable } } } = this.props;
 
         const headingStyle = { display:'inline-block', verticalAlign: 'middle' };
 

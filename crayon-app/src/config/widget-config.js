@@ -1,7 +1,6 @@
 const config = {
-    pluginName: 'Template CRUD Plugin', // Displayed at the top of the plugin
-    pluginId: 'widgets', // Sent to WP backend as the action param. Example: `get_${pluginId}`
-    pluginVersion: '1.0.0', // Displayed below the plugin name, set to null to hide
+    id: 'widgets',
+    moduleName: 'Manage Widgets', // Displayed at the top of the module
     itemName: 'Widget', // What are items called? (displayed in modal, delete confirmation, etc)
     itemNamePlural: 'Widgets', // How do I say that in the plural form?
     capabilities: {

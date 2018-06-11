@@ -2,7 +2,7 @@ import { ActionTypes } from 'utils/constants';
 
 const initialState = {
     fetching: false,
-    fetched: false,
+    fetched: true,
     items: []
 };
 

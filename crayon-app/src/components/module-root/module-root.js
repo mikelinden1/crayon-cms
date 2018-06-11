@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import { Alert } from 'reactstrap';
 import checkConfigFile from 'utils/check-config';
 
-import config from 'config';
-
 import Module from 'components/module';
 
-export default class Main extends React.PureComponent {
+export default class ModuleRoot extends React.PureComponent {
     static propTypes = {
         moduleId: PropTypes.string.isRequired,
         actions: PropTypes.shape({
-            setModuleId: PropTypes.func.isRequired
+            setModule: PropTypes.func.isRequired
         }).isRequired
     };
 
@@ -38,22 +36,23 @@ export default class Main extends React.PureComponent {
     }
 
     render() {
-        const configInValid = checkConfigFile();
+        const { config } = this.props;
 
-        if (configInValid) {
+        if (!config) {
+            return <Alert color="danger">Missing config attributes.</Alert>;
+        }
+
+        const configIsValid = checkConfigFile(config.id);
+
+        if (configIsValid) {
             return <Alert color="danger">There are errors in the config file. See console.</Alert>;
         }
 
-        const { pluginName, pluginVersion } = config;
-
-        const pluginVersionText =   pluginVersion
-                                    ? <p><strong>v{pluginVersion}</strong></p>
-                                    : null;
+        const { moduleName } = config;
 
         return (
             <div id="module-root">
-                <h1>{pluginName}</h1>
-                {pluginVersionText}
+                <h1>{moduleName}</h1>
 
                 <Module />
             </div>

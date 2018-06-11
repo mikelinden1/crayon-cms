@@ -6,7 +6,6 @@ import itemPropShape from 'utils/item-prop-shape';
 import { faCheckSquare as checkedIcon, faSquare as uncheckedIcon } from '@fortawesome/fontawesome-free-solid';
 import Icon from 'components/icon';
 import IconLeft from 'components/icon-left';
-import config from 'config';
 
 import getPropByName from 'utils/get-prop-by-name';
 
@@ -22,8 +21,7 @@ export default class RenderPropValue extends React.PureComponent {
     };
 
     render() {
-        const { column, item } = this.props;
-        const { itemName } = config;
+        const { column, item, config: { itemName } } = this.props;
 
         const value = item[column.name];
         const displayType = column.displayType;

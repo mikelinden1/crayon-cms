@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import config from 'config';
 
 export default class SortDropdowns extends React.PureComponent {
     static propTypes = {
@@ -8,6 +7,7 @@ export default class SortDropdowns extends React.PureComponent {
             field: PropTypes.string.isRequired,
             desc: PropTypes.bool
         }).isRequired,
+        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             setSort: PropTypes.func.isRequired
         }).isRequired
@@ -43,13 +43,12 @@ export default class SortDropdowns extends React.PureComponent {
     }
 
     render() {
-        const { views: { table: { columns: listColumns } }, capabilities: { reorderable }, filtering: { sortable } } = config;
+        const { currentSort, config: { views: { table: { columns: listColumns } }, capabilities: { reorderable }, filtering: { sortable } } } = this.props;
 
         if (!listColumns || reorderable || !sortable) {
             return null;
         }
 
-        const { currentSort } = this.props;
         const selectStyle = { display: 'inline-block', margin: '0 5px', width: '150px', maxWidth: '100%' };
 
         return (

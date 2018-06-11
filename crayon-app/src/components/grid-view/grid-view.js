@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import itemPropShape from 'utils/item-prop-shape';
 
 import { Alert } from 'reactstrap';
-import config from 'config';
 
-import GridViewCard from './grid-view-card';
+import GridViewCard from 'components/grid-view-card';
 
 export default class GridView extends React.PureComponent {
     static propTypes = {
-        items: PropTypes.arrayOf(PropTypes.shape(itemPropShape())).isRequired
+        items: PropTypes.arrayOf(PropTypes.shape(itemPropShape())).isRequired,
+        config: PropTypes.object.isRequired
     };
 
     mapItems() {
@@ -19,7 +19,7 @@ export default class GridView extends React.PureComponent {
     }
 
     render() {
-        const { views: { grid: gridConfig } } = config;
+        const { config: { views: { grid: gridConfig } } } = this.props;
 
         if (!gridConfig) {
             console.error('Missing grid view config');

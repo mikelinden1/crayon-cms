@@ -2,18 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
-import config from 'config';
-
 export default class ArchiveSwitcher extends React.PureComponent {
     static propTypes = {
         archiveMode: PropTypes.string.isRequired,
+        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             setArchive: PropTypes.func.isRequired
         }).isRequired
     };
 
     render() {
-        const { archiveMode, actions: { setArchive } } = this.props;
+        const { archiveMode, config, actions: { setArchive } } = this.props;
         const { itemName, itemNamePlural: itemP, archive } = config;
         const itemNamePlural = itemP ? itemP : itemName + 's';
 

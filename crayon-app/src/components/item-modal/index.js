@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 
 import { closeItemModal } from 'redux/actions/item-modal';
 import { saveNewItem, saveEditItem } from 'redux/actions/items';
+import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 
 import NewItemModal from './new-item-modal';
 
@@ -15,7 +16,8 @@ function mapStateToProps(state, ownProps) {
         newItem: state.modalItemProps,
         hasValidationErrors: state.itemModal.validationErrors && state.itemModal.validationErrors.length,
         editMode: state.modalItemProps.id !== undefined,
-        changeMade: state.itemModal.changeMade
+        changeMade: state.itemModal.changeMade,
+        config: getCurrentModuleConfig(state, ownProps)
     };
 }
 

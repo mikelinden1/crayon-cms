@@ -5,17 +5,18 @@ import itemPropShape from 'utils/item-prop-shape';
 
 import config from 'config';
 
-import DragHandle from './drag-handle';
-import TableCell from './table-cell';
-import ButtonColumn from './button-column';
+import DragHandle from '../drag-handle';
+import TableCell from '../table-cell';
+import ButtonColumn from '../button-column';
 
 class TableRow extends React.PureComponent {
     static propTypes = {
-        item: PropTypes.shape(itemPropShape()).isRequired
+        item: PropTypes.shape(itemPropShape()).isRequired,
+        config: PropTypes.object.isRequired
     };
 
     mapColumns(item) {
-        const { views: { table: { columns: listColumns, showId } }, capabilities: { reorderable } } = config;
+        const { config: { views: { table: { columns: listColumns, showId } }, capabilities: { reorderable } } } = this.props;
 
         const cols = listColumns.map((column) => {
             return <TableCell key={`${item.id}-${column.name}`} column={column} item={item} />;

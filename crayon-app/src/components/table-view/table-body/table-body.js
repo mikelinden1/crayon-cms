@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import itemPropShape from 'utils/item-prop-shape';
 
-import TableRows from './table-rows';
+import TableRows from '../table-rows';
 
 export default class TableBody extends React.PureComponent {
     static propTypes = {

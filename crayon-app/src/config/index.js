@@ -3,7 +3,7 @@ import BitConfig from './bit-config';
 
 const config = {
     clientName: 'Mike\'s Company',
-    apiBase: 'http://localhost',
+    apiBase: 'http://rest.learncode.academy/api/crayon',
     moduleOrder: ['bits', 'widgets'],
     modules: {
         widgets: WidgetConfig,

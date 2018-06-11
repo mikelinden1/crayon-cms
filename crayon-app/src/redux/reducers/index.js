@@ -22,7 +22,6 @@ const reducers = config.moduleOrder.reduce((r, moduleId) => {
 
 export default combineReducers(reducers);
 
-
 function createModuleReducers(id) {
     return combineReducers({
         items: items(id),

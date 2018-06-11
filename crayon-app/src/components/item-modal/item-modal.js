@@ -11,7 +11,7 @@ import getPropByName from 'utils/get-prop-by-name';
 
 import { DEFAULT_ERROR_MESSAGE } from 'utils/constants';
 
-export default class NewItemModal extends React.Component {
+export default class ItemModal extends React.Component {
     static propTypes = {
         newItem: PropTypes.shape(itemPropShape(true)).isRequired,
         editMode: PropTypes.bool,

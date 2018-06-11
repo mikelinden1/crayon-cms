@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
+import currentModule from './current-module';
+
 import items from './items';
 import itemModal from './item-modal';
 import modalItemProps from './modal-item-props';
@@ -13,6 +15,7 @@ import paginator from './paginator';
 import bulkAdd from './bulk-add';
 
 export default combineReducers({
+                                currentModule,
                                 items,
                                 itemModal,
                                 modalItemProps,

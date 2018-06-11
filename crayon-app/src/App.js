@@ -6,7 +6,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="skift-crud-app wrapper">
-                <ModuleRoot />
+                <ModuleRoot moduleId="widgets" />
             </div>
         );
     }

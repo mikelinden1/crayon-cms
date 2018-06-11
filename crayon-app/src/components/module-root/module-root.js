@@ -9,8 +9,33 @@ import Module from 'components/module';
 
 export default class Main extends React.PureComponent {
     static propTypes = {
-        moduleId: PropTypes.string.isRequired
+        moduleId: PropTypes.string.isRequired,
+        actions: PropTypes.shape({
+            setModuleId: PropTypes.func.isRequired
+        }).isRequired
     };
+
+    componentWillMount() {
+        const { moduleId } = this.props;
+
+        if (moduleId) {
+            this.setModule(moduleId);
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { moduleId, currentModule } = nextProps;
+
+        if (moduleId !== currentModule) {
+            this.setModule(moduleId);
+        }
+    }
+
+    setModule(id) {
+        const { actions: { setModule } } = this.props;
+
+        setModule(id);
+    }
 
     render() {
         const configInValid = checkConfigFile();

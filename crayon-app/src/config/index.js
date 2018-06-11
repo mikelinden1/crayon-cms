@@ -1,9 +1,12 @@
 import WidgetConfig from './widget-config';
+import BitConfig from './bit-config';
 
 const config = {
     clientName: 'Mike\'s Company',
+    moduleOrder: ['widgets', 'bits'],
     modules: {
-        widgets: WidgetConfig
+        widgets: WidgetConfig,
+        bits: BitConfig
     }
 };
 

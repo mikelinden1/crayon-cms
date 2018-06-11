@@ -131,10 +131,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .wrapper {
     width: 100%;
-    padding-right: 20px;
-    padding-top: 20px;
-    margin-right: auto;
-    margin-left: auto;
+    padding: 20px;
 }
 
 .calendar-wrapper {

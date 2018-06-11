@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Alert } from 'reactstrap';
+import checkConfigFile from 'utils/check-config';
 
 import config from 'config';
 
@@ -34,6 +35,18 @@ export default class Main extends React.PureComponent {
     }
 
     render() {
+        const configInValid = checkConfigFile();
+
+        if (configInValid) {
+            return <Alert color="danger">There are errors in the config file. See console.</Alert>;
+        }
+
+        const { pluginName, pluginVersion } = config;
+
+        const pluginVersionText =   pluginVersion
+                                    ? <p><strong>v{pluginVersion}</strong></p>
+                                    : null;
+
         const { fetched, error } = this.props;
 
         if (!fetched) {
@@ -49,6 +62,9 @@ export default class Main extends React.PureComponent {
 
         return (
             <div>
+                <h1>{pluginName}</h1>
+                {pluginVersionText}
+
                 <AddNew />
                 <FilterSortSearch />
                 <Switchers />

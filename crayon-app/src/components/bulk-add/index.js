@@ -3,17 +3,18 @@ import { bindActionCreators } from 'redux';
 
 import { addColumn, setColumns, setCsvContent, closeBulkAddDialog, openBulkAddDialog, throwBulkError, saveBulkItems } from 'redux/actions/bulk-add';
 import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
+import getModuleReduxProp from 'utils/get-module-redux-prop';
 
 import BulkAdd from './bulk-add';
 
 function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
-        open: state.bulkAdd.open,
-        adding: state.bulkAdd.adding,
-        columns: state.bulkAdd.columns,
-        csvContents: state.bulkAdd.csvContents,
-        error: state.bulkAdd.error,
+        open: getModuleReduxProp(state, 'bulkAdd', 'open'),
+        adding: getModuleReduxProp(state, 'bulkAdd', 'adding'),
+        columns: getModuleReduxProp(state, 'bulkAdd', 'columns'),
+        csvContents: getModuleReduxProp(state, 'bulkAdd', 'csvContents'),
+        error: getModuleReduxProp(state, 'bulkAdd', 'error'),
         config: getCurrentModuleConfig(state, ownProps)
     };
 }

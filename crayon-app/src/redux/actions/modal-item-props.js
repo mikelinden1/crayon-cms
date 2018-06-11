@@ -1,8 +1,13 @@
 import { ActionTypes } from 'utils/constants';
 
 export function setItemProp(key, val) {
-    return {
-        type: ActionTypes.SET_PROP_VALUE,
-        payload: { key, val }
+    return (dispatch, getState) => {
+        const state = getState();
+        const moduleId = state.currentModule;
+
+        dispatch({
+            type: `${ActionTypes.SET_PROP_VALUE}_${moduleId}`,
+            payload: { key, val }
+        });
     };
 }

@@ -5,15 +5,16 @@ import { withRouter } from 'react-router-dom';
 
 import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 import { fetchItems } from 'redux/actions/items';
+import getModuleReduxProp from 'utils/get-module-redux-prop';
 
 import Module from './module';
 
 function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
-        fetched: state.items.fetched,
-        fetching: state.items.fetching,
-        error: state.items.error,
+        fetched: getModuleReduxProp(state, 'items', 'fetched'),
+        fetching: getModuleReduxProp(state, 'items', 'fetching'),
+        error: getModuleReduxProp(state, 'items', 'error'),
         config: getCurrentModuleConfig(state, ownProps)
     };
 }

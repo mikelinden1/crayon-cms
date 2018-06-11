@@ -4,15 +4,16 @@ import { bindActionCreators } from 'redux';
 import { fetchDatasource } from 'redux/actions/data-sources';
 import { setFilter } from 'redux/actions/filters';
 import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
+import getModuleReduxProp from 'utils/get-module-redux-prop';
 
 import Filter from './filter';
 
 function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
-        datasources: state.datasources,
-        filterVals: state.filters,
-        currentModule: state.currentModule,
+        datasources: getModuleReduxProp(state, 'datasources'),
+        filterVals: getModuleReduxProp(state, 'filters'),
+        currentModule: getModuleReduxProp(state, 'currentModule'),
         config: getCurrentModuleConfig(state, ownProps)
     };
 }

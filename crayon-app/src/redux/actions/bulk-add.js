@@ -3,48 +3,74 @@ import axios from 'axios';
 import config from 'config';
 
 export function addColumn(column) {
-    return {
-        type: ActionTypes.ADD_BULK_COLUMN,
-        payload: column
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch({
+            type: `${ActionTypes.ADD_BULK_COLUMN}_${state.currentModule}`,
+            payload: column
+        });
     };
 };
 
 export function setColumns(columns) {
-    return {
-        type: ActionTypes.SET_BULK_COLUMNS,
-        payload: columns
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch({
+            type: `${ActionTypes.SET_BULK_COLUMNS}_${state.currentModule}`,
+            payload: columns
+        });
     };
 };
 
 export function setCsvContent(csv) {
-    return {
-        type: ActionTypes.SET_BULK_CSV_CONTENTS,
-        payload: csv
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch({
+            type: `${ActionTypes.SET_BULK_CSV_CONTENTS}_${state.currentModule}`,
+            payload: csv
+        });
     };
 };
 
 export function openBulkAddDialog() {
-    return {
-        type: ActionTypes.OPEN_BULK_ADD_DIALOG
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch({
+            type: `${ActionTypes.OPEN_BULK_ADD_DIALOG}_${state.currentModule}`
+        });
     };
 };
 
 export function closeBulkAddDialog() {
-    return {
-        type: ActionTypes.CLOSE_BULK_ADD_DIALOG
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch({
+            type: `${ActionTypes.CLOSE_BULK_ADD_DIALOG}_${state.currentModule}`
+        });
     };
 };
 
 export function throwBulkError(error) {
-    return {
-        type: ActionTypes.BULK_ADD_ERROR,
-        payload: error
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch({
+            type: `${ActionTypes.BULK_ADD_ERROR}_${state.currentModule}`,
+            payload: error
+        });
     };
 };
 
 export function saveBulkItems(items) {
-    return (dispatch) => {
-        const complete = () => dispatch({ type: ActionTypes.SAVE_BULK_ITEMS + '_FULFILLED' });
+    return (dispatch, getState) => {
+        const state = getState();
+
+        const complete = () => dispatch({ type: `${ActionTypes.SAVE_BULK_ITEMS}_${state.currentModule}` });
 
         const { pluginId } = config;
         const wpAction = `post_${pluginId}`;
@@ -57,15 +83,15 @@ export function saveBulkItems(items) {
 
             axios.post(`${API_ENDPOINT}?action=${wpAction}`, items[i]).then((res) => {
                 dispatch({
-                    type: ActionTypes.SAVE_NEW_ITEM + '_FULFILLED',
+                    type: `${ActionTypes.SAVE_NEW_ITEM}_${state.currentModule}_FULFILLED`,
                     payload: res
                 });
 
                 saveItem(++i);
-            }).catch(() => dispatch({ type: ActionTypes.BULK_ADD_ERROR, payload: 'Error saving items' }));
+            }).catch(() => dispatch({ type: `${ActionTypes.BULK_ADD_ERROR}_${state.currentModule}`, payload: 'Error saving items' }));
         };
 
-        dispatch({ type: ActionTypes.SAVE_BULK_ITEMS + '_PENDING' })
+        dispatch({ type: `${ActionTypes.SAVE_BULK_ITEMS}_${state.currentModule}_PENDING` })
         saveItem(0);
     };
 }

@@ -3,13 +3,14 @@ import { bindActionCreators } from 'redux';
 
 import { setSort } from 'redux/actions/filters';
 import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
+import getModuleReduxProp from 'utils/get-module-redux-prop';
 
 import SortColumn from './sort-column';
 
 function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
-        currentSort: state.sort,
+        currentSort: getModuleReduxProp(state, 'sort'),
         config: getCurrentModuleConfig(state, ownProps)
     };
 }

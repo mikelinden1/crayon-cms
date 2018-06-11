@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import { validateOnChange } from 'redux/actions/items';
 import { setItemProp } from 'redux/actions/modal-item-props';
 import { fetchDatasource } from 'redux/actions/data-sources';
+import getModuleReduxProp from 'utils/get-module-redux-prop';
 
 import { getPropValue } from 'redux/selectors/get-prop-value';
 import { getPropValidationErrors } from 'redux/selectors/get-prop-validation-errors';
@@ -14,7 +15,7 @@ function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
         value: getPropValue(state, ownProps),
-        datasources: state.datasources,
+        datasources: getModuleReduxProp(state, 'datasources'),
         validationErrors: getPropValidationErrors(state, ownProps)
     };
 }

@@ -5,16 +5,16 @@ import getPropByName from 'utils/get-prop-by-name';
 
 export function fetchDatasource(name, source) {
     return (dispatch, getState) => {
+        const state = getState();
+
         dispatch({
-            type: ActionTypes.FETCH_DATA_SOURCE,
+            type: `${ActionTypes.FETCH_DATA_SOURCE}_${state.currentModule}`,
             payload: { name }
         });
-
 
         axios.get(source.url).then((res) => {
             const rawData = res.data;
 
-            const state = getState();
 
             const sourceProp = getPropByName(state.currentModule, name);
 
@@ -34,7 +34,7 @@ export function fetchDatasource(name, source) {
             }, []);
 
             dispatch({
-                type: ActionTypes.FETCH_DATA_SOURCE_COMPLETE,
+                type: `${ActionTypes.FETCH_DATA_SOURCE_COMPLETE}_${state.currentModule}`,
                 payload: { name, data }
             });
         });

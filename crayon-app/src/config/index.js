@@ -3,7 +3,7 @@ import BitConfig from './bit-config';
 
 const config = {
     clientName: 'Mike\'s Company',
-    moduleOrder: ['widgets', 'bits'],
+    moduleOrder: ['bits', 'widgets'],
     modules: {
         widgets: WidgetConfig,
         bits: BitConfig

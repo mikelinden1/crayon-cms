@@ -14,7 +14,7 @@ class App extends React.Component {
                     <Route exact path='/' render={(props) => <Homepage />} />
                     {
                         config.moduleOrder.map((moduleId) => {
-                            return <Route exact path={`/${moduleId}`} render={(props) => <ModuleRoot moduleId={moduleId} {...props} />} />;
+                            return <Route key={`module-route-${moduleId}`} exact path={`/${moduleId}`} render={(props) => <ModuleRoot moduleId={moduleId} {...props} />} />;
                         })
                     }
                 </Switch>

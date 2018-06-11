@@ -1,6 +1,9 @@
+import { faPuzzlePiece } from '@fortawesome/fontawesome-free-solid';
+
 const config = {
     id: 'widgets',
     moduleName: 'Manage Widgets', // Displayed at the top of the module
+    icon: faPuzzlePiece,
     itemName: 'Widget', // What are items called? (displayed in modal, delete confirmation, etc)
     itemNamePlural: 'Widgets', // How do I say that in the plural form?
     capabilities: {

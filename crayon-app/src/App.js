@@ -12,11 +12,9 @@ class App extends React.Component {
             <div className="skift-crud-app wrapper">
                 <Switch>
                     <Route exact path='/' render={(props) => <Homepage />} />
-                    {
-                        config.moduleOrder.map((moduleId) => {
-                            return <Route key={`module-route-${moduleId}`} exact path={`/${moduleId}`} render={(props) => <ModuleRoot moduleId={moduleId} {...props} />} />;
-                        })
-                    }
+                    {config.moduleOrder.map((moduleId) => {
+                        return <Route key={`module-route-${moduleId}`} exact path={`/${moduleId}`} render={(props) => <ModuleRoot moduleId={moduleId} {...props} />} />;
+                    })}
                 </Switch>
             </div>
         );

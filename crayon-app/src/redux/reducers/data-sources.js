@@ -1,36 +1,38 @@
 import { ActionTypes } from 'utils/constants';
 
-function dataSources(state = {}, action) {
-    switch (action.type) {
-        case ActionTypes.FETCH_DATA_SOURCE: {
-            const name = action.payload.name;
+function dataSourcesCreator(id) {
+    return function dataSources(state = {}, action) {
+        switch (action.type) {
+            case `${ActionTypes.FETCH_DATA_SOURCE}_${id}`: {
+                const name = action.payload.name;
 
-            const nextState = {...state};
+                const nextState = {...state};
 
-            nextState[name] = {
-                fetching: true
-            };
+                nextState[name] = {
+                    fetching: true
+                };
 
-            return nextState;
-        }
-        case ActionTypes.FETCH_DATA_SOURCE_COMPLETE: {
-            const { name, data } = action.payload;
+                return nextState;
+            }
+            case `${ActionTypes.FETCH_DATA_SOURCE_COMPLETE}_${id}`: {
+                const { name, data } = action.payload;
 
-            const nextState = {...state};
+                const nextState = {...state};
 
-            nextState[name] = {
-                ...nextState[name],
-                fetching: false,
-                fetched: true,
-                data
-            };
+                nextState[name] = {
+                    ...nextState[name],
+                    fetching: false,
+                    fetched: true,
+                    data
+                };
 
-            return nextState;
-        }
-        default: {
-            return state;
+                return nextState;
+            }
+            default: {
+                return state;
+            }
         }
     }
 }
 
-export default dataSources;
+export default dataSourcesCreator;

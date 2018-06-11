@@ -7,15 +7,17 @@ const initialSort = {
     field: defaultSort
 };
 
-function sort(state = initialSort, action) {
-    switch (action.type) {
-        case ActionTypes.SET_SORT: {
-            return action.payload;
-        }
-        default: {
-            return state;
+function sortCreator(id) {
+    return function sort(state = initialSort, action) {
+        switch (action.type) {
+            case `${ActionTypes.SET_SORT}_${id}`: {
+                return action.payload;
+            }
+            default: {
+                return state;
+            }
         }
     }
 }
 
-export default sort;
+export default sortCreator;

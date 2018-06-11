@@ -1,0 +1,404 @@
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: normal;
+}
+
+.margin-above-below {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.table .buttons .btn {
+    width: 111px;
+}
+
+.add-new-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    max-width: 200px;
+}
+
+.filter-sort-search {
+    flex-grow: 1;
+
+    display: flex;
+    align-items: center;
+    margin: 0 -5px;
+}
+
+.filter-sort-search > div, .filter-sort-search .search-box {
+    flex-grow: 1;
+    margin: 0 5px;
+    flex-basis: 25%;
+    max-width: 300px;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    border-radius: 25px;
+    padding: .6rem 2.3rem;
+}
+
+.search-box .search-icon {
+    font-size: 13px;
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    margin-top: -8px;
+    color: #aaa;
+}
+
+.search-box .clear-search {
+    font-size: 16px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    margin-top: -13px;
+    color: #aaa;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .add-new-btn {
+        position: static;
+        margin-bottom: 10px;
+        max-width: none;
+    }
+
+    .filter-sort-search {
+        flex-direction: column;
+        margin: -5px 0 15px 0;
+    }
+    .filter-sort-search > div, .filter-sort-search .search-box {
+        margin: 5px 0;
+        width: 100%;
+    }
+}
+
+
+.modal-dialog {
+    max-width: 800px;
+}
+
+.form-group.has-error .control-label {
+    color: #d9534f;
+}
+.form-group.has-error .form-control {
+    border-color: #d9534f;
+}
+.invalid-feedback {
+    display: block;
+}
+
+.switchers {
+    display: flex;
+    margin: 15px -10px 30px;
+}
+
+.switchers > div {
+    margin: 0 10px;
+}
+
+.sort-dropdowns {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.sort-dropdowns label {
+    margin-bottom: 0 !important;
+}
+
+@media screen and (max-width: 1130px) {
+    .switchers {
+        display: block;
+    }
+
+    .sort-dropdowns {
+        text-align: left;
+        margin: 10px !important;
+    }
+}
+
+.pull-right {
+    float: right;
+}
+
+.wrapper {
+    width: 100%;
+    padding-right: 20px;
+    padding-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.calendar-wrapper {
+    width: 278px;
+    margin: 0 auto;
+}
+
+.datepicker {
+    display: block;
+}
+
+.item-info-btn {
+    display: inline-block;
+    margin-right: 20px;
+    font-size: 18px;
+    vertical-align: middle;
+    cursor: pointer;
+    position: relative;
+}
+
+.item-info-hover {
+    display: none;
+    width: 260px;
+    font-size: 12px;
+    text-align: left;
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 18px 18px 6px;
+    border: 2px solid #000;
+    background-color: #fff;
+}
+
+.item-info-btn:hover .item-info-hover {
+    display: block;
+}
+
+.item-info-hover:after, .item-info-hover:before {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.item-info-hover:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-top-color: #fff;
+    border-width: 8px;
+    margin-left: -8px;
+}
+
+.item-info-hover:before {
+    border-color: transparent;
+    border-top-color: #000000;
+    border-width: 11px;
+    margin-left: -11px;
+}
+
+.item-info-hover .label {
+    text-transform: uppercase;
+    font-size: 8px;
+    font-weight: 900;
+    color: #454545;
+    font-family: arial, sans-serif;
+}
+
+.item-info-hover .label-value {
+    margin-bottom: 10px;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+.grid-view {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 15px;
+}
+
+@media screen and (max-width: 1400px) {
+    .grid-view {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 1130px) {
+    .grid-view {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    .grid-view {
+        grid-template-columns: 1fr;
+    }
+}
+
+.grid-view .card {
+    max-width: 400px !important;
+}
+
+.grid-view .no-photo {
+    text-align: center;
+    padding: 1.25rem !important;
+    background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+}
+.grid-view .card-body {
+    padding: 0 1.25rem !important;
+}
+.grid-view .card-body:first-child {
+    padding: 1.25rem 1.25rem 0 1.25rem !important;
+}
+.grid-view .card-footer {
+    margin-top: 1.25rem !important;
+    position: relative;
+}
+.grid-view .card-body.image-fullwidth {
+    padding: 0 !important;
+    margin-bottom: 1.25rem !important;
+}
+.grid-item-id {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    margin-top: -12px;
+}
+
+.datepicker input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem 2rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #f7f7f9;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0;
+    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.Select-control {
+    border-radius: 0 !important;
+    border: 1px solid #ced4da !important;
+}
+
+.hidden {
+    display: none;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    outline: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.link-btn:hover {
+    text-decoration: underline;
+}
+
+.info-area {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 15px 15px 0 0;
+    text-align: right;
+}
+
+.info-area h3, .info-area .btn {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px;
+}
+
+.module-delete-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    height: 100%;
+}
+
+/* wp style overrides */
+.card {
+    padding: 0 !important;
+    min-width: none !important;
+    max-width: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+}
+
+/*
+.wp-admin select {
+    height: calc(2.8125rem + 2px) !important;
+    padding: .375rem 1.75rem .375rem .75rem !important;
+    line-height: 1.5 !important;
+    vertical-align: middle !important;
+}
+*/
+
+input[type=text], input[type=search], input[type=radio], input[type=tel], input[type=time], input[type=url], input[type=week], input[type=password], input[type=checkbox], input[type=color], input[type=date], input[type=datetime], input[type=datetime-local], input[type=email], input[type=month], input[type=number], textarea {
+    background-color: #f7f7f9 !important;
+}
+
+.react-datepicker-wrapper, .react-datepicker__input-container {
+    display: block;
+}
+
+.react-datepicker__time-list {
+    padding: 0 !important;
+    height: calc(195px + (1.7rem / 2)) !important;
+    overflow: hidden;
+}
+
+.react-datepicker__time-list-item {
+    font-size: 11px;
+    padding: 7px 5px !important;
+    width: calc(100% - 1px);
+}
+
+.photo-picker-thumb {
+    width: 60px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-field input {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.photo-field .btn {
+    height: 100%;
+}
+
+.drag-handle {
+    cursor: pointer;
+    font-size: 22px;
+}
+
+.helper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.bulk-add .react-tagsinput-input {
+    opacity: 0;
+}

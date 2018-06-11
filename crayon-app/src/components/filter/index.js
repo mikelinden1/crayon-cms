@@ -13,7 +13,7 @@ function mapStateToProps(state, ownProps) {
         ...ownProps,
         datasources: getModuleReduxProp(state, 'datasources'),
         filterVals: getModuleReduxProp(state, 'filters'),
-        currentModule: getModuleReduxProp(state, 'currentModule'),
+        currentModule: state.currentModule,
         config: getCurrentModuleConfig(state, ownProps)
     };
 }

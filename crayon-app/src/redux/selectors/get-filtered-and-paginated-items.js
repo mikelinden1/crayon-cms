@@ -5,7 +5,7 @@ import getModuleConfig from 'utils/get-module-config';
 
 const config = (state) => getModuleConfig(state.currentModule);
 const filteredItems = (state) => getFilteredItems(state);
-const page = (state) => state.paginator.currentPage;
+const page = (state) => state[state.currentModule].paginator.currentPage;
 
 export const getFilteredAndPaginatedItems = createSelector(
     [ config, filteredItems, page ],

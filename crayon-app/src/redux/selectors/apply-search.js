@@ -2,8 +2,8 @@ import { createSelector } from 'reselect';
 import getModuleConfig from 'utils/get-module-config';
 
 const config = (state) => getModuleConfig(state.currentModule);
-const searchTerms = (state) => state.search.terms.toLowerCase();
-const items = (state) => state.items.items;
+const searchTerms = (state) => state[state.currentModule].search.terms.toLowerCase();
+const items = (state) => state[state.currentModule].items.items;
 
 export const applySearch = createSelector(
     [ config, searchTerms, items ],

@@ -20,7 +20,7 @@ function mapStateToProps(state, ownProps) {
         hasValidationErrors: validationErrors && validationErrors.length,
         editMode: getModuleReduxProp(state, 'modalItemProps', 'id') !== undefined,
         changeMade: getModuleReduxProp(state, 'itemModal', 'changeMade'),
-        currentModule: getModuleReduxProp(state, 'currentModule'),
+        currentModule: state.currentModule,
         config: getCurrentModuleConfig(state, ownProps)
     };
 }

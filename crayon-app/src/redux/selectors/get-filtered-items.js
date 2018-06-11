@@ -9,8 +9,8 @@ import getModuleConfig from 'utils/get-module-config';
 const config = (state) => getModuleConfig(state.currentModule);
 const filteredItems = (state) => applyFilters(state);
 const searchItems = (state) => applySearch(state);
-const archive = (state) => state.archive;
-const sort = (state) => state.sort;
+const archive = (state) => state[state.currentModule].archive;
+const sort = (state) => state[state.currentModule].sort;
 
 export const getFilteredItems = createSelector(
     [ config, filteredItems, searchItems, archive, sort ],

@@ -2,8 +2,8 @@ import { createSelector } from 'reselect';
 import getModuleConfig from 'utils/get-module-config';
 
 const config = (state) => getModuleConfig(state.currentModule);
-const filters = (state) => state.filters;
-const items = (state) => state.items.items;
+const filters = (state) => state[state.currentModule].filters;
+const items = (state) => state[state.currentModule].items.items;
 
 export const applyFilters = createSelector(
     [ config, filters, items ],

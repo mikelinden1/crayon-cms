@@ -15,7 +15,11 @@ export default class TagsField extends React.PureComponent {
 
     render() {
         const { value: inputValue, disabled, onChange } = this.props;
-        const value = inputValue ? inputValue : [];
+        let value = inputValue ? inputValue : [];
+
+        if (typeof value === 'string') {
+            value = JSON.parse(value);
+        }
 
         return <TagsInput disabled={disabled} value={value} onChange={(val) => onChange(val)} />;
     }

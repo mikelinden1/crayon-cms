@@ -50,7 +50,7 @@ export default class DropdownField extends React.PureComponent {
     }
 
     render() {
-        const { name, value, disabled, placeholder: p, options: manualOptions, source, datasources, multiple: m } = this.props;
+        const { name, value: inputValue, disabled, placeholder: p, options: manualOptions, source, datasources, multiple: m } = this.props;
         const placeholder = p ? p : 'Select...';
 
         const multiple = m ? m : false;
@@ -65,6 +65,11 @@ export default class DropdownField extends React.PureComponent {
             options = manualOptions;
         } else {
             options = datasources[name].data;
+        }
+
+        let value = inputValue;
+        if (value && typeof value === 'string') {
+            value = JSON.parse(value);
         }
 
         let selected;

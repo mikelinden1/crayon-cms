@@ -20,7 +20,7 @@ function itemsCreator(id) {
                     ...state,
                     fetching: false,
                     fetched: true,
-                    items: action.payload.data,
+                    items: action.payload.data[id],
                     error: false
                 };
             }
@@ -33,16 +33,25 @@ function itemsCreator(id) {
                 };
             }
             case `${ActionTypes.SAVE_NEW_ITEM}_${id}_FULFILLED`: {
-                const items = [...state.items];
+                const newId = action.payload.data;
 
-                const newItem = action.payload.data;
+                if (newId) {
+                    const items = [...state.items];
 
-                items.push(newItem);
+                    const newItem = state.itemSaving;
+                    newItem.id = action.payload.data;
 
-                return {
-                    ...state,
-                    items
-                };
+                    items.push(newItem);
+
+                    return {
+                        ...state,
+                        items
+                    };
+                } else {
+                    return {
+                        ...state
+                    };
+                }
             }
             case `${ActionTypes.ITEM_SORT_END}_${id}`: {
                 return {
@@ -50,6 +59,7 @@ function itemsCreator(id) {
                     items: [...action.payload]
                 };
             }
+            case `${ActionTypes.SAVE_NEW_ITEM}_${id}`:
             case `${ActionTypes.SAVE_EDIT_ITEM}_${id}`: {
                 return {
                     ...state,

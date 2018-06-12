@@ -4,11 +4,10 @@ const config = {
     id: 'bits',
     moduleName: 'Manage Bits', // Displayed at the top of the module
     icon: faUser,
-    apiEndpoint: 'bit',
     itemName: 'Bit', // What are items called? (displayed in modal, delete confirmation, etc)
     itemNamePlural: 'Bits', // How do I say that in the plural form?
     capabilities: {
-        reorderable: false, // Can the user reorder items? If yes, sorting will be disabled.
+        reorderable: true, // Can the user reorder items? If yes, sorting will be disabled.
         editable: true, // Can the user edit items?
         deleteable: true, // Can the user delete items?
         deleteIdProp: 'name', // Property used in the delete confirm dialog (default to 'name' if not set)
@@ -19,7 +18,7 @@ const config = {
         filterFields: null, // Which fields should have filtering dropdowns displayed?
         sortable: true // Can the user sort the items in the display? Not available if reorderable is on.
     },
-    defaultSort: { field: 'id', desc: false }, // What should the default sort be? Should be 'sort' if sortable is true above
+    defaultSort: { field: 'sort', desc: false }, // What should the default sort be? Should be 'sort' if sortable is true above
     itemsPerPage: 6, // How many items should I display on a page? Set to null to disable pagination.
     views: {
         displayType: 'table', // How should I display the items? Options: table, grid, or switch to show a switcher

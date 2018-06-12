@@ -32,29 +32,45 @@ export const getFilteredItems = createSelector(
             });
         }
 
-        const sortedItems = items.sort((a, b) => {
-            if (sort.desc) {
-                if (b[sort.field] < a[sort.field]) {
+        let sortedItems = items;
+
+        if (config.capabilities.reorderable) {
+            sortedItems = items.sort((a, b) => {
+                if (a.sort < b.sort) {
                     return -1;
                 }
 
-                if (b[sort.field] > a[sort.field]) {
+                if (a.sort > b.sort) {
                     return 1;
                 }
 
                 return 0;
-            }
+            });
+        } else {
+            sortedItems = items.sort((a, b) => {
+                if (sort.desc) {
+                    if (b[sort.field] < a[sort.field]) {
+                        return -1;
+                    }
 
-            if (a[sort.field] < b[sort.field]) {
-                return -1;
-            }
+                    if (b[sort.field] > a[sort.field]) {
+                        return 1;
+                    }
 
-            if (a[sort.field] > b[sort.field]) {
-                return 1;
-            }
+                    return 0;
+                }
 
-            return 0;
-        });
+                if (a[sort.field] < b[sort.field]) {
+                    return -1;
+                }
+
+                if (a[sort.field] > b[sort.field]) {
+                    return 1;
+                }
+
+                return 0;
+            });
+        }
 
         return sortedItems;
     }

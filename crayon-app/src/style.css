@@ -10,6 +10,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     background-color: #1a1a1a;
     color: #fff;
+    z-index: 99999;
 }
 
 #top-bar a, #top-bar button {
@@ -27,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #top-bar a, #top-bar button, #top-bar .welcome {
-    padding: 6px 20px;
+    padding: 6px 12px;
 }
 
 #top-bar .grow {
@@ -458,4 +459,8 @@ input[type=text], input[type=search], input[type=radio], input[type=tel], input[
 
 .bulk-add .react-tagsinput-input {
     opacity: 0;
+}
+
+.powered-by {
+    font-size: 10px;
 }

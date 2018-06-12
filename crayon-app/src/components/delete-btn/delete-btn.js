@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import itemPropShape from 'utils/item-prop-shape';
 
 import { Button } from 'reactstrap'
 import Spinner from 'components/spinner';
 
 export default class DeleteBtn extends React.PureComponent {
     static propTypes = {
-        item: PropTypes.shape(itemPropShape()).isRequired,
+        item: PropTypes.object.isRequired,
         config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             deleteItem: PropTypes.func.isRequired

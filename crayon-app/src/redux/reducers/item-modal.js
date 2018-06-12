@@ -44,13 +44,29 @@ function itemModalCreator(id) {
                     saving: true
                 };
             }
-            case `${ActionTypes.SAVE_EDIT_ITEM}_${id}_FULFILLED`:
-            case `${ActionTypes.SAVE_NEW_ITEM}_${id}_FULFILLED`: {
+            case `${ActionTypes.SAVE_EDIT_ITEM}_${id}_FULFILLED`: {
                 return {
                     ...state,
                     saving: false,
                     open: false
                 };
+            }
+            case `${ActionTypes.SAVE_NEW_ITEM}_${id}_FULFILLED`: {
+                const newId = action.payload.data;
+
+                if (newId) {
+                    return {
+                        ...state,
+                        saving: false,
+                        open: false
+                    };
+                } else {
+                    return {
+                        ...state,
+                        saving: false,
+                        error: true
+                    };
+                }
             }
             case `${ActionTypes.SAVE_EDIT_ITEM}_${id}_REJECTED`:
             case `${ActionTypes.SAVE_NEW_ITEM}_${id}_REJECTED`: {

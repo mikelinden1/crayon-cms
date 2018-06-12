@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import itemPropShape from 'utils/item-prop-shape';
 
 import { Button } from 'reactstrap'
 
 export default class EditBtn extends React.PureComponent {
     static propTypes = {
-        item: PropTypes.shape(itemPropShape()).isRequired,
+        item: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             editItem: PropTypes.func.isRequired
         }).isRequired

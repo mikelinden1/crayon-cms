@@ -3,7 +3,7 @@ import config from 'config';
 
 import axios from 'axios';
 
-// import { arrayMove } from 'react-sortable-hoc';
+import { arrayMove } from 'react-sortable-hoc';
 
 const API_BASE = config.apiBase;
 
@@ -17,7 +17,7 @@ export function fetchItems() {
         const action = {};
 
         action.type = `${ActionTypes.FETCH_ITEMS}_${state.currentModule}`;
-        action.payload = axios.get(`${API_BASE}/${moduleConfig.apiEndpoint}`);
+        action.payload = axios.get(`${API_BASE}/${moduleConfig.id}?transform=1`);
 
         dispatch(action);
     };
@@ -32,7 +32,7 @@ export function startPolling(dispatch, moduleId) {
 function refreshItems(dispatch, moduleId) {
     const moduleConfig = config.modules[moduleId];
 
-    axios.get(`${API_BASE}/${moduleConfig.apiEndpoint}`).then((data) => {
+    axios.get(`${API_BASE}/${moduleConfig.id}?transform=1`).then((data) => {
         dispatch({
             type: `${ActionTypes.FETCH_ITEMS}_${moduleId}_FULFILLED`,
             payload: data
@@ -105,10 +105,15 @@ export function saveNewItem(data) {
         const valid = validateItems(data, dispatch, moduleId);
 
         if (valid) {
+            dispatch({
+                type: `${ActionTypes.SAVE_NEW_ITEM}_${moduleId}`,
+                payload: data
+            });
+
             const action = {};
 
             action.type = `${ActionTypes.SAVE_NEW_ITEM}_${moduleId}`;
-            action.payload = axios.post(`${API_BASE}/${moduleConfig.apiEndpoint}`, data);
+            action.payload = axios.post(`${API_BASE}/${moduleConfig.id}`, data);
 
             dispatch(action);
         }
@@ -143,7 +148,7 @@ export function saveEditItem(data) {
             const action = {};
 
             action.type = `${ActionTypes.SAVE_EDIT_ITEM}_${moduleId}`;
-            action.payload = axios.put(`${API_BASE}/${moduleConfig.apiEndpoint}/${data.id}`, data);
+            action.payload = axios.put(`${API_BASE}/${moduleConfig.id}/${data.id}`, data);
 
             dispatch(action);
         }
@@ -173,7 +178,7 @@ export function deleteItem(item) {
             const action = {};
 
             action.type = `${ActionTypes.DELETE_ITEM}_${moduleId}`;
-            action.payload = axios.delete(`${API_BASE}/${moduleConfig.apiEndpoint}/${item.id}`);
+            action.payload = axios.delete(`${API_BASE}/${moduleConfig.id}/${item.id}`);
 
             dispatch(action);
         }
@@ -182,9 +187,9 @@ export function deleteItem(item) {
 
 export function sortEnd(items, oldIndex, newIndex) {
     return (dispatch, getState) => {
-/*
         const state = getState();
         const moduleId = state.currentModule;
+        const moduleConfig = config.modules[moduleId];
 
         let newItems = arrayMove(items, oldIndex, newIndex);
         newItems = newItems.map((mod, i) => {
@@ -197,18 +202,20 @@ export function sortEnd(items, oldIndex, newIndex) {
             payload: newItems
         });
 
+        let itemIds = [];
         const payload = newItems.reduce((collector, i) => {
-            collector[`item_${i.id}`] = i.sort;
+            itemIds.push(i.id);
+            collector.push({ sort: i.sort });
             return collector;
-        }, {});
+        }, []);
 
-        const wpAction = `sort_${pluginId}`;
+        itemIds = itemIds.join(',');
+
         const action = {};
 
         action.type = `${ActionTypes.ITEM_SORT_END}_${moduleId}`;
-        action.payload = axios.post(`${API_ENDPOINT}?action=${wpAction}`, payload);
+        action.payload = axios.put(`${API_BASE}/${moduleConfig.id}/${itemIds}`, payload);
 
         dispatch(action);
-*/
     };
 }

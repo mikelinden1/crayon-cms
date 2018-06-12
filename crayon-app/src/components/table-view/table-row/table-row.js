@@ -1,7 +1,6 @@
 import React from 'react';
 import { SortableElement } from 'react-sortable-hoc';
 import PropTypes from 'prop-types';
-import itemPropShape from 'utils/item-prop-shape';
 
 import DragHandle from '../drag-handle';
 import TableCell from '../table-cell';
@@ -9,7 +8,7 @@ import ButtonColumn from '../button-column';
 
 class TableRow extends React.PureComponent {
     static propTypes = {
-        item: PropTypes.shape(itemPropShape()).isRequired,
+        item: PropTypes.object.isRequired,
         config: PropTypes.object.isRequired
     };
 

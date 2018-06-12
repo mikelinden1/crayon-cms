@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import itemPropShape from 'utils/item-prop-shape';
 
 import RenderPropValue from 'components/render-prop-value';
 
 export default class TableCell extends React.PureComponent {
     static propTypes = {
-        item: PropTypes.shape(itemPropShape()).isRequired,
+        item: PropTypes.object.isRequired,
         column: PropTypes.shape({
             heading: PropTypes.string,
             name: PropTypes.string.isRequired,

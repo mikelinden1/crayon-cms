@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import itemPropShape from 'utils/item-prop-shape';
 import ActionBtns from 'components/action-btns';
 import RenderPropValue from 'components/render-prop-value';
 
 export default class GridViewCard extends React.PureComponent {
     static propTypes = {
-        item: PropTypes.PropTypes.shape(itemPropShape()).isRequired,
+        item: PropTypes.PropTypes.object.isRequired,
         config: PropTypes.object.isRequired
     };
 

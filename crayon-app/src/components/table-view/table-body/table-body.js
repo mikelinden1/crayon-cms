@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import itemPropShape from 'utils/item-prop-shape';
 
 import TableRows from '../table-rows';
 
 export default class TableBody extends React.PureComponent {
     static propTypes = {
-        items: PropTypes.arrayOf(PropTypes.shape(itemPropShape())).isRequired,
+        items: PropTypes.arrayOf(PropTypes.object).isRequired,
         actions: PropTypes.shape({
             sortEnd: PropTypes.func.isRequired
         }).isRequired

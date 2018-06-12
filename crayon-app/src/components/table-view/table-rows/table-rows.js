@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import itemPropShape from 'utils/item-prop-shape';
 import TableRow from '../table-row';
 import { SortableContainer } from 'react-sortable-hoc';
 
 class TableBody extends React.PureComponent {
     static propTypes = {
         config: PropTypes.object.isRequired,
-        items: PropTypes.arrayOf(PropTypes.shape(itemPropShape())).isRequired
+        items: PropTypes.arrayOf(PropTypes.object).isRequired
     };
 
     mapRows() {

@@ -19,6 +19,8 @@ class App extends React.Component {
                             return <Route key={`module-route-${moduleId}`} exact path={`/${moduleId}`} render={(props) => <ModuleRoot moduleId={moduleId} {...props} />} />;
                         })}
                     </Switch>
+
+                    <div className="powered-by text-center"><p><em>Powered by Crayon CMS by Mike Linden</em></p></div>
                 </div>
             </div>
         );

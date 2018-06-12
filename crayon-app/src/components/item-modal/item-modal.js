@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import itemPropShape from 'utils/item-prop-shape';
 
 import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -13,7 +12,7 @@ import { DEFAULT_ERROR_MESSAGE } from 'utils/constants';
 
 export default class ItemModal extends React.Component {
     static propTypes = {
-        newItem: PropTypes.shape(itemPropShape(true)).isRequired,
+        newItem: PropTypes.object.isRequired,
         editMode: PropTypes.bool,
         saving: PropTypes.bool,
         changeMade: PropTypes.bool,
@@ -90,7 +89,7 @@ export default class ItemModal extends React.Component {
                                 : null;
 
         return (
-            <Modal backdrop={false} isOpen={open} toggle={() => this.closeModal()}>
+            <Modal isOpen={open} toggle={() => this.closeModal()}>
                 <form onSubmit={(e) => this.saveItem(e)}>
                     <ModalHeader toggle={() => this.closeModal()}>
                         {headerAction} {itemName}

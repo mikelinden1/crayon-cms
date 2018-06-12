@@ -4,7 +4,7 @@ import BitConfig from './bit-config';
 const config = {
     clientName: 'Mike\'s Company',
     siteUrl: 'http://mikelinden.com',
-    apiBase: 'http://rest.learncode.academy/api/crayon',
+    apiBase: 'http://localhost/php-crud-api/api.php',
     moduleOrder: ['bits', 'widgets'],
     modules: {
         widgets: WidgetConfig,

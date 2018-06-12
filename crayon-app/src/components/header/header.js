@@ -8,9 +8,8 @@ import { faHome, faTachometerAlt, faSignOutAlt } from '@fortawesome/fontawesome-
 
 import Icon from 'components/icon';
 
-export default class AddNew extends React.PureComponent {
+export default class Header extends React.PureComponent {
     static propTypes = {
-        config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             openItemModal: PropTypes.func.isRequired
         }).isRequired
@@ -20,8 +19,8 @@ export default class AddNew extends React.PureComponent {
         return (
             <div>
                 <header id="top-bar">
-                    <a href={config.siteUrl}><Icon icon={faHome} /> Site Home</a>
                     <Link to='/'><Icon icon={faTachometerAlt} /> Admin Dashboard</Link>
+                    <a href={config.siteUrl}><Icon icon={faHome} /> Site Home</a>
                     <div className="grow" />
                     <div className="welcome">Hi, Mike!</div>
                     <button onClick={() => window.alert('Logout')}><Icon icon={faSignOutAlt} /> Logout</button>

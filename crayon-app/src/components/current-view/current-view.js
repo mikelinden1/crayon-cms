@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import itemPropShape from 'utils/item-prop-shape';
 
 import AddNew from 'components/add-new';
 import NoMatchingItems from 'components/no-matching-items';
@@ -9,8 +8,8 @@ import GridView from 'components/grid-view';
 
 export default class ItemList extends React.PureComponent {
     static propTypes = {
-        items: PropTypes.arrayOf(PropTypes.shape(itemPropShape())).isRequired,
-        filteredItems: PropTypes.arrayOf(PropTypes.shape(itemPropShape())).isRequired
+        items: PropTypes.arrayOf(PropTypes.object.isRequired),
+        filteredItems: PropTypes.arrayOf(PropTypes.object).isRequired
     };
 
     render() {

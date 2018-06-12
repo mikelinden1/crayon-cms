@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
-import itemPropShape from 'utils/item-prop-shape';
 
 import { faCheckSquare as checkedIcon, faSquare as uncheckedIcon } from '@fortawesome/fontawesome-free-solid';
 import Icon from 'components/icon';
@@ -11,7 +10,7 @@ import getPropByName from 'utils/get-prop-by-name';
 
 export default class RenderPropValue extends React.PureComponent {
     static propTypes = {
-        item: PropTypes.shape(itemPropShape()).isRequired,
+        item: PropTypes.object.isRequired,
         column: PropTypes.shape({
             heading: PropTypes.string,
             name: PropTypes.string.isRequired,
@@ -27,7 +26,7 @@ export default class RenderPropValue extends React.PureComponent {
         const displayType = column.displayType;
 
         if (!displayType) {
-            return value;
+            return value ? value : null;
         }
 
         switch (displayType) {
@@ -61,19 +60,19 @@ export default class RenderPropValue extends React.PureComponent {
                 return <img src={value} width={width} alt={alt} className="table-thumb" />;
             case 'date':
                 if (!value) {
-                    return '';
+                    return null;
                 }
 
                 return moment(value).format('MMMM Do, YYYY');
             case 'datetime':
                 if (!value) {
-                    return '';
+                    return null;
                 }
 
                 return moment(value).format('MMMM Do, YYYY h:mm a');
             case 'truncate':
                 if (!value) {
-                    return '';
+                    return null;
                 }
 
                 const length = column.length ? column.length : 100;

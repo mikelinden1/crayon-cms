@@ -52,8 +52,7 @@ export default class ModuleRoot extends React.PureComponent {
 
         return (
             <div id="module-root">
-                <h1>{moduleName}</h1>
-
+                <h1 style={{marginBottom: '20px' }}>{moduleName}</h1>
                 <Module />
             </div>
         );

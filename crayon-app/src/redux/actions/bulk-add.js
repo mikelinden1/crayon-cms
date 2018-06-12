@@ -83,7 +83,7 @@ export function saveBulkItems(items) {
                 return;
             }
 
-            axios.post(`${API_BASE}/${moduleConfig.apiEndpoint}`, items[i]).then((res) => {
+            axios.post(`${API_BASE}/${moduleConfig.id}`, items[i]).then((res) => {
                 dispatch({
                     type: `${ActionTypes.SAVE_NEW_ITEM}_${state.currentModule}_FULFILLED`,
                     payload: res

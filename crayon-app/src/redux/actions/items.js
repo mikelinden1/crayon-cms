@@ -1,5 +1,6 @@
 import { ActionTypes } from 'utils/constants';
 import config from 'config';
+import passwordHash from 'password-hash';
 
 import axios from 'axios';
 
@@ -45,9 +46,10 @@ function refreshItems(dispatch, moduleId) {
 export function validateOnChange() {
     return (dispatch, getState) => {
         const state = getState();
-        const data = state.modalItemProps;
+        const moduleId = state.currentModule;
+        const data = state[moduleId].modalItemProps;
 
-        validateItems(data, dispatch, state.currentModule);
+        validateItems(data, dispatch, moduleId);
     };
 }
 
@@ -110,6 +112,9 @@ export function saveNewItem(data) {
                 payload: data
             });
 
+            data = stringifyArrays(data);
+            data = hashPasswords(data);
+
             const action = {};
 
             action.type = `${ActionTypes.SAVE_NEW_ITEM}_${moduleId}`;
@@ -138,6 +143,9 @@ export function saveEditItem(data) {
         const moduleId = state.currentModule;
         const valid = validateItems(data, dispatch, moduleId);
         const moduleConfig = config.modules[moduleId];
+
+        data = stringifyArrays(data);
+        data = hashPasswords(data);
 
         if (valid) {
             dispatch({
@@ -218,4 +226,27 @@ export function sortEnd(items, oldIndex, newIndex) {
 
         dispatch(action);
     };
+}
+
+function stringifyArrays(data) {
+    for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+            if (Object.prototype.toString.call(data[key]) === '[object Array]') {
+                data[key] = JSON.stringify(data[key]);
+            }
+        }
+    }
+
+    return data;
+}
+
+function hashPasswords(data) {
+    if (!data.password) {
+        return data;
+    }
+
+    data['password_hashed'] = passwordHash.generate(data.password);
+    delete data.password;
+
+    return data;
 }

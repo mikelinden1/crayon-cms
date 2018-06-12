@@ -14,7 +14,15 @@ export default class CheckboxField extends React.PureComponent {
     };
 
     render() {
-        const { name, value, label, disabled, onChange } = this.props;
+        const { name, value: inputValue, label, disabled, onChange } = this.props;
+
+        let value = inputValue ? inputValue : false;
+
+        console.log('typeof check', typeof value);
+
+        if (typeof value === 'number') {
+            value = value === 1 ? true : false;
+        }
 
         const optionsHtml = (
             <div className="custom-control custom-checkbox" style={{margin: '30px 0'}}>

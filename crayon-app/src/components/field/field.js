@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import {
     TextField,
+    PasswordField,
     DropdownField,
     RadioField,
     PhotoField,
@@ -45,6 +46,8 @@ export default class Field extends React.PureComponent {
         switch (type) {
             case 'text':
                 return <TextField {...fieldProps} />;
+            case 'password':
+                return <PasswordField {...fieldProps} />;
             case 'dropdown':
                 return <DropdownField {...fieldProps} />;
             case 'radio':

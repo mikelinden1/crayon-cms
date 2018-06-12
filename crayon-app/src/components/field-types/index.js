@@ -1,4 +1,5 @@
 export { default as TextField } from './text-field';
+export { default as PasswordField } from './password-field';
 export { default as DropdownField } from './dropdown-field';
 export { default as RadioField } from './radio-field';
 export { default as PhotoField } from './photo-field';

@@ -1,20 +1,20 @@
-import { faCog } from '@fortawesome/fontawesome-free-solid';
+import { faUser } from '@fortawesome/fontawesome-free-solid';
 
 const config = {
-    id: 'bits',
-    moduleName: 'Manage Bits', // Displayed at the top of the module
-    icon: faCog,
-    itemName: 'Bit', // What are items called? (displayed in modal, delete confirmation, etc)
-    itemNamePlural: 'Bits', // How do I say that in the plural form?
+    id: 'users',
+    moduleName: 'Manage Users', // Displayed at the top of the module
+    icon: faUser,
+    itemName: 'User', // What are items called? (displayed in modal, delete confirmation, etc)
+    itemNamePlural: 'Users', // How do I say that in the plural form?
     capabilities: {
-        reorderable: true, // Can the user reorder items? If yes, sorting will be disabled.
+        reorderable: false, // Can the user reorder items? If yes, sorting will be disabled.
         editable: true, // Can the user edit items?
         deleteable: true, // Can the user delete items?
         deleteIdProp: 'name', // Property used in the delete confirm dialog (default to 'name' if not set)
         bulkImport: true
     },
     filtering: {
-        searchFields: ['name'], // Which fields should be searchable?
+        searchFields: null, // Which fields should be searchable?
         filterFields: null, // Which fields should have filtering dropdowns displayed?
         sortable: true // Can the user sort the items in the display? Not available if reorderable is on.
     },
@@ -38,17 +38,14 @@ const config = {
             **/
             columns: [
                 { heading: 'Name', name: 'name' },
-                { heading: 'Type', name: 'type' }
+                { heading: 'Username', name: 'username' }
             ],
             showId: true // Should I show the ID column? (recommended if default sorting is by ID)
         },
         grid: null
     },
     // This is how the modal grid will be displayed. The root array is the rows and the child array sets the columns. Use property name's.
-    modalGrid: [
-        ['name'],
-        ['type']
-    ],
+    modalGrid: null,
     /***************************************************************
     This is where we define all of the properties for an item.
     -----------------------------------------------------------
@@ -86,21 +83,27 @@ const config = {
     itemProps: [
         {
             name: 'name',
-            label: 'Text',
+            label: 'Name',
             type: 'text',
             required: true,
             minLength: 3,
             maxLength: 30
         },
         {
-            name: 'type',
-            label: 'Dropdown',
-            type: 'dropdown',
-            options: [
-                { value: 'foo', label: 'Foo' },
-                { value: 'baz', label: 'Baz' },
-                { value: 'bar', label: 'Bar' }
-            ]
+            name: 'username',
+            label: 'Username',
+            type: 'text',
+            required: true,
+            minLength: 3,
+            maxLength: 30
+        },
+        {
+            name: 'password',
+            label: 'Password',
+            type: 'password',
+            helpText: 'Leaving the password blank on edit will not override the password.',
+            regexFormat: /^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})/,
+            regexErrorText: 'Passwords must be at least 8 characters long and contain a lowercase letter and either an uppercase letter or a number.'
         }
     ]
 };

@@ -2,6 +2,42 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: normal;
 }
 
+#top-bar {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+#top-bar a, #top-bar button {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+}
+
+#top-bar a:hover, #top-bar button:hover {
+    background-color: #0068a0;
+}
+
+#top-bar a, #top-bar button, #top-bar .welcome {
+    padding: 6px 20px;
+}
+
+#top-bar .grow {
+    flex-grow: 1;
+}
+
+#header-pad {
+    height: 45px;
+}
+
 .margin-above-below {
     margin-top: 15px;
     margin-bottom: 15px;
@@ -152,9 +188,10 @@ h1, h2, h3, h4, h5, h6 {
     float: right;
 }
 
-.wrapper {
+.app-wrapper {
     width: 100%;
     padding: 20px;
+    position: relative;
 }
 
 .calendar-wrapper {

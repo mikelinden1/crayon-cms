@@ -30,22 +30,4 @@ export const ActionTypes = {
     SAVE_BULK_ITEMS: 'SAVE_BULK_ITEMS'
 };
 
-function getApiPath() {
-    // window.ajaxurl in Wordpress env
-    if (window.ajaxurl) {
-        return window.ajaxurl;
-    }
-
-    return 'http://localhost/skift/wp-admin/admin-ajax.php';
-}
-
-export const API_ENDPOINT = getApiPath();
-
-export const GET_ACTION = 'get'; // GET
-export const SAVE_NEW_ACTION = 'post'; // POST
-export const SAVE_EDIT_ACTION = 'put'; // PUT
-export const SAVE_DELETE_ACTION = 'delete'; // PUT
-export const SAVE_SORT_ACTION = 'sort'; // PUT
-
-
 export const DEFAULT_ERROR_MESSAGE = 'An unexpected error occured. Please try again.';

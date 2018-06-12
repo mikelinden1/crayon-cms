@@ -19,8 +19,8 @@ export default class ViewSwitcher extends React.PureComponent {
         const { currentView, config, actions: { switchView } } = this.props;
         let { views: { displayType } } = config;
 
-        if (!displayType) {
-            displayType = 'table';
+        if (displayType !== 'switch') {
+            return null;
         }
 
         const oppositeView = currentView === 'table' ? 'grid' : 'table';

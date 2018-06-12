@@ -1,37 +1,38 @@
-import { ActionTypes, API_ENDPOINT } from 'utils/constants';
+import { ActionTypes } from 'utils/constants';
 import config from 'config';
 
 import axios from 'axios';
 
-import { arrayMove } from 'react-sortable-hoc';
+// import { arrayMove } from 'react-sortable-hoc';
 
-const pluginId = 123;
+const API_BASE = config.apiBase;
 
 export function fetchItems() {
     return (dispatch, getState) => {
         const state = getState();
-
         const moduleConfig = config.modules[state.currentModule];
+
         startPolling(dispatch, state.currentModule);
 
-        const wpAction = `get_${moduleConfig.id}`;
         const action = {};
 
         action.type = `${ActionTypes.FETCH_ITEMS}_${state.currentModule}`;
-        action.payload = axios.get(`${API_ENDPOINT}?action=${wpAction}`);
+        action.payload = axios.get(`${API_BASE}/${moduleConfig.apiEndpoint}`);
 
         dispatch(action);
     };
 };
 
 export function startPolling(dispatch, moduleId) {
-    setTimeout(() => refreshItems(dispatch, moduleId), 30000);
+    if (moduleId) {
+        setTimeout(() => refreshItems(dispatch, moduleId), 30000);
+    }
 }
 
 function refreshItems(dispatch, moduleId) {
-    const wpAction = `get_${pluginId}`;
+    const moduleConfig = config.modules[moduleId];
 
-    axios.get(`${API_ENDPOINT}?action=${wpAction}`).then((data) => {
+    axios.get(`${API_BASE}/${moduleConfig.apiEndpoint}`).then((data) => {
         dispatch({
             type: `${ActionTypes.FETCH_ITEMS}_${moduleId}_FULFILLED`,
             payload: data
@@ -99,15 +100,15 @@ export function saveNewItem(data) {
     return (dispatch, getState) => {
         const state = getState();
         const moduleId = state.currentModule;
+        const moduleConfig = config.modules[moduleId];
 
-        const valid = validateItems(data, dispatch);
+        const valid = validateItems(data, dispatch, moduleId);
 
         if (valid) {
-            const wpAction = `post_${pluginId}`;
             const action = {};
 
             action.type = `${ActionTypes.SAVE_NEW_ITEM}_${moduleId}`;
-            action.payload = axios.post(`${API_ENDPOINT}?action=${wpAction}`, data);
+            action.payload = axios.post(`${API_BASE}/${moduleConfig.apiEndpoint}`, data);
 
             dispatch(action);
         }
@@ -130,7 +131,8 @@ export function saveEditItem(data) {
     return (dispatch, getState) => {
         const state = getState();
         const moduleId = state.currentModule;
-        const valid = validateItems(data, dispatch);
+        const valid = validateItems(data, dispatch, moduleId);
+        const moduleConfig = config.modules[moduleId];
 
         if (valid) {
             dispatch({
@@ -138,12 +140,10 @@ export function saveEditItem(data) {
                 payload: data
             });
 
-            const wpAction = `put_${pluginId}`;
-
             const action = {};
 
             action.type = `${ActionTypes.SAVE_EDIT_ITEM}_${moduleId}`;
-            action.payload = axios.put(`${API_ENDPOINT}?action=${wpAction}`, data);
+            action.payload = axios.put(`${API_BASE}/${moduleConfig.apiEndpoint}/${data.id}`, data);
 
             dispatch(action);
         }
@@ -170,11 +170,10 @@ export function deleteItem(item) {
                 payload: item.id
             });
 
-            const wpAction = `delete_${pluginId}`;
             const action = {};
 
             action.type = `${ActionTypes.DELETE_ITEM}_${moduleId}`;
-            action.payload = axios.delete(`${API_ENDPOINT}?action=${wpAction}&id=${item.id}`);
+            action.payload = axios.delete(`${API_BASE}/${moduleConfig.apiEndpoint}/${item.id}`);
 
             dispatch(action);
         }
@@ -183,6 +182,7 @@ export function deleteItem(item) {
 
 export function sortEnd(items, oldIndex, newIndex) {
     return (dispatch, getState) => {
+/*
         const state = getState();
         const moduleId = state.currentModule;
 
@@ -209,5 +209,6 @@ export function sortEnd(items, oldIndex, newIndex) {
         action.payload = axios.post(`${API_ENDPOINT}?action=${wpAction}`, payload);
 
         dispatch(action);
+*/
     };
 }

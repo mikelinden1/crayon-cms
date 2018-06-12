@@ -1,6 +1,8 @@
-import { ActionTypes, API_ENDPOINT } from 'utils/constants';
+import { ActionTypes } from 'utils/constants';
 import axios from 'axios';
 import config from 'config';
+
+const API_BASE = config.apiBase;
 
 export function addColumn(column) {
     return (dispatch, getState) => {
@@ -72,8 +74,8 @@ export function saveBulkItems(items) {
 
         const complete = () => dispatch({ type: `${ActionTypes.SAVE_BULK_ITEMS}_${state.currentModule}` });
 
-        const { pluginId } = config;
-        const wpAction = `post_${pluginId}`;
+        const moduleId = state.currentModule;
+        const moduleConfig = config.modules[moduleId];
 
         const saveItem = (i) => {
             if (!items[i]) {
@@ -81,7 +83,7 @@ export function saveBulkItems(items) {
                 return;
             }
 
-            axios.post(`${API_ENDPOINT}?action=${wpAction}`, items[i]).then((res) => {
+            axios.post(`${API_BASE}/${moduleConfig.apiEndpoint}`, items[i]).then((res) => {
                 dispatch({
                     type: `${ActionTypes.SAVE_NEW_ITEM}_${state.currentModule}_FULFILLED`,
                     payload: res

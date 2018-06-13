@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Alert } from 'reactstrap';
 import checkConfigFile from 'utils/check-config';
 
+import Spinner from 'components/spinner';
 import Module from 'components/module';
 
 export default class ModuleRoot extends React.PureComponent {
@@ -36,7 +37,11 @@ export default class ModuleRoot extends React.PureComponent {
     }
 
     render() {
-        const { config } = this.props;
+        const { config, currentModule } = this.props;
+
+        if (!currentModule) {
+            return <p><Spinner /> Loading module...</p>;
+        }
 
         if (!config) {
             return <Alert color="danger">Missing config attributes.</Alert>;

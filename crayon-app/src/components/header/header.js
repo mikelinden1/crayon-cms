@@ -11,7 +11,7 @@ import Icon from 'components/icon';
 export default class Header extends React.PureComponent {
     static propTypes = {
         loggedIn: PropTypes.bool.isRequired,
-        user: PropTypes.object.isRequired,
+        user: PropTypes.object,
         actions: PropTypes.shape({
             logout: PropTypes.func.isRequired
         }).isRequired

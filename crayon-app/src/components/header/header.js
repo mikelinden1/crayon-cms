@@ -13,18 +13,18 @@ export default class Header extends React.PureComponent {
         loggedIn: PropTypes.bool.isRequired,
         user: PropTypes.object.isRequired,
         actions: PropTypes.shape({
-            openItemModal: PropTypes.func.isRequired
+            logout: PropTypes.func.isRequired
         }).isRequired
     };
 
     render() {
-        const { loggedIn, user } = this.props;
+        const { loggedIn, user, actions: { logout } } = this.props;
         const userName = user ? (user.name ? user.name : null) : null;
 
         const rightSide =   loggedIn
                             ?   <div style={{display:'flex'}}>
                                     <div className="welcome">Hi, {userName}!</div>
-                                    <button onClick={() => window.alert('Logout')}><Icon icon={faSignOutAlt} /> Logout</button>
+                                    <button onClick={() => logout()}><Icon icon={faSignOutAlt} /> Logout</button>
                                 </div>
                             :   null;
 

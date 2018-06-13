@@ -13,7 +13,8 @@ function user(state = initialState, action) {
         case ActionTypes.LOGIN + '_PENDING': {
             return {
                 ...state,
-                loggingIn: true
+                loggingIn: true,
+                error: null
             };
         }
         case ActionTypes.LOGIN + '_REJECTED': {
@@ -29,6 +30,14 @@ function user(state = initialState, action) {
                 loggingIn: false,
                 loggedIn: true,
                 jwt: action.payload.data
+            };
+        }
+        case ActionTypes.LOGOUT: {
+            return {
+                ...state,
+                loggedIn: false,
+                jwt: null,
+                user: null
             };
         }
         default: {

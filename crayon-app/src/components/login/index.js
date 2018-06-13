@@ -1,24 +1,24 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { logout } from 'redux/actions/user';
+import { login } from 'redux/actions/user';
 
-import Header from './header';
+import Login from './login';
 
 function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
-        user: state.userState.user,
-        loggedIn: state.userState.loggedIn
+        processing: state.userState.loggingIn,
+        error: state.userState.error
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({
-            logout
+            login
         }, dispatch)
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

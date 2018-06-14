@@ -30,7 +30,11 @@ export default class MediaPicker extends React.PureComponent {
     }
 
     mapMedia() {
-        const { items, selectedItem, actions: { clickItem } } = this.props;
+        const { fetched, items, selectedItem, actions: { clickItem } } = this.props;
+
+        if (!fetched) {
+            return <p><Spinner /> Loading media...</p>;
+        }
 
         return items.map((item) => {
             const classes = ['media-item'];
@@ -49,10 +53,6 @@ export default class MediaPicker extends React.PureComponent {
     render() {
         const { fetched, open, selectedItem, actions: { close, select, upload } } = this.props;
 
-        if (!fetched) {
-            return <p><Spinner /> Loading media...</p>;
-        }
-
         return (
             <Modal className="media-picker" isOpen={open} toggle={() => close()}>
                 <ModalHeader toggle={() => close()}>
@@ -69,7 +69,7 @@ export default class MediaPicker extends React.PureComponent {
                     </div>
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={() => select(selectedItem.filename)} disabled={!selectedItem}>Select</Button>
+                    <Button color="primary" onClick={() => select(selectedItem.filename)} disabled={!selectedItem || !fetched}>Select</Button>
                     <Button color="secondary" onClick={() => close()}>Cancel</Button>
                 </ModalFooter>
             </Modal>

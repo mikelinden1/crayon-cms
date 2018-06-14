@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import getModuleConfig from 'utils/get-module-config';
 
 const moduleId = (state) => state.mediaPicker.moduleFilter;
 const sort = (state) => state.mediaPicker.sort;

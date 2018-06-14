@@ -30,7 +30,7 @@ export default class Field extends React.PureComponent {
     };
 
     getField() {
-        const { type, name, validationErrors, actions: { setItemProp, validateOnChange, showMediaPicker } } = this.props;
+        const { type, name, validationErrors, actions: { setItemProp, validateOnChange, showMediaPicker, mediaPickerSelectedItem } } = this.props;
 
         const fieldProps = {...this.props};
 
@@ -44,6 +44,8 @@ export default class Field extends React.PureComponent {
 
         fieldProps.showMedia = () => {
             showMediaPicker(name);
+
+            setTimeout(() => mediaPickerSelectedItem('test.png'), 2000);
         };
 
         switch (type) {

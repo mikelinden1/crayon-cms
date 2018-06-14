@@ -2,7 +2,7 @@ import { ActionTypes } from 'utils/constants';
 
 const initialState = {};
 
-return function mediaPicker(state = initialState, action) {
+export default function mediaPicker(state = initialState, action) {
     switch (action.type) {
         case ActionTypes.SHOW_MEDIA_PICKER: {
             return {
@@ -11,8 +11,15 @@ return function mediaPicker(state = initialState, action) {
                 target: action.payload
             }
         }
+        case ActionTypes.MEDIA_PICKER_SELECTED_ITEM: {
+            return {
+                ...state,
+                open: false,
+                target: null
+            };
+        }
         default: {
             return state;
         }
     }
-};
+}

@@ -39,7 +39,7 @@ function refreshItems(dispatch, moduleId) {
             payload: data
         });
 
-        startPolling(dispatch);
+        startPolling(dispatch, moduleId);
     })
 }
 

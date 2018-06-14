@@ -32,6 +32,23 @@ function itemsCreator(id) {
                     error: true
                 };
             }
+            case `${ActionTypes.SAVE_BULK_ITEMS}_${id}_FULFILLED`: {
+                const oldItems = [...state.items];
+                const newItems = action.payload;
+                const items = oldItems.concat(newItems);
+
+                return {
+                    ...state,
+                    items
+                };
+            }
+            case `${ActionTypes.SAVE_NEW_ITEM}_${id}`:
+            case `${ActionTypes.SAVE_EDIT_ITEM}_${id}`: {
+                return {
+                    ...state,
+                    itemSaving: action.payload
+                };
+            }
             case `${ActionTypes.SAVE_NEW_ITEM}_${id}_FULFILLED`: {
                 const newId = action.payload.data;
 
@@ -53,19 +70,6 @@ function itemsCreator(id) {
                     };
                 }
             }
-            case `${ActionTypes.ITEM_SORT_END}_${id}`: {
-                return {
-                    ...state,
-                    items: [...action.payload]
-                };
-            }
-            case `${ActionTypes.SAVE_NEW_ITEM}_${id}`:
-            case `${ActionTypes.SAVE_EDIT_ITEM}_${id}`: {
-                return {
-                    ...state,
-                    itemSaving: action.payload
-                };
-            }
             case `${ActionTypes.SAVE_EDIT_ITEM}_${id}_FULFILLED`: {
                 const items = [...state.items];
 
@@ -78,6 +82,12 @@ function itemsCreator(id) {
                     ...state,
                     items,
                     itemSaving: null
+                };
+            }
+            case `${ActionTypes.ITEM_SORT_END}_${id}`: {
+                return {
+                    ...state,
+                    items: [...action.payload]
                 };
             }
             case `${ActionTypes.DELETE_ITEM}_${id}`: {

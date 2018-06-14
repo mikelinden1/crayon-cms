@@ -71,12 +71,25 @@ export function throwBulkError(error) {
 export function saveBulkItems(items) {
     return (dispatch, getState) => {
         const state = getState();
-
-        const complete = () => dispatch({ type: `${ActionTypes.SAVE_BULK_ITEMS}_${state.currentModule}` });
-
         const moduleId = state.currentModule;
-        const moduleConfig = config.modules[moduleId];
 
+        dispatch({ type: `${ActionTypes.SAVE_BULK_ITEMS}_${moduleId}_PENDING` })
+
+        axios.post(`${API_BASE}/${moduleId}`, items).then((res) => {
+            const newIds = res.data;
+
+            const newItems = items.map((item, i) => {
+                item.id = newIds[i];
+                return item;
+            });
+
+            dispatch({
+                type: `${ActionTypes.SAVE_BULK_ITEMS}_${moduleId}_FULFILLED`,
+                payload: newItems
+            });
+        }).catch(() => dispatch(throwBulkError('Error saving items')));
+
+/*
         const saveItem = (i) => {
             if (!items[i]) {
                 complete();
@@ -95,5 +108,6 @@ export function saveBulkItems(items) {
 
         dispatch({ type: `${ActionTypes.SAVE_BULK_ITEMS}_${state.currentModule}_PENDING` })
         saveItem(0);
+*/
     };
 }

@@ -9,7 +9,7 @@ import App from './App';
 import store from './redux/store';
 
 import './bootstrap-lux/lux.css';
-import './style.css';
+import './style/style.css';
 
 const render = (
     <Provider store={store}>

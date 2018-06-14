@@ -17,3 +17,9 @@ export function mediaPickerSelectedItem(val) {
         dispatch(setItemProp(target, val));
     };
 }
+
+export function fetchMedia() {
+    return {
+        type: ActionTypes.FETCH_MEDIA
+    };
+}

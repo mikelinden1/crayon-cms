@@ -18,6 +18,28 @@ export default function mediaPicker(state = initialState, action) {
                 target: null
             };
         }
+        case ActionTypes.FETCH_MEDIA + '_PENDING': {
+            return {
+                ...state,
+                fetching: true
+            };
+        }
+        case ActionTypes.FETCH_MEDIA + '_REJECTED': {
+            return {
+                ...state,
+                fetching: false,
+                error: true,
+                fetched: true
+            };
+        }
+        case ActionTypes.FETCH_MEDIA + '_FULFILLED': {
+            return {
+                ...state,
+                fetching: false,
+                fetched: true,
+                items: action.payload.media
+            };
+        }
         default: {
             return state;
         }

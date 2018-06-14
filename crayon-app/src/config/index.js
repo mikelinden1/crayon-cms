@@ -6,6 +6,8 @@ const config = {
     clientName: 'Mike\'s Company',
     siteUrl: 'http://mikelinden.com',
     apiBase: 'http://localhost/php-crud-api',
+    uploadPath: '../crayon-uploads',
+    uploadFullPath: 'http://localhost/crayon-uploads',
     moduleOrder: ['bits', 'widgets', 'users'],
     modules: {
         widgets: WidgetConfig,

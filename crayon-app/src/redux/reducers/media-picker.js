@@ -1,6 +1,9 @@
 import { ActionTypes } from 'utils/constants';
 
-const initialState = {};
+const initialState = {
+    fetched: false,
+    fetching: false
+};
 
 export default function mediaPicker(state = initialState, action) {
     switch (action.type) {
@@ -11,12 +14,19 @@ export default function mediaPicker(state = initialState, action) {
                 target: action.payload
             }
         }
+        case ActionTypes.CLOSE_MEDIA_PICKER:
         case ActionTypes.MEDIA_PICKER_SELECTED_ITEM: {
             return {
                 ...state,
                 open: false,
                 target: null
             };
+        }
+        case ActionTypes.MEDIA_PICKER_CLICK_ITEM: {
+            return {
+                ...state,
+                selectedItem: action.payload
+            }
         }
         case ActionTypes.FETCH_MEDIA + '_PENDING': {
             return {
@@ -37,7 +47,7 @@ export default function mediaPicker(state = initialState, action) {
                 ...state,
                 fetching: false,
                 fetched: true,
-                items: action.payload.media
+                items: action.payload.data.media
             };
         }
         default: {

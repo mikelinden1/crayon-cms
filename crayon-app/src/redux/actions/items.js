@@ -1,6 +1,5 @@
 import { ActionTypes } from 'utils/constants';
 import config from 'config';
-import passwordHash from 'password-hash';
 
 import axios from 'axios';
 
@@ -39,7 +38,7 @@ function refreshItems(dispatch, moduleId) {
             payload: data
         });
 
-        startPolling(dispatch);
+        startPolling(dispatch, moduleId);
     })
 }
 
@@ -113,7 +112,6 @@ export function saveNewItem(data) {
             });
 
             data = stringifyArrays(data);
-            data = hashPasswords(data);
 
             const action = {};
 
@@ -145,7 +143,6 @@ export function saveEditItem(data) {
         const moduleConfig = config.modules[moduleId];
 
         data = stringifyArrays(data);
-        data = hashPasswords(data);
 
         if (valid) {
             dispatch({
@@ -236,17 +233,6 @@ function stringifyArrays(data) {
             }
         }
     }
-
-    return data;
-}
-
-function hashPasswords(data) {
-    if (!data.password) {
-        return data;
-    }
-
-    data['password_hashed'] = passwordHash.generate(data.password);
-    delete data.password;
 
     return data;
 }

@@ -11,6 +11,7 @@ import Login from 'components/login';
 
 import Homepage from 'components/homepage';
 import ModuleRoot from 'components/module-root';
+import MediaPicker from 'components/media-picker';
 
 export default class Main extends React.PureComponent {
     static propTypes = {
@@ -47,6 +48,7 @@ export default class Main extends React.PureComponent {
                         return <Route key={`module-route-${moduleId}`} exact path={`/${moduleId}`} render={(props) => <ModuleRoot moduleId={moduleId} {...props} />} />;
                     })}
                 </Switch>
+                <MediaPicker />
             </div>
         );
     }

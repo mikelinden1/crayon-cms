@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
+import config from 'config';
+
 import { faCheckSquare as checkedIcon, faSquare as uncheckedIcon } from '@fortawesome/fontawesome-free-solid';
 import Icon from 'components/icon';
 import IconLeft from 'components/icon-left';
@@ -20,7 +22,7 @@ export default class RenderPropValue extends React.PureComponent {
     };
 
     render() {
-        const { column, item, config: { itemName } } = this.props;
+        const { column, item, config: { id: moduleId, itemName } } = this.props;
 
         const value = item[column.name];
         const displayType = column.displayType;
@@ -46,7 +48,7 @@ export default class RenderPropValue extends React.PureComponent {
                     return <div className="no-photo">No Photo</div>;
                 }
 
-                const columnProp = getPropByName(column.name);
+                const columnProp = getPropByName(moduleId, column.name);
 
                 if (!columnProp) {
                     console.error('Missing prop in photos', column.name);
@@ -56,8 +58,11 @@ export default class RenderPropValue extends React.PureComponent {
 
                 const width = displayType === 'image' ? 125 : '100%';
 
+                const protocolRegex = /(http(s?)):\/\//gi;
+                const previewImage = protocolRegex.test(value) ? value : `${config.uploadFullPath}/${value}`;
+
                 const alt = column.altProp ? `${item[column.altProp]} - ${columnProp.label}` : `${itemName} - ${columnProp.label}`;
-                return <img src={value} width={width} alt={alt} className="table-thumb" />;
+                return <img src={previewImage} width={width} alt={alt} className="table-thumb" />;
             case 'date':
                 if (!value) {
                     return null;

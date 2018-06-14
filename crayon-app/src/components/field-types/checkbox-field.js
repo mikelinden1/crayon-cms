@@ -5,7 +5,8 @@ export default class CheckboxField extends React.PureComponent {
     static propTypes = {
         value: PropTypes.oneOfType([
             PropTypes.bool,
-            PropTypes.string
+            PropTypes.string,
+            PropTypes.number
         ]).isRequired,
         name: PropTypes.string.isRequired,
         disabled: PropTypes.bool,
@@ -17,8 +18,6 @@ export default class CheckboxField extends React.PureComponent {
         const { name, value: inputValue, label, disabled, onChange } = this.props;
 
         let value = inputValue ? inputValue : false;
-
-        console.log('typeof check', typeof value);
 
         if (typeof value === 'number') {
             value = value === 1 ? true : false;

@@ -33,7 +33,7 @@ export default class BulkAdd extends React.Component {
     saveItems(e) {
         e.preventDefault();
 
-        const { columns: columnHeaders, csvContents, actions: { throwBulkError, save } } = this.props;
+        const { config, columns: columnHeaders, csvContents, actions: { throwBulkError, save } } = this.props;
 
         if (!columnHeaders || !columnHeaders.length) {
             throwBulkError('Specify at least one column');
@@ -59,10 +59,17 @@ export default class BulkAdd extends React.Component {
             return;
         }
 
+        const isReorderable = config.capabilities.reorderable;
+
         const mappedData = data.map((row) => {
-            return row.reduce((collector, columnValue, i) => {
-                collector[columnHeaders[i]] = columnValue;
-                return collector;
+            return row.reduce((item, columnValue, i) => {
+                item[columnHeaders[i]] = columnValue;
+
+                if (isReorderable) {
+                    item.sort = 9999999;
+                }
+
+                return item;
             }, {})
         });
 

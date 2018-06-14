@@ -1,7 +1,13 @@
 import { ActionTypes } from 'utils/constants';
+import config from 'config';
 
 function modalItemPropsCreator(id) {
-    return function modalItemProps(state = {}, action) {
+    const moduleConfig = config.modules[id];
+    const isReorderable = moduleConfig.capabilities.reorderable;
+
+    const initialState = isReorderable ? { sort: 9999999 } : {};
+
+    return function modalItemProps(state = initialState, action) {
         switch (action.type) {
             case `${ActionTypes.SET_PROP_VALUE}_${id}`: {
                 const nextState = {...state};

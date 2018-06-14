@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 import config from 'config';
 
 import currentModule from './current-module';
-import user from './user';
+import mediaPicker from './media-picker';
+import userState from './user';
 import items from './items';
 import itemModal from './item-modal';
 import modalItemProps from './modal-item-props';
@@ -15,7 +16,11 @@ import archive from './archive';
 import paginator from './paginator';
 import bulkAdd from './bulk-add';
 
-const rootReducers = { currentModule, userState: user };
+const rootReducers = {
+    currentModule,
+    userState,
+    mediaPicker
+ };
 
 const reducers = config.moduleOrder.reduce((r, moduleId) => {
     r[moduleId] = createModuleReducers(moduleId);

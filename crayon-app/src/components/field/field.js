@@ -24,16 +24,17 @@ export default class Field extends React.PureComponent {
         disabled: PropTypes.bool,
         actions: PropTypes.shape({
             setItemProp: PropTypes.func.isRequired,
-            validateOnChange: PropTypes.func.isRequired
+            validateOnChange: PropTypes.func.isRequired,
+            showMediaPicker: PropTypes.func.isRequired
         }).isRequired
     };
 
     getField() {
-        const { type, name, validationErrors, actions: { setItemProp, validateOnChange } } = this.props;
+        const { type, name, validationErrors, actions: { setItemProp, validateOnChange, showMediaPicker } } = this.props;
 
         const fieldProps = {...this.props};
 
-        const onChange = (val) => {
+        fieldProps.onChange = (val) => {
             setItemProp(name, val);
 
             if (validationErrors.length) {
@@ -41,7 +42,9 @@ export default class Field extends React.PureComponent {
             }
         };
 
-        fieldProps.onChange = onChange;
+        fieldProps.showMedia = () => {
+            showMediaPicker(name);
+        };
 
         switch (type) {
             case 'text':

@@ -12,7 +12,7 @@ export function fetchMedia() {
         const action = {};
 
         action.type = `${ActionTypes.FETCH_MEDIA}`;
-        action.payload = axios.get(`${API_BASE}/media?transform=1`);
+        action.payload = axios.get(`${API_BASE}/media?transform=1&order=id,desc`);
 
         dispatch(action);
     };
@@ -44,5 +44,50 @@ export function mediaPickerSelectedItem(val) {
 
         dispatch({ type: ActionTypes.MEDIA_PICKER_SELECTED_ITEM });
         dispatch(setItemProp(target, val));
+    };
+}
+
+export function mediaPickerUpload(files) {
+    return (dispatch, getState) => {
+        const state = getState();
+        const moduleId = state.currentModule;
+
+        files.forEach((file) => {
+            const data = new FormData();
+            data.append('moduleId', moduleId);
+            data.append('uploadDir', config.uploadPath);
+            data.append('file', file);
+
+            const uploadConfig = {
+                onUploadProgress: (progressEvent) => console.log('upload progress', Math.round((progressEvent.loaded * 100) / progressEvent.total))
+            };
+
+            const action = {};
+            action.type = ActionTypes.UPLOAD_FILE;
+            action.payload = axios.post(`${API_BASE}/upload`, data, uploadConfig)
+
+            dispatch(action);
+        });
+    };
+}
+
+export function setMediaSearch(val) {
+    return {
+        type: ActionTypes.SET_MEDIA_SEARCH,
+        payload: val
+    };
+}
+
+export function setMediaSort(val) {
+    return {
+        type: ActionTypes.SET_MEDIA_SORT,
+        payload: val
+    };
+}
+
+export function setMediaModuleFilter(val) {
+    return {
+        type: ActionTypes.SET_MEDIA_MODULE_FILTER,
+        payload: val
     };
 }

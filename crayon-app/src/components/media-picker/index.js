@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { fetchMedia, closeMediaPicker, mediaPickerClickItem, mediaPickerSelectedItem } from 'redux/actions/media-picker';
-
+import { fetchMedia, closeMediaPicker, mediaPickerClickItem, mediaPickerSelectedItem, mediaPickerUpload } from 'redux/actions/media-picker';
+import { applyMediaFilters } from 'redux/selectors/media-filtered';
 import MediaPicker from './media-picker';
 
 function mapStateToProps(state, ownProps) {
@@ -11,7 +11,7 @@ function mapStateToProps(state, ownProps) {
         open: state.mediaPicker.open,
         fetched: state.mediaPicker.fetched,
         fetching: state.mediaPicker.fetching,
-        items: state.mediaPicker.items,
+        items: applyMediaFilters(state, ownProps),
         selectedItem: state.mediaPicker.selectedItem
     };
 }
@@ -22,7 +22,8 @@ function mapDispatchToProps(dispatch) {
             fetch: fetchMedia,
             close: closeMediaPicker,
             select: mediaPickerSelectedItem,
-            clickItem: mediaPickerClickItem
+            clickItem: mediaPickerClickItem,
+            upload: mediaPickerUpload
         }, dispatch)
     };
 }

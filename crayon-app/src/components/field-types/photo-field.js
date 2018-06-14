@@ -38,7 +38,7 @@ export default class TextField extends React.PureComponent {
                     className="form-control"
                 />
                 <span className="input-group-btn">
-                    <Button color="primary" className="btn-sm" disabled={disabled} onClick={() => showMediaPicker()}>Upload</Button>
+                    <Button color="primary" className="btn-sm" disabled={disabled} onClick={() => showMediaPicker()}>Select</Button>
                 </span>
             </div>
         );

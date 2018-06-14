@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Dropzone from 'react-dropzone'
+
 import config from 'config';
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Spinner from 'components/spinner';
+import MediaFilters from 'components/media-filters';
 
 export default class MediaPicker extends React.PureComponent {
     static propTypes = {
@@ -16,7 +19,8 @@ export default class MediaPicker extends React.PureComponent {
             close: PropTypes.func.isRequired,
             select: PropTypes.func.isRequired,
             clickItem: PropTypes.func.isRequired,
-            fetch: PropTypes.func.isRequired
+            fetch: PropTypes.func.isRequired,
+            upload: PropTypes.func.isRequired
         }).isRequired
     };
 
@@ -43,7 +47,7 @@ export default class MediaPicker extends React.PureComponent {
     }
 
     render() {
-        const { fetched, open, selectedItem, actions: { close, select } } = this.props;
+        const { fetched, open, selectedItem, actions: { close, select, upload } } = this.props;
 
         if (!fetched) {
             return <p><Spinner /> Loading media...</p>;
@@ -55,7 +59,12 @@ export default class MediaPicker extends React.PureComponent {
                     Media Picker
                 </ModalHeader>
                 <ModalBody>
+                    <MediaFilters />
                     <div className="media-grid">
+                        <Dropzone className="file-drop-zone" acceptStyle={{border: '2px solid green'}} onDrop={(files) => upload(files)}>
+                            <div>Drag files here or click to select</div>
+                        </Dropzone>
+
                         {this.mapMedia()}
                     </div>
                 </ModalBody>

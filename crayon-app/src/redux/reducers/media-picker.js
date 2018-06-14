@@ -2,7 +2,8 @@ import { ActionTypes } from 'utils/constants';
 
 const initialState = {
     fetched: false,
-    fetching: false
+    fetching: false,
+    sort: 'desc'
 };
 
 export default function mediaPicker(state = initialState, action) {
@@ -19,7 +20,8 @@ export default function mediaPicker(state = initialState, action) {
             return {
                 ...state,
                 open: false,
-                target: null
+                target: null,
+                selectedItem: null
             };
         }
         case ActionTypes.MEDIA_PICKER_CLICK_ITEM: {
@@ -27,6 +29,25 @@ export default function mediaPicker(state = initialState, action) {
                 ...state,
                 selectedItem: action.payload
             }
+        }
+        case ActionTypes.SET_MEDIA_MODULE_FILTER:
+        case ActionTypes.SET_MODULE_ID: {
+            return {
+                ...state,
+                moduleFilter: action.payload
+            };
+        }
+        case ActionTypes.SET_MEDIA_SEARCH: {
+            return {
+                ...state,
+                search: action.payload
+            };
+        }
+        case ActionTypes.SET_MEDIA_SORT: {
+            return {
+                ...state,
+                sort: action.payload
+            };
         }
         case ActionTypes.FETCH_MEDIA + '_PENDING': {
             return {
@@ -48,6 +69,30 @@ export default function mediaPicker(state = initialState, action) {
                 fetching: false,
                 fetched: true,
                 items: action.payload.data.media
+            };
+        }
+        case ActionTypes.UPLOAD_FILE + '_PENDING': {
+            return {
+                ...state,
+                uploading: true,
+                progress: 0
+            };
+        }
+        case ActionTypes.UPLOAD_FILE + '_FULFILLED': {
+            const items = [...state.items];
+            const newItem = action.payload.data.newItem;
+            items.unshift(newItem);
+
+            return {
+                ...state,
+                items,
+                selectedItem: newItem
+            };
+        }
+        case ActionTypes.UPLOAD_PROGRESS: {
+            return {
+                ...state,
+                progress: action.payload
             };
         }
         default: {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Spinner from 'components/spinner';
-import Field from 'components/field';
+import Field from 'components/field-single';
 
 import getPropByName from 'utils/get-prop-by-name';
 

@@ -101,6 +101,12 @@ const config = {
                 { value: 'baz', label: 'Baz' },
                 { value: 'bar', label: 'Bar' }
             ]
+        },
+        {
+            name: 'photo',
+            label: 'Photos',
+            type: 'photo',
+            many: true
         }
     ]
 };

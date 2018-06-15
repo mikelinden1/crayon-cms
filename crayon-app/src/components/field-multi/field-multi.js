@@ -18,7 +18,7 @@ export default class FieldMulti extends React.PureComponent {
 
         const { name, allValue: currValue, value, actions: { setItemProp, setMultiItemProp } } = this.props;
 
-        const allValue = typeof currValue === 'undefined' || currValue === '' ? [] : currValue;
+        const allValue = Object.prototype.toString.call(currValue) === '[object Array]' ? currValue : [];
 
         allValue.push(value);
 
@@ -39,7 +39,7 @@ export default class FieldMulti extends React.PureComponent {
             value = JSON.parse(value);
         }
 
-        if (!value || value === '') {
+        if (Object.prototype.toString.call(value) !== '[object Array]') {
             value = [];
         }
 

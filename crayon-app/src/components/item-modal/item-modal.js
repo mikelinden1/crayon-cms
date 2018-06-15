@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Spinner from 'components/spinner';
-import Field from 'components/field-single';
+import FieldGroup from 'components/field-group';
 
 import getPropByName from 'utils/get-prop-by-name';
 
@@ -49,7 +49,7 @@ export default class ItemModal extends React.Component {
         const { saving, currentModule, config: { itemProps, modalGrid } } = this.props;
 
         if (!modalGrid) {
-            return itemProps.map((prop) => <Field key={`${prop.name}-field`} {...prop} />);
+            return itemProps.map((prop) => <FieldGroup key={`${prop.name}-field`} {...prop} />);
         }
 
         return modalGrid.map((row, i) => {
@@ -64,7 +64,7 @@ export default class ItemModal extends React.Component {
                     return null;
                 }
 
-                return <div key={`col-${e}-row-${i}`} className={columnClass}><Field key={`${field.name}-field`} disabled={saving} {...field} /></div>;
+                return <div key={`col-${e}-row-${i}`} className={columnClass}><FieldGroup key={`${field.name}-field`} disabled={saving} {...field} /></div>;
             });
 
             return <div key={`row-${i}`} className="row">{rowHtml}</div>;

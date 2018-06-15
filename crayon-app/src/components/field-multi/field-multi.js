@@ -1,35 +1,62 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'reactstrap';
 
 import Field from 'components/field';
 
 export default class FieldMulti extends React.PureComponent {
     static propTypes = {
         name: PropTypes.string.isRequired,
-        validationErrors: PropTypes.array,
         actions: PropTypes.shape({
             setItemProp: PropTypes.func.isRequired,
-            validateOnChange: PropTypes.func.isRequired,
-            showMediaPicker: PropTypes.func.isRequired
+            setMultiItemProp: PropTypes.func.isRequired
         }).isRequired
     };
 
+    addToMulti(e) {
+        e.preventDefault();
+
+        const { name, allValue: currValue, value, actions: { setItemProp, setMultiItemProp } } = this.props;
+
+        const allValue = typeof currValue === 'undefined' || currValue === '' ? [] : currValue;
+
+        allValue.push(value);
+
+        setMultiItemProp(name, '');
+        setItemProp(name, allValue);
+    }
+
     render() {
-        const { name, validationErrors, actions: { setItemProp, validateOnChange, showMediaPicker } } = this.props;
+        const { name, allValue: inputValue, actions: { setMultiItemProp } } = this.props;
         const fieldProps = {...this.props};
 
         fieldProps.onChange = (val) => {
-            setItemProp(name, val);
-
-            if (validationErrors.length) {
-                validateOnChange();
-            }
+            setMultiItemProp(name, val);
         };
 
-        fieldProps.showMediaPicker = () => {
-            showMediaPicker(name);
-        };
+        let value = inputValue;
+        if (value && typeof value === 'string') {
+            value = JSON.parse(value);
+        }
 
-        return <Field {...fieldProps} />;
+        if (!value || value === '') {
+            value = [];
+        }
+
+        return (
+            <div>
+                <div className="row">
+                    <div className="col-md-9">
+                        <Field {...fieldProps} />
+                    </div>
+                    <div className="col-md-3">
+                        <Button color="success" className="btn-block" onClick={(e) => this.addToMulti(e)}>Add</Button>
+                    </div>
+                </div>
+                <ul>
+                    {value.map((item, i) => <li key={`multi-item-${i}`}>{item}</li>)}
+                </ul>
+            </div>
+        );
     }
 }

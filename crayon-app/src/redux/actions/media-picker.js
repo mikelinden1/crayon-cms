@@ -1,5 +1,6 @@
 import { ActionTypes } from 'utils/constants';
-import { setItemProp } from 'redux/actions/modal-item-props';
+import { setItemProp, setMultiItemProp } from 'redux/actions/modal-item-props';
+import getPropByName from 'utils/get-prop-by-name';
 
 import config from 'config';
 
@@ -41,9 +42,17 @@ export function mediaPickerSelectedItem(val) {
     return (dispatch, getState) => {
         const state = getState();
         const target = state.mediaPicker.target;
+        const moduleId = state.currentModule;
+
+        const targetProps = getPropByName(moduleId, target);
 
         dispatch({ type: ActionTypes.MEDIA_PICKER_SELECTED_ITEM });
-        dispatch(setItemProp(target, val));
+
+        if (targetProps.many) {
+            dispatch(setMultiItemProp(target, val));
+        } else {
+            dispatch(setItemProp(target, val));
+        }
     };
 }
 

@@ -7,14 +7,25 @@ import FieldMulti from 'components/field-multi';
 export default class FieldGroup extends React.PureComponent {
     static propTypes = {
         label: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
         helpText: PropTypes.string,
-        validationErrors: PropTypes.array
+        validationErrors: PropTypes.array,
+        actions: PropTypes.shape({
+            showMediaPicker: PropTypes.func.isRequired
+        }).isRequired
     };
 
     getField() {
-        const { many } = this.props;
+        const { many, type, name, actions: { showMediaPicker } } = this.props;
+        const fieldProps = {...this.props};
 
-        return many ? <FieldMulti {...this.props} /> : <FieldSingle {...this.props} />;
+        if (type === 'photo') {
+            fieldProps.showMediaPicker = () => {
+                showMediaPicker(name);
+            };
+        }
+
+        return many ? <FieldMulti {...fieldProps} /> : <FieldSingle {...fieldProps} />;
     }
 
     render() {

@@ -102,7 +102,7 @@ const config = {
         {
             name: 'photos',
             label: 'Photos',
-            type: 'text',
+            type: 'photo',
             many: true
         }
     ]

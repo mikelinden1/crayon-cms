@@ -9,13 +9,12 @@ export default class FieldSingle extends React.PureComponent {
         validationErrors: PropTypes.array,
         actions: PropTypes.shape({
             setItemProp: PropTypes.func.isRequired,
-            validateOnChange: PropTypes.func.isRequired,
-            showMediaPicker: PropTypes.func.isRequired
+            validateOnChange: PropTypes.func.isRequired
         }).isRequired
     };
 
     render() {
-        const { name, validationErrors, actions: { setItemProp, validateOnChange, showMediaPicker } } = this.props;
+        const { name, validationErrors, actions: { setItemProp, validateOnChange } } = this.props;
         const fieldProps = {...this.props};
 
         fieldProps.onChange = (val) => {
@@ -24,10 +23,6 @@ export default class FieldSingle extends React.PureComponent {
             if (validationErrors.length) {
                 validateOnChange();
             }
-        };
-
-        fieldProps.showMediaPicker = () => {
-            showMediaPicker(name);
         };
 
         return <Field {...fieldProps} />;

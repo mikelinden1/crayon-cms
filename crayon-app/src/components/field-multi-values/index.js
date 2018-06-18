@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { deleteMultiItem } from 'redux/actions/modal-item-props';
+import { deleteMultiItem, multiItemSortEnd } from 'redux/actions/modal-item-props';
 
 import { getPropValue } from 'redux/selectors/get-prop-value';
 
@@ -18,7 +18,8 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({
-            deleteMultiItem
+            deleteMultiItem,
+            multiItemSortEnd
         }, dispatch)
     };
 }

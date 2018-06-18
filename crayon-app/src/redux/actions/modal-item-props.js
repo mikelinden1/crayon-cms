@@ -1,4 +1,5 @@
 import { ActionTypes } from 'utils/constants';
+import { arrayMove } from 'react-sortable-hoc';
 
 export function setItemProp(key, val, ignoreChange = false) {
     return (dispatch, getState) => {
@@ -35,3 +36,17 @@ export function deleteMultiItem(key, index) {
         });
     };
 };
+
+export function multiItemSortEnd(key, items, oldIndex, newIndex) {
+    return (dispatch, getState) => {
+        const state = getState();
+        const moduleId = state.currentModule;
+
+        const newItems = arrayMove(items, oldIndex, newIndex);
+
+        dispatch({
+            type: `${ActionTypes.MULTI_ITEM_SORT_END}_${moduleId}`,
+            payload: { key, newItems }
+        });
+    };
+}

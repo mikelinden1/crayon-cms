@@ -30,6 +30,16 @@ function modalItemPropsCreator(id) {
 
                 return nextState;
             }
+            case `${ActionTypes.MULTI_ITEM_SORT_END}_${id}`: {
+                const nextState = {...state};
+                const { key, newItems } = action.payload;
+
+                const items = [...newItems];
+
+                nextState[key] = items;
+
+                return nextState;
+            }
             case `${ActionTypes.EDIT_ITEM}_${id}`: {
                 return Object.assign({}, action.payload);
             }

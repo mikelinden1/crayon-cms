@@ -104,6 +104,7 @@ const config = {
                     url: url of json file
                     labelKey: property to use for the label
                     valueKey: property to use for the value
+                    nested: property the data is nested under (optional)
                 multiple (boolean)
     radio:      options (array of objects, required)
                     label (string, required)

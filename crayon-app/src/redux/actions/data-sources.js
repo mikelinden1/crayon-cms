@@ -13,7 +13,6 @@ export function fetchDatasource(name, source) {
         });
 
         axios.get(source.url).then((res) => {
-            const rawData = res.data;
 
 
             const sourceProp = getPropByName(state.currentModule, name);
@@ -23,7 +22,9 @@ export function fetchDatasource(name, source) {
                 return;
             }
 
-            const { labelKey, valueKey } = sourceProp.source;
+            const { labelKey, valueKey, nested } = sourceProp.source;
+
+            const rawData = nested ? res.data[nested] : res.data;
 
             const data = rawData.reduce((out, item) => {
                 out.push({

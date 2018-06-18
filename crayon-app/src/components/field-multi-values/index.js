@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { validateOnChange } from 'redux/actions/items';
-import { setItemProp, setMultiItemProp } from 'redux/actions/modal-item-props';
-import { fetchDatasource } from 'redux/actions/data-sources';
+import { deleteMultiItem } from 'redux/actions/modal-item-props';
 
 import { getPropValue } from 'redux/selectors/get-prop-value';
 
@@ -20,10 +18,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({
-            setItemProp,
-            setMultiItemProp,
-            fetchDatasource,
-            validateOnChange
+            deleteMultiItem
         }, dispatch)
     };
 }

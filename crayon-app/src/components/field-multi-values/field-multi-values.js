@@ -17,10 +17,17 @@ export default class FieldMultiValue extends React.PureComponent {
             PropTypes.string
         ]).isRequired,
         actions: PropTypes.shape({
-            setItemProp: PropTypes.func.isRequired,
-            setMultiItemProp: PropTypes.func.isRequired
+            deleteMultiItem: PropTypes.func.isRequired
         }).isRequired
     };
+
+    deleteItem(i) {
+        const { name, actions: { deleteMultiItem } } = this.props;
+
+        if (window.confirm('Are you sure you want to delete this item?')) {
+            deleteMultiItem(name, i);
+        }
+    }
 
     render() {
         const { allValue, name, currentModule } = this.props;
@@ -44,7 +51,7 @@ export default class FieldMultiValue extends React.PureComponent {
                             <div className="item-name">{item}</div>
                             <div className="btns">
                                 <div className="drag-handle"><Icon icon={faBars} /></div>
-                                <Button color="danger" className="btn-sm"><Icon icon={faTrash} /></Button>
+                                <Button color="danger" className="btn-sm" onClick={() => this.deleteItem(i)}><Icon icon={faTrash} /></Button>
                             </div>
                         </li>
                     );

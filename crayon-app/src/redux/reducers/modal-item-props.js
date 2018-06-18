@@ -19,6 +19,17 @@ function modalItemPropsCreator(id) {
 
                 return nextState;
             }
+            case `${ActionTypes.DELETE_MULTI_ITEM}_${id}`: {
+                const nextState = {...state};
+                const { key, index } = action.payload;
+
+                const items = [...nextState[key]];
+                items.splice(index, 1);
+
+                nextState[key] = items;
+
+                return nextState;
+            }
             case `${ActionTypes.EDIT_ITEM}_${id}`: {
                 return Object.assign({}, action.payload);
             }

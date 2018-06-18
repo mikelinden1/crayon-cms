@@ -24,7 +24,7 @@ export default class FieldMulti extends React.PureComponent {
         let value = inputValue;
         if (value && typeof value === 'string') {
             value = JSON.parse(value);
-            setItemProp(name, value);
+            setItemProp(name, value, true);
             return;
         }
     }

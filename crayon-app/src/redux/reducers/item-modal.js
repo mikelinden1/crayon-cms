@@ -26,6 +26,10 @@ function itemModalCreator(id) {
                 };
             }
             case `${ActionTypes.SET_PROP_VALUE}_${id}`: {
+                if (action.payload.ignoreChange) {
+                    return { ...state };
+                }
+
                 return {
                     ...state,
                     changeMade: true

@@ -33,7 +33,7 @@ class FieldMultiValueWrapper extends React.PureComponent {
         const theProp = getPropByName(currentModule, name);
 
         if (!allValue || !allValue.length || typeof allValue === 'string') {
-            return null;
+            return <ul className="field-multi-values"></ul>;
         }
 
         return (

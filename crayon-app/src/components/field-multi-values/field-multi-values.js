@@ -22,6 +22,12 @@ export default class FieldMultiValue extends React.PureComponent {
     }
 
     render() {
+        const { allValue } = this.props;
+
+        if (!allValue || !allValue.length) {
+            return null;
+        }
+
         return <FieldMultiValueWrapper {...this.props} helperClass="field-multi-values-row" onSortEnd={(e) => this.onSortEnd(e)} />;
     }
 }

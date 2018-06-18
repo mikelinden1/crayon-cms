@@ -16,7 +16,7 @@ export default class TextField extends React.PureComponent {
 
     render() {
         const { name, value, disabled, onChange, showMediaPicker } = this.props;
-        console.log('value in photo', value);
+
         const protocolRegex = /(http(s?)):\/\//gi;
         const previewImage = protocolRegex.test(value) ? value : `${config.uploadFullPath}/${value}`;
 

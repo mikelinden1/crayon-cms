@@ -12,7 +12,8 @@ import FieldMultiValues from './field-multi-values';
 function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
-        allValue: getPropValue(state, ownProps)
+        allValue: getPropValue(state, ownProps),
+        currentModule: state.currentModule
     };
 }
 

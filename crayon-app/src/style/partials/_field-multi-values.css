@@ -3,6 +3,9 @@
     padding: 0;
     margin: 15px 0;
 
+    display: block;
+    max-height: 275px;
+    overflow-y: auto;
 }
 
 .field-multi-values-row {

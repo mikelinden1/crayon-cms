@@ -19,11 +19,14 @@ class FieldMultiValue extends React.PureComponent {
     render() {
         const { item, isPhoto, deleteItem } = this.props;
 
+        const protocolRegex = /(http(s?)):\/\//gi;
+        const previewImage = protocolRegex.test(item) ? item : `${config.uploadFullPath}/${item}`;
+
         return (
             <li className="field-multi-values-row">
                 {
                     isPhoto
-                    ? <div className="item-thumb"><img src={`${config.uploadFullPath}/${item}`} alt="item thumb" /></div>
+                    ? <div className="item-thumb"><img src={previewImage} alt="item thumb" /></div>
                     : null
                 }
                 <div className="item-name">{item}</div>

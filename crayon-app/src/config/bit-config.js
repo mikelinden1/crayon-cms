@@ -45,10 +45,7 @@ const config = {
         grid: null
     },
     // This is how the modal grid will be displayed. The root array is the rows and the child array sets the columns. Use property name's.
-    modalGrid: [
-        ['name'],
-        ['type']
-    ],
+    modalGrid: null,
     /***************************************************************
     This is where we define all of the properties for an item.
     -----------------------------------------------------------
@@ -101,6 +98,12 @@ const config = {
                 { value: 'baz', label: 'Baz' },
                 { value: 'bar', label: 'Bar' }
             ]
+        },
+        {
+            name: 'photos',
+            label: 'Photos',
+            type: 'photo',
+            many: true
         }
     ]
 };

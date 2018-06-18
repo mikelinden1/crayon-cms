@@ -7,6 +7,7 @@ import userState from './user';
 import items from './items';
 import itemModal from './item-modal';
 import modalItemProps from './modal-item-props';
+import modalMultiItemProps from './modal-multi-item-props';
 import datasources from './data-sources';
 import currentView from './current-view';
 import filters from './filters';
@@ -34,6 +35,7 @@ function createModuleReducers(id) {
         items: items(id),
         itemModal: itemModal(id),
         modalItemProps: modalItemProps(id),
+        modalMultiItemProps: modalMultiItemProps(id),
         datasources: datasources(id),
         currentView: currentView(id),
         filters: filters(id),

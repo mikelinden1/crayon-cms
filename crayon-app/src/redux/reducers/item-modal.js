@@ -25,7 +25,13 @@ function itemModalCreator(id) {
                     changeMade: false
                 };
             }
+            case `${ActionTypes.MULTI_ITEM_SORT_END}_${id}`:
+            case `${ActionTypes.DELETE_MULTI_ITEM}_${id}`:
             case `${ActionTypes.SET_PROP_VALUE}_${id}`: {
+                if (action.payload.ignoreChange) {
+                    return { ...state };
+                }
+
                 return {
                     ...state,
                     changeMade: true

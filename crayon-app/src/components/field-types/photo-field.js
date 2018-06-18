@@ -14,16 +14,38 @@ export default class TextField extends React.PureComponent {
         disabled: PropTypes.bool
     };
 
-    render() {
-        const { name, value, disabled, onChange, showMediaPicker } = this.props;
+    componentWillMount() {
+        this.loadPreview(this.props);
+        this.setState({ previewImage: null });
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.value !== nextProps.value) {
+            this.loadPreview(nextProps);
+        }
+    }
+
+    loadPreview(props) {
+        const { value } = props;
 
         const protocolRegex = /(http(s?)):\/\//gi;
         const previewImage = protocolRegex.test(value) ? value : `${config.uploadFullPath}/${value}`;
 
+        const img = new Image();
+        img.src = previewImage;
+        img.onload = () => this.setState({ previewImage });
+        img.onerror = () => this.setState({ previewImage: null });
+    }
+
+    render() {
+        const { name, value, disabled, onChange, showMediaPicker } = this.props;
+
+        const { previewImage } = this.state;
+
         return (
             <div className="photo-field input-group">
                 {
-                value && value !== ''
+                previewImage && previewImage !== ''
                 ?   <span className="input-group-btn">
                         <img src={previewImage} alt="Preview" className="photo-picker-thumb" />
                     </span>

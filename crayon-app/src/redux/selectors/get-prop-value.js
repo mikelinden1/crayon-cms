@@ -7,6 +7,7 @@ export const getPropValue = createSelector(
     [ fieldName, itemProps ],
     (name, itemProps) => {
         const value = itemProps[name];
+
         return value ? value : '';
     }
 );

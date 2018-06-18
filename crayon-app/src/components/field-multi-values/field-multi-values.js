@@ -21,20 +21,15 @@ export default class FieldMultiValue extends React.PureComponent {
     };
 
     render() {
-        const { allValue: inputValue } = this.props;
+        const { allValue } = this.props;
 
-        let value = inputValue;
-        if (value && typeof value === 'string') {
-            value = JSON.parse(value);
-        }
-
-        if (Object.prototype.toString.call(value) !== '[object Array]') {
-            value = [];
+        if (!allValue || !allValue.length || typeof allValue === 'string') {
+            return null;
         }
 
         return (
             <ul className="field-multi-values">
-                {value.map((item, i) => {
+                {allValue.map((item, i) => {
                     return (
                         <li key={`multi-item-${i}`}>
                             <div className="item-thumb"><img src={`${config.uploadFullPath}/${item}`} alt="item thumb" /></div>

@@ -18,6 +18,17 @@ export default class FieldMulti extends React.PureComponent {
         }).isRequired
     };
 
+    componentWillMount() {
+        const { name, allValue: inputValue, actions: { setItemProp } } = this.props;
+
+        let value = inputValue;
+        if (value && typeof value === 'string') {
+            value = JSON.parse(value);
+            setItemProp(name, value);
+            return;
+        }
+    }
+
     addToMulti(e) {
         e.preventDefault();
 

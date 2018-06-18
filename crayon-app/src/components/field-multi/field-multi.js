@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 
 import Field from 'components/field';
+import FieldMultiValues from 'components/field-multi-values';
 
 export default class FieldMulti extends React.PureComponent {
     static propTypes = {
         name: PropTypes.string.isRequired,
+        allValue: PropTypes.oneOfType([
+            PropTypes.array,
+            PropTypes.string
+        ]).isRequired,
         actions: PropTypes.shape({
             setItemProp: PropTypes.func.isRequired,
             setMultiItemProp: PropTypes.func.isRequired
@@ -18,30 +23,26 @@ export default class FieldMulti extends React.PureComponent {
 
         const { name, allValue: currValue, value, actions: { setItemProp, setMultiItemProp } } = this.props;
 
-        const allValue = Object.prototype.toString.call(currValue) === '[object Array]' ? currValue : [];
+        if (value === '') {
+            window.alert('Cannot add a blank value.');
+            return false;
+        }
 
-        allValue.push(value);
+        const allValue = Object.prototype.toString.call(currValue) === '[object Array]' ? currValue : [];
+        const newValue = [...allValue];
+        newValue.push(value);
 
         setMultiItemProp(name, '');
-        setItemProp(name, allValue);
+        setItemProp(name, newValue);
     }
 
     render() {
-        const { name, allValue: inputValue, actions: { setMultiItemProp } } = this.props;
+        const { name, actions: { setMultiItemProp } } = this.props;
         const fieldProps = {...this.props};
 
         fieldProps.onChange = (val) => {
             setMultiItemProp(name, val);
         };
-
-        let value = inputValue;
-        if (value && typeof value === 'string') {
-            value = JSON.parse(value);
-        }
-
-        if (Object.prototype.toString.call(value) !== '[object Array]') {
-            value = [];
-        }
 
         return (
             <div>
@@ -53,9 +54,7 @@ export default class FieldMulti extends React.PureComponent {
                         <Button color="success" className="btn-block" onClick={(e) => this.addToMulti(e)}>Add</Button>
                     </div>
                 </div>
-                <ul>
-                    {value.map((item, i) => <li key={`multi-item-${i}`}>{item}</li>)}
-                </ul>
+                <FieldMultiValues name={name} />
             </div>
         );
     }

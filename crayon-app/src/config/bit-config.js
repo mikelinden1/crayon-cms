@@ -93,7 +93,6 @@ const config = {
             name: 'type',
             label: 'Dropdown',
             type: 'dropdown',
-            many: true,
             options: [
                 { value: 'foo', label: 'Foo' },
                 { value: 'baz', label: 'Baz' },

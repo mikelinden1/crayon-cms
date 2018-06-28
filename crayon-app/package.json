@@ -1,6 +1,7 @@
 {
   "name": "crayon-cms",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.3",

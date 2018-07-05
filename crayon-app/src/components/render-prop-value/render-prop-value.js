@@ -68,13 +68,13 @@ export default class RenderPropValue extends React.PureComponent {
                     return null;
                 }
 
-                return moment(value).format('MMMM Do, YYYY');
+                return moment.utc(value).format('MMMM Do, YYYY');
             case 'datetime':
                 if (!value) {
                     return null;
                 }
 
-                return moment(value).format('MMMM Do, YYYY h:mm a');
+                return moment.utc(value).format('MMMM Do, YYYY h:mm a');
             case 'truncate':
                 if (!value) {
                     return null;

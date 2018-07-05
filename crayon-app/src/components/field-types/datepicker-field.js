@@ -24,7 +24,7 @@ export default class DatepickerField extends React.PureComponent {
     render() {
         const { value, disabled, showTime, timeInterval } = this.props;
 
-        const selected = value && value.length ? moment(value) : null;
+        const selected = value && value.length ? moment.utc(value) : null;
         const tInterval = timeInterval ? timeInterval : 30;
 
         return (
@@ -33,6 +33,7 @@ export default class DatepickerField extends React.PureComponent {
                 className="form-control"
                 selected={selected}
                 onChange={(e) => this.handleChange(e)}
+                onChangeRaw={(e) => this.handleChange(e)}
                 showTimeSelect={showTime}
                 timeIntervals={tInterval}
                 dateFormat="LLL"

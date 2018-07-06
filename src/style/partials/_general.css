@@ -1,0 +1,65 @@
+h1, h2, h3, h4, h5, h6 {
+    letter-spacing: normal;
+}
+
+.pull-right {
+    float: right;
+}
+
+.app-wrapper {
+    width: 100%;
+    padding: 20px;
+    position: relative;
+}
+
+.margin-above-below {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.modal-dialog {
+    max-width: 800px;
+}
+
+.link-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    outline: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.link-btn:hover {
+    text-decoration: underline;
+}
+
+.powered-by {
+    font-size: 10px;
+}
+
+.login-wrapper {
+    max-width: 400px;
+    margin: 0 auto 30px;
+}
+
+.add-new-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    max-width: 200px;
+}
+
+.Select-control {
+    border-radius: 0 !important;
+    border: 1px solid #ced4da !important;
+}

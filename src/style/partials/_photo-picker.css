@@ -1,0 +1,14 @@
+.photo-picker-thumb {
+    width: 60px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.photo-field input {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.photo-field .btn {
+    height: 100%;
+}

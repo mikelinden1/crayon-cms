@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import config from 'config';
 import { Button } from 'reactstrap';
 
 export default class TextField extends React.PureComponent {
@@ -9,6 +10,7 @@ export default class TextField extends React.PureComponent {
         name: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         onChange: PropTypes.func.isRequired,
+        showMediaPicker: PropTypes.func.isRequired,
         disabled: PropTypes.bool
     };
 
@@ -26,42 +28,18 @@ export default class TextField extends React.PureComponent {
     loadPreview(props) {
         const { value } = props;
 
+        const protocolRegex = /(http(s?)):\/\//gi;
+        const previewImage = protocolRegex.test(value) ? value : `${config.uploadFullPath}/${value}`;
+
         const img = new Image();
-        img.src = value;
-        img.onload = () => this.setState({ previewImage: value });
+        img.src = previewImage;
+        img.onload = () => this.setState({ previewImage });
         img.onerror = () => this.setState({ previewImage: null });
     }
 
-    choosePhoto() {
-        if (!window.wp || !window.wp.media) {
-            console.error('WP Media is missing. Maybe you forgot to enque it in the plugin config? Or are you outside of WordPress?');
-            return;
-        }
-
-        const { label, onChange } = this.props;
-
-        const image = window.wp.media({
-            title: `Upload a ${label}`,
-            multiple: false,
-            library: {
-                type: 'image'
-            }
-        })
-        .open()
-        .on('select', () => {
-            const uploaded_image = image.state().get('selection').first();
-            const val = uploaded_image.toJSON().url;
-
-            onChange(val);
-        })
-        .on('close', () => {
-            // the media picker uses the same 'modal-open' class as boostrap modals, replace the class when the modal closes
-            document.body.classList.add('modal-open');
-        });
-    }
-
     render() {
-        const { name, value, disabled, onChange } = this.props;
+        const { name, value, disabled, onChange, showMediaPicker } = this.props;
+
         const { previewImage } = this.state;
 
         return (
@@ -82,7 +60,7 @@ export default class TextField extends React.PureComponent {
                     className="form-control"
                 />
                 <span className="input-group-btn">
-                    <Button color="primary" className="btn-sm" disabled={disabled} onClick={() => this.choosePhoto()}>Upload</Button>
+                    <Button color="primary" className="btn-sm" disabled={disabled} onClick={() => showMediaPicker()}>Select</Button>
                 </span>
             </div>
         );

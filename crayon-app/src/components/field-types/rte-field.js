@@ -1,32 +1,36 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RichTextEditor from 'react-rte';
+import CKEditor from "react-ckeditor-component";
+
+import config from 'config';
 
 export default class RteField extends React.PureComponent {
     static propTypes = {
         value: PropTypes.string.isRequired,
-        onChange: PropTypes.func.isRequired,
-        disabled: PropTypes.bool
+        onChange: PropTypes.func.isRequired
     };
-
-    componentWillMount() {
-        const { value: inputVal } = this.props;
-        const value = inputVal ? RichTextEditor.createValueFromString(inputVal, 'html') : RichTextEditor.createEmptyValue();
-
-        this.setState({ value });
-    }
 
     handleChange(e) {
         const { onChange } = this.props;
 
-        this.setState({ value: e });
-
-        onChange(e.toString('html'));
+        onChange(e.editor.getData());
     }
 
-    render() {
-        const { value, disabled } = this.state;
 
-        return <RichTextEditor disabled={disabled} value={value} onChange={(e) => this.handleChange(e)} />;
+    render() {
+        const { value } = this.props;
+
+        const ckConfig = {
+            filebrowserUploadUrl: `${config.apiBase}/ck-upload?uploadFullPath=${config.uploadFullPath}&uploadPath=${config.uploadPath}`,
+            allowedContent: true
+        };
+
+        return  <CKEditor
+                    content={value}
+                    config={ckConfig}
+                    events={{
+                        "change": (e) => this.handleChange(e)
+                    }}
+                />;
     }
 }

@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "password-hash": "^1.2.2",
-    "react-dropzone": "^4.2.11"
-  }
-}

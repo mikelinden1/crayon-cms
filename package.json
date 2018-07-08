@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "license": "MIT",
   "private": true,
-  "homepage" : "crayon-cms/",
+  "homepage" : "crayon-cms/build",
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.3",
     "@fortawesome/fontawesome-free-solid": "^5.0.6",

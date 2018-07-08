@@ -72,15 +72,20 @@ export default class DropdownField extends React.PureComponent {
             value = JSON.parse(value);
         }
 
+
         let selected;
 
-        if (value.reduce) { // if value has the reduce method it is an array
-            selected = value.reduce((selected, val) => {
-                selected.push(options.find((opt) => opt.value === val));
-                return selected;
-            }, []);
+        if (value) {
+            if (value.reduce) { // if value has the reduce method it is an array
+                selected = value.reduce((selected, val) => {
+                    selected.push(options.find((opt) => opt.value === val));
+                    return selected;
+                }, []);
+            } else {
+                selected = options.find((opt) => opt.value === value);
+            }
         } else {
-            selected = options.find((opt) => opt.value === value);
+            selected = multiple ? [] : '';
         }
 
         return (

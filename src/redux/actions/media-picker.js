@@ -1,12 +1,11 @@
 import { ActionTypes } from 'utils/constants';
 import { setItemProp, setMultiItemProp } from 'redux/actions/modal-item-props';
 import getPropByName from 'utils/get-prop-by-name';
-
-import config from 'config';
+import { getEnvVar } from 'utils/get-env-var';
 
 import axios from 'axios';
 
-const API_BASE = config.apiBase;
+const API_BASE = getEnvVar('apiBase');
 
 export function fetchMedia() {
     return (dispatch) => {
@@ -64,7 +63,7 @@ export function mediaPickerUpload(files) {
         files.forEach((file) => {
             const data = new FormData();
             data.append('moduleId', moduleId);
-            data.append('uploadDir', config.uploadPath);
+            data.append('uploadDir', getEnvVar('uploadPath'));
             data.append('file', file);
 
             const uploadConfig = {

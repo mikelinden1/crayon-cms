@@ -1,16 +1,24 @@
-import NewsConfig from './news-config';
+import WidgetConfig from './widget-config';
 import BitConfig from './bit-config';
 import UsersConfig from './users-config';
 
 const config = {
     clientName: 'Apex Equipment',
-    siteUrl: 'http://apexbalerequipment.com',
-    apiBase: 'http://localhost/steve/apex/api',
-    uploadPath: '../uploads',
-    uploadFullPath: 'http://localhost/steve/apex/uploads',
-    moduleOrder: ['news', 'widgets', 'users'],
+    localEnv: {
+        siteUrl: 'http://localhost',
+        apiBase: 'http://localhost/crayon-php-api',
+        uploadPath: '../uploads',
+        uploadFullPath: 'http://localhost/uploads'
+    },
+    prodEnv: {
+        siteUrl: 'http://thesiteurl.com',
+        apiBase: 'http://thesiteurl.com/crayon-php-api',
+        uploadPath: '../uploads',
+        uploadFullPath: 'http://thesiteurl.com/uploads'
+    },
+    moduleOrder: ['widgets', 'widgets', 'users'],
     modules: {
-        news: NewsConfig,
+        widgets: WidgetConfig,
         bits: BitConfig,
         users: UsersConfig
     }

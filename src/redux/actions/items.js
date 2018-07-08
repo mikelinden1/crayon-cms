@@ -1,11 +1,12 @@
 import { ActionTypes } from 'utils/constants';
 import config from 'config';
+import { getEnvVar } from 'utils/get-env-var';
 
 import axios from 'axios';
 
 import { arrayMove } from 'react-sortable-hoc';
 
-const API_BASE = config.apiBase;
+const API_BASE = getEnvVar('apiBase');
 
 export function fetchItems() {
     return (dispatch, getState) => {

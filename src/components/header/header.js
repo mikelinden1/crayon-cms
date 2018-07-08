@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import config from 'config';
+import { getEnvVar } from 'utils/get-env-var';
 
 import { faHome, faTachometerAlt, faSignOutAlt } from '@fortawesome/fontawesome-free-solid';
 
@@ -32,7 +32,7 @@ export default class Header extends React.PureComponent {
             <div>
                 <header id="top-bar">
                     <Link to='/'><Icon icon={faTachometerAlt} /> Admin Dashboard</Link>
-                    <a href={config.siteUrl}><Icon icon={faHome} /> Site Home</a>
+                    <a href={getEnvVar('siteUrl')}><Icon icon={faHome} /> Site Home</a>
                     <div className="grow" />
                     {rightSide}
                 </header>

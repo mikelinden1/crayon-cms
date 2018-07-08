@@ -1,8 +1,9 @@
 import { ActionTypes } from 'utils/constants';
 import axios from 'axios';
-import config from 'config';
 
-const API_BASE = config.apiBase;
+import { getEnvVar } from 'utils/get-env-var';
+
+const API_BASE = getEnvVar('apiBase');
 
 export function addColumn(column) {
     return (dispatch, getState) => {
@@ -88,26 +89,5 @@ export function saveBulkItems(items) {
                 payload: newItems
             });
         }).catch(() => dispatch(throwBulkError('Error saving items')));
-
-/*
-        const saveItem = (i) => {
-            if (!items[i]) {
-                complete();
-                return;
-            }
-
-            axios.post(`${API_BASE}/${moduleConfig.id}`, items[i]).then((res) => {
-                dispatch({
-                    type: `${ActionTypes.SAVE_NEW_ITEM}_${state.currentModule}_FULFILLED`,
-                    payload: res
-                });
-
-                saveItem(++i);
-            }).catch(() => dispatch({ type: `${ActionTypes.BULK_ADD_ERROR}_${state.currentModule}`, payload: 'Error saving items' }));
-        };
-
-        dispatch({ type: `${ActionTypes.SAVE_BULK_ITEMS}_${state.currentModule}_PENDING` })
-        saveItem(0);
-*/
     };
 }

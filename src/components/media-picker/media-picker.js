@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Dropzone from 'react-dropzone'
 
-import config from 'config';
+import { getEnvVar } from 'utils/get-env-var';
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -44,7 +44,7 @@ export default class MediaPicker extends React.PureComponent {
             }
             return (
                 <div key={`media-item-${item.id}`} onClick={() => clickItem(item)} className={classes.join(' ')}>
-                    <img src={`${config.uploadFullPath}/${item.filename}`} alt="Media picker item" />
+                    <img src={`${getEnvVar('uploadFullPath')}/${item.filename}`} alt="Media picker item" />
                 </div>
             );
         });

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SortableElement } from 'react-sortable-hoc';
 
-import config from 'config';
+import { getEnvVar } from 'utils/get-env-var';
 
 import { Button } from 'reactstrap';
 import { faTrash, faBars } from '@fortawesome/fontawesome-free-solid';
@@ -20,7 +20,7 @@ class FieldMultiValue extends React.PureComponent {
         const { item, isPhoto, deleteItem } = this.props;
 
         const protocolRegex = /(http(s?)):\/\//gi;
-        const previewImage = protocolRegex.test(item) ? item : `${config.uploadFullPath}/${item}`;
+        const previewImage = protocolRegex.test(item) ? item : `${getEnvVar('uploadFullPath')}/${item}`;
 
         return (
             <li className="field-multi-values-row">

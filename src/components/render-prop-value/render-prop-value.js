@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 
-import config from 'config';
+import { getEnvVar } from 'utils/get-env-var';
 
 import { faCheckSquare as checkedIcon, faSquare as uncheckedIcon } from '@fortawesome/fontawesome-free-solid';
 import Icon from 'components/icon';
@@ -59,7 +59,7 @@ export default class RenderPropValue extends React.PureComponent {
                 const width = displayType === 'image' ? 125 : '100%';
 
                 const protocolRegex = /(http(s?)):\/\//gi;
-                const previewImage = protocolRegex.test(value) ? value : `${config.uploadFullPath}/${value}`;
+                const previewImage = protocolRegex.test(value) ? value : `${getEnvVar('uploadFullPath')}/${value}`;
 
                 const alt = column.altProp ? `${item[column.altProp]} - ${columnProp.label}` : `${itemName} - ${columnProp.label}`;
                 return <img src={previewImage} width={width} alt={alt} className="table-thumb" />;

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import CKEditor from "react-ckeditor-component";
 
-import config from 'config';
+import { getEnvVar } from 'utils/get-env-var';
 
 export default class RteField extends React.PureComponent {
     static propTypes = {
@@ -21,7 +21,7 @@ export default class RteField extends React.PureComponent {
         const { value } = this.props;
 
         const ckConfig = {
-            filebrowserUploadUrl: `${config.apiBase}/ck-upload?uploadFullPath=${config.uploadFullPath}&uploadPath=${config.uploadPath}`,
+            filebrowserUploadUrl: `${getEnvVar('apiBase')}/ck-upload?uploadFullPath=${getEnvVar('uploadFullPath')}&uploadPath=${getEnvVar('uploadPath')}`,
             allowedContent: true
         };
 

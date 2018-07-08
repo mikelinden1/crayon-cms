@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import config from 'config';
+import { getEnvVar } from 'utils/get-env-var';
+
 import { Button } from 'reactstrap';
 
 export default class TextField extends React.PureComponent {
@@ -29,7 +30,7 @@ export default class TextField extends React.PureComponent {
         const { value } = props;
 
         const protocolRegex = /(http(s?)):\/\//gi;
-        const previewImage = protocolRegex.test(value) ? value : `${config.uploadFullPath}/${value}`;
+        const previewImage = protocolRegex.test(value) ? value : `${getEnvVar('uploadFullPath')}/${value}`;
 
         const img = new Image();
         img.src = previewImage;

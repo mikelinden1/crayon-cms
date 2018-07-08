@@ -2,7 +2,7 @@
 Crayon CMS is a Frontend CMS written in React + Redux + Reselect that is completely configurable with a JSON files and works with any REST API.
 
 ## Install
-Run `yard install` from the project root to install dependencies.
+Run `yarn install` from the project root to install dependencies.
 
 ## Config
 Rename `src/config-sample` to `src-config` and configure cms modules.

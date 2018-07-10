@@ -1,7 +1,7 @@
-import config from 'config';
+import env from 'config/env';
 
 export function getEnvVar(name) {
-    return isLocal() ? config.localEnv[name] : config.prodEnv[name];
+    return isLocal() ? env.localEnv[name] : env.prodEnv[name];
 }
 
 function isLocal() {

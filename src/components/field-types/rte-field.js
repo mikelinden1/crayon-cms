@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CKEditor from "react-ckeditor-component";
+import CKEditor from 'react-ckeditor-component';
 
 import { getEnvVar } from 'utils/get-env-var';
 
@@ -29,7 +29,10 @@ export default class RteField extends React.PureComponent {
                     content={value}
                     config={ckConfig}
                     events={{
-                        "change": (e) => this.handleChange(e)
+                        'change': (e) => this.handleChange(e),
+                        'afterPaste': (e) => this.handleChange(e),
+                        'blur': (e) => this.handleChange(e),
+                        'key': (e) => this.handleChange(e)
                     }}
                 />;
     }

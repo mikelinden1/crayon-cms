@@ -17,6 +17,12 @@ export function setItemsPerPage(p) {
         const state = getState();
         const moduleId = state.currentModule;
 
+        p = +p;
+
+        if (p === 0) {
+            p = null;
+        }
+
         dispatch({
             type: `${ActionTypes.SET_ITEMS_PER_PAGE}_${moduleId}`,
             payload: p

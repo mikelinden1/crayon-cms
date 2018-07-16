@@ -9,6 +9,7 @@ import FilterSortSearch from 'components/filter-sort-search';
 import Switchers from 'components/switchers';
 import CurrentView from 'components/current-view';
 import Paginator from 'components/paginator';
+import ItemsPerPage from 'components/items-per-page';
 import RecordCount from 'components/record-count';
 import ItemModal from 'components/item-modal';
 import BulkAdd from 'components/bulk-add';
@@ -52,6 +53,7 @@ export default class Main extends React.PureComponent {
                 <Switchers />
                 <CurrentView />
                 <Paginator />
+                <ItemsPerPage />
                 <RecordCount />
                 <ItemModal />
                 <BulkAdd />

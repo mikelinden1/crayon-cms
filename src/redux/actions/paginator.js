@@ -11,3 +11,15 @@ export function setCurrentPage(p) {
         });
     };
 };
+
+export function setItemsPerPage(p) {
+    return (dispatch, getState) => {
+        const state = getState();
+        const moduleId = state.currentModule;
+
+        dispatch({
+            type: `${ActionTypes.SET_ITEMS_PER_PAGE}_${moduleId}`,
+            payload: p
+        });
+    };
+}

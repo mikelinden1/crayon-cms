@@ -1,19 +1,16 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getFilteredItems } from 'redux/selectors/get-filtered-items';
-import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 import getModuleReduxProp from 'utils/get-module-redux-prop';
+import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 
-import { setCurrentPage } from 'redux/actions/paginator';
+import { setItemsPerPage } from 'redux/actions/paginator';
 
-import Paginator from './paginator';
+import ItemsPerPage from './items-per-page';
 
 function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
-        currentPage: getModuleReduxProp(state, 'paginator', 'currentPage'),
-        numOfItems: getFilteredItems(state, ownProps).length,
         itemsPerPage: getModuleReduxProp(state, 'paginator', 'itemsPerPage'),
         config: getCurrentModuleConfig(state, ownProps)
     };
@@ -22,9 +19,9 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators({
-            setCurrentPage
+            setItemsPerPage
         }, dispatch)
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Paginator);
+export default connect(mapStateToProps, mapDispatchToProps)(ItemsPerPage);

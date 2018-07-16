@@ -1,12 +1,22 @@
 import { ActionTypes } from 'utils/constants';
-
-const initialState = {
-    currentPage: 1
-};
+import getModuleConfig from 'utils/get-module-config';
 
 function paginatorCreator(id) {
+    const moduleConfig = getModuleConfig(id);
+
+    const initialState = {
+        currentPage: 1,
+        itemsPerPage: moduleConfig.itemsPerPage
+    };
+
     return function paginator(state = initialState, action) {
         switch (action.type) {
+            case `${ActionTypes.SET_ITEMS_PER_PAGE}_${id}`: {
+                return {
+                    ...state,
+                    itemsPerPage: action.payload
+                };
+            }
             case `${ActionTypes.SET_CURRENT_PAGE}_${id}`: {
                 return {
                     ...state,

@@ -5,6 +5,7 @@ export default class Paginator extends React.PureComponent {
     static propTypes = {
         currentPage: PropTypes.number.isRequired,
         numOfItems: PropTypes.number.isRequired,
+        itemsPerPage: PropTypes.number.isRequired,
         config: PropTypes.object.isRequired,
         actions: PropTypes.shape({
             setCurrentPage: PropTypes.func.isRequired
@@ -12,12 +13,13 @@ export default class Paginator extends React.PureComponent {
     };
 
     render() {
-        const { currentPage, numOfItems, config, actions: { setCurrentPage } } = this.props;
-        const { itemsPerPage, capabilities: { reorderable } } = config;
+        const { currentPage, itemsPerPage, numOfItems, config, actions: { setCurrentPage } } = this.props;
+        const { capabilities: { reorderable } } = config;
 
         if (!itemsPerPage || reorderable) {
             return null;
         }
+
 
         const numOfPages = Math.ceil(numOfItems / itemsPerPage);
 

@@ -24,7 +24,7 @@ export default class DatepickerField extends React.PureComponent {
     render() {
         const { value, disabled, showTime, timeInterval } = this.props;
 
-        const selected = value && value.length ? moment.utc(value) : null;
+        const selected = value && value.length && value !== '0000-00-00 00:00:00' ? moment.utc(value) : null;
         const tInterval = timeInterval ? timeInterval : 30;
 
         return (

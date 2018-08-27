@@ -19,8 +19,5 @@ const filteredItems = (state, props) => getFilteredItems(state, props);
 
 export const isAllBulkCheckChecked = createSelector(
     [ selectedItems, filteredItems ],
-    (selectedItems, filteredItems) => {
-        console.log('is it checked?', selectedItems, filteredItems);
-        return selectedItems.length === filteredItems.length;
-    }
+    (selectedItems, filteredItems) => selectedItems.length === filteredItems.length
 );

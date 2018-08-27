@@ -30,6 +30,9 @@ export default class ColumnHeadings extends React.PureComponent {
             );
         }
 
+        // add bulk check col
+        cols.unshift(<th key="bulk-check-heading" />);
+
         if (reorderable) {
             cols.unshift(<th key="sort-heading"></th>);
         }

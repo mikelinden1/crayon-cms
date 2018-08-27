@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import DragHandle from '../drag-handle';
 import TableCell from '../table-cell';
 import ButtonColumn from '../button-column';
+import BulkCheck from '../bulk-check';
 
 class TableRow extends React.PureComponent {
     static propTypes = {
@@ -22,6 +23,8 @@ class TableRow extends React.PureComponent {
         if (showId) {
             cols.unshift(<TableCell key={`${item.id}-id`} column={{name: 'id', label: 'ID'}} item={item} />);
         }
+
+        cols.unshift(<td key={`${item.id}-bulk-check`}><BulkCheck id={item.id} /></td>);
 
         if (reorderable) {
             cols.unshift(<td key={`${item.id}-sort-handle`}><DragHandle /></td>);

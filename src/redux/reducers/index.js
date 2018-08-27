@@ -16,6 +16,7 @@ import sort from './sort';
 import archive from './archive';
 import paginator from './paginator';
 import bulkAdd from './bulk-add';
+import bulkActions from './bulk-actions';
 
 const rootReducers = {
     currentModule,
@@ -43,6 +44,7 @@ function createModuleReducers(id) {
         sort: sort(id),
         archive: archive(id),
         paginator: paginator(id),
-        bulkAdd: bulkAdd(id)
+        bulkAdd: bulkAdd(id),
+        bulkActions: bulkActions(id)
     });
 }

@@ -40,6 +40,12 @@ function bulkActionsCreator(id) {
                     selectedItems: action.payload
                 };
             }
+            case `${ActionTypes.SELECT_BULK_ACTION}_${id}`: {
+                return {
+                    ...state,
+                    selectedAction: action.payload
+                };
+            }
             default: {
                 return state;
             }

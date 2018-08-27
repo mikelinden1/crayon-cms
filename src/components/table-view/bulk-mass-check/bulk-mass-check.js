@@ -16,6 +16,10 @@ export default class BulkMassCheck extends React.Component {
         if (checked) {
             toggleAllBulkCheckboxes([]);
         } else {
+            if (!items || !items.reduce) {
+                return;
+            }
+
             const ids = items.reduce((all, item) => {
                 all.push(item.id);
                 return all;
@@ -26,7 +30,11 @@ export default class BulkMassCheck extends React.Component {
     }
 
     render() {
-        const { checked } = this.props;
+        const { checked, items } = this.props;
+
+        if (!items || !items.length) {
+            return null;
+        }
 
         const name = 'bulk-check-mass';
 

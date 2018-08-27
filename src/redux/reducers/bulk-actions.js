@@ -10,18 +10,28 @@ function bulkActionsCreator(id) {
             case `${ActionTypes.TOGGLE_BULK_CHECKBOX}_${id}`: {
                 const id = action.payload;
 
-                let selected = [...state.selectedItems];
-                const isSelected = selected.filter((item) => item === id).length;
+                let selectedItems = [...state.selectedItems];
+                const isSelected = selectedItems.filter((item) => item === id).length;
 
                 if (isSelected) {
-                    selected = selected.filter((item) => item !== id);
+                    selectedItems = selectedItems.filter((item) => item !== id);
                 } else {
-                    selected.push(id);
+                    selectedItems.push(id);
                 }
 
                 return {
                     ...state,
-                    selectedItems: selected
+                    selectedItems
+                };
+            }
+            case `${ActionTypes.DELETE_ITEM}_${id}`: {
+                // when an item is deleted, make sure to remove it from selected items
+                const id = action.payload;
+                const selectedItems = state.selectedItems.filter((item) => item !== id);
+
+                return {
+                    ...state,
+                    selectedItems
                 };
             }
             case `${ActionTypes.TOGGLE_ALL_BULK_CHECKBOXES}_${id}`: {

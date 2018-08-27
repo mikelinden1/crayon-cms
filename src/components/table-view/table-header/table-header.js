@@ -2,9 +2,12 @@ import React from 'react';
 import SortColumn from 'components/sort-column';
 import BulkMassCheck from 'components/table-view/bulk-mass-check';
 
+import { showBulkActions } from 'utils/show-bulk-actions';
+
 export default class ColumnHeadings extends React.PureComponent {
     render() {
-        const { config: { views: { table: { columns: listColumns, showId } }, capabilities: { reorderable } } } = this.props;
+        const { config: { views: { table: { columns: listColumns, showId } }, capabilities } } = this.props;
+        const { reorderable } = capabilities;
 
         const headingStyle = { display:'inline-block', verticalAlign: 'middle' };
 
@@ -31,8 +34,10 @@ export default class ColumnHeadings extends React.PureComponent {
             );
         }
 
-        // add bulk check col
-        cols.unshift(<th key="bulk-check-heading"><BulkMassCheck /></th>);
+        if (showBulkActions(capabilities)) {
+            // add bulk check col
+            cols.unshift(<th key="bulk-check-heading"><BulkMassCheck /></th>);
+        }
 
         if (reorderable) {
             cols.unshift(<th key="sort-heading"></th>);

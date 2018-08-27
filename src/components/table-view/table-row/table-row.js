@@ -1,6 +1,7 @@
 import React from 'react';
 import { SortableElement } from 'react-sortable-hoc';
 import PropTypes from 'prop-types';
+import { showBulkActions } from 'utils/show-bulk-actions';
 
 import DragHandle from '../drag-handle';
 import TableCell from '../table-cell';
@@ -14,7 +15,8 @@ class TableRow extends React.PureComponent {
     };
 
     mapColumns(item) {
-        const { config: { views: { table: { columns: listColumns, showId } }, capabilities: { reorderable } } } = this.props;
+        const { config: { views: { table: { columns: listColumns, showId } }, capabilities } } = this.props;
+        const { reorderable } = capabilities
 
         const cols = listColumns.map((column) => {
             return <TableCell key={`${item.id}-${column.name}`} column={column} item={item} />;
@@ -24,7 +26,9 @@ class TableRow extends React.PureComponent {
             cols.unshift(<TableCell key={`${item.id}-id`} column={{name: 'id', label: 'ID'}} item={item} />);
         }
 
-        cols.unshift(<td key={`${item.id}-bulk-check`}><BulkCheck id={item.id} /></td>);
+        if (showBulkActions(capabilities)) {
+            cols.unshift(<td key={`${item.id}-bulk-check`}><BulkCheck id={item.id} /></td>);
+        }
 
         if (reorderable) {
             cols.unshift(<td key={`${item.id}-sort-handle`}><DragHandle /></td>);

@@ -24,14 +24,11 @@ function bulkActionsCreator(id) {
                     selectedItems
                 };
             }
-            case `${ActionTypes.DELETE_ITEM}_${id}`: {
-                // when an item is deleted, make sure to remove it from selected items
-                const id = action.payload;
-                const selectedItems = state.selectedItems.filter((item) => item !== id);
-
+            case `${ActionTypes.BULK_DELETE}_${id}_FULFILLED`: {
+                // when we do a bulk delete, clear selectedItems since we just deleted them
                 return {
                     ...state,
-                    selectedItems
+                    selectedItems: []
                 };
             }
             case `${ActionTypes.TOGGLE_ALL_BULK_CHECKBOXES}_${id}`: {

@@ -10,3 +10,14 @@ export function toggleBulkCheckbox(id) {
         });
     };
 };
+
+export function toggleAllBulkCheckboxes(ids) {
+    return (dispatch, getState) => {
+        const state = getState();
+
+        dispatch({
+            type: `${ActionTypes.TOGGLE_ALL_BULK_CHECKBOXES}_${state.currentModule}`,
+            payload: ids
+        });
+    };
+};

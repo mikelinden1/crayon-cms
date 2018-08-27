@@ -1,5 +1,6 @@
 import React from 'react';
 import SortColumn from 'components/sort-column';
+import BulkMassCheck from 'components/table-view/bulk-mass-check';
 
 export default class ColumnHeadings extends React.PureComponent {
     render() {
@@ -31,7 +32,7 @@ export default class ColumnHeadings extends React.PureComponent {
         }
 
         // add bulk check col
-        cols.unshift(<th key="bulk-check-heading" />);
+        cols.unshift(<th key="bulk-check-heading"><BulkMassCheck /></th>);
 
         if (reorderable) {
             cols.unshift(<th key="sort-heading"></th>);

@@ -24,6 +24,12 @@ function bulkActionsCreator(id) {
                     selectedItems: selected
                 };
             }
+            case `${ActionTypes.TOGGLE_ALL_BULK_CHECKBOXES}_${id}`: {
+                return {
+                    ...state,
+                    selectedItems: action.payload
+                };
+            }
             default: {
                 return state;
             }

@@ -28,53 +28,53 @@ export function toggleAllBulkCheckboxes(ids) {
     };
 };
 
-export function selectBulkAction(action) {
+export function selectBulkAction(actionId) {
     return (dispatch, getState) => {
         const state = getState();
 
         dispatch({
             type: `${ActionTypes.SELECT_BULK_ACTION}_${state.currentModule}`,
-            payload: action
+            payload: actionId
         });
     };
 };
 
 export function applyBulkAction(actionId) {
     return (dispatch, getState) => {
-        const state = getState();
-
         const action = bulkActions[actionId];
 
-        const currentModule = state.currentModule;
-
         if (action) {
+            const state = getState();
+            const currentModule = state.currentModule;
             action(dispatch, currentModule, state[currentModule].bulkActions.selectedItems);
         }
     };
 };
 
 const bulkActions = {
-    'bulkDelete': function(dispatch, currentModule, selectedItems) {
+    bulkDelete: (dispatch, currentModule, selectedItems) => {
         const { itemNamePlural } = config.modules[currentModule];
 
         if (window.confirm(`Are you sure you want to delete ${selectedItems.length} ${itemNamePlural.toLowerCase()}?`)) {
-            selectedItems.forEach((itemId) => {
-                dispatch({
-                    type: `${ActionTypes.DELETE_ITEM}_${currentModule}`,
-                    payload: itemId
-                });
-
-                const action = {};
-
-                action.type = `${ActionTypes.DELETE_ITEM}_${currentModule}`;
-                action.payload = axios.delete(`${API_BASE}/${currentModule}/${itemId}`);
-
-                dispatch(action);
+            dispatch({
+                type: `${ActionTypes.BULK_DELETE}_${currentModule}`,
+                payload: selectedItems
             });
+
+
+            const action = {};
+
+            const idStr = selectedItems.join(',');
+            action.type = `${ActionTypes.BULK_DELETE}_${currentModule}`;
+            action.payload = axios.delete(`${API_BASE}/${currentModule}/${idStr}`);
+
+            dispatch(action);
         }
+
+        return false;
     },
-    'bulkEdit': function(dispatch, currentModule, selectedItems) {
-        dispatch({
+    bulkEdit: (dispatch, currentModule, selectedItems) => {
+        return dispatch({
             type: `${ActionTypes.APPLY_BULK_EDIT}_${currentModule}`,
             payload: selectedItems
         });

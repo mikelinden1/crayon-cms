@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditBtn matches snapshot 1`] = `
+<Button
+  color="primary"
+  onClick={[Function]}
+  tag="button"
+>
+  Edit
+</Button>
+`;

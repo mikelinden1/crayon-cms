@@ -26,6 +26,7 @@ it('ArchiveSwitcher doesn\'t display if we don\'t have an archive config', () =>
     const propsNoArchive = {
         ...props,
         config: {
+            ...props.config,
             archive: null
         }
     };

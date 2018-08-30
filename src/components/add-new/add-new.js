@@ -9,7 +9,9 @@ import IconLeft from 'components/icon-left';
 export default class AddNew extends React.PureComponent {
     static propTypes = {
         displayAsJumbotron: PropTypes.bool,
-        config: PropTypes.object.isRequired,
+        config: PropTypes.shape({
+            itemName: PropTypes.string.isRequired
+        }).isRequired,
         actions: PropTypes.shape({
             openItemModal: PropTypes.func.isRequired
         }).isRequired

@@ -5,7 +5,14 @@ import { Button } from 'reactstrap';
 export default class ArchiveSwitcher extends React.PureComponent {
     static propTypes = {
         archiveMode: PropTypes.string.isRequired,
-        config: PropTypes.object.isRequired,
+        config: PropTypes.shape({
+            itemName: PropTypes.string.isRequired,
+            itemNamePlural: PropTypes.string.isRequired,
+            archive: PropTypes.shape({
+                archiveText: PropTypes.string.isRequired,
+                nonArchiveText: PropTypes.string.isRequired
+            })
+        }).isRequired,
         actions: PropTypes.shape({
             setArchive: PropTypes.func.isRequired
         }).isRequired

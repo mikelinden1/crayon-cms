@@ -2,414 +2,260 @@
 
 exports[`BulkAdd matches snapshot 1`] = `
 <div>
-  <button
-    className="link-btn btn btn-secondary"
+  <Button
+    className="link-btn"
+    color="secondary"
     onClick={[Function]}
-    type="button"
+    tag="button"
   >
     Bulk Import
-  </button>
-  <Portal
-    containerInfo={
-      <div
-        tabindex="-1"
-        style="position: relative; z-index: 1050;"
-      >
-        <div
-          class=""
-        >
-          <div
-            class="modal fade"
-            style="display: block;"
-            role="dialog"
-            tabindex="-1"
-          >
-            <div
-              class="modal-dialog bulk-add"
-              role="document"
-            >
-              <div
-                class="modal-content"
-              >
-                <form>
-                  <div
-                    class="modal-header"
-                  >
-                    <h5
-                      class="modal-title"
-                    >
-                      Bulk Import 
-                      Widgets
-                    </h5>
-                    <button
-                      type="button"
-                      class="close"
-                      aria-label="Close"
-                    >
-                      <span
-                        aria-hidden="true"
-                      >
-                        ×
-                      </span>
-                    </button>
-                  </div>
-                  <div
-                    class="modal-body"
-                  >
-                    <h3>
-                      CSV Columns
-                    </h3>
-                    <div
-                      class="react-tagsinput"
-                    >
-                      <span>
-                        <input
-                          type="text"
-                          class="react-tagsinput-input"
-                          placeholder="Add a tag"
-                          value=""
-                        />
-                      </span>
-                    </div>
-                    <div
-                      style="margin: 10px 0px;"
-                    >
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        name
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        slug
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        type
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        radio
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        photo
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        start_date
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        checkbox
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        example
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        tags
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        copy
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        country
-                      </button>
-                      <button
-                        type="button"
-                        class="btn-sm btn btn-secondary"
-                      >
-                        canada
-                      </button>
-                    </div>
-                    <p>
-                      <small>
-                        <em>
-                          Click on column names to add them
-                        </em>
-                      </small>
-                    </p>
-                    <h3>
-                      CSV File
-                    </h3>
-                    <input
-                      type="file"
-                      id="csvFile"
-                    />
-                  </div>
-                  <div
-                    class="modal-footer"
-                  >
-                    <button
-                      type="submit"
-                      class="btn btn-primary"
-                    >
-                      Add
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-secondary"
-                    >
-                      Cancel
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-          <div
-            class="modal-backdrop fade"
-          />
-        </div>
-      </div>
+  </Button>
+  <Modal
+    autoFocus={true}
+    backdrop={true}
+    backdropTransition={
+      Object {
+        "mountOnEnter": true,
+        "timeout": 150,
+      }
     }
+    centered={false}
+    className="bulk-add"
+    fade={true}
+    isOpen={true}
+    keyboard={true}
+    modalTransition={
+      Object {
+        "timeout": 300,
+      }
+    }
+    onClosed={[Function]}
+    onOpened={[Function]}
+    role="dialog"
+    toggle={[Function]}
+    zIndex={1050}
   >
-    <div
-      className=""
+    <form
+      onSubmit={[Function]}
     >
-      <div
-        className="modal fade"
-        onClick={[Function]}
-        onKeyUp={[Function]}
-        role="dialog"
-        style={
-          Object {
-            "display": "block",
-          }
-        }
-        tabIndex="-1"
+      <ModalHeader
+        closeAriaLabel="Close"
+        tag="h5"
+        toggle={[Function]}
+        wrapTag="div"
       >
+        Bulk Import 
+        Widgets
+      </ModalHeader>
+      <ModalBody
+        tag="div"
+      >
+        <h3>
+          CSV Columns
+        </h3>
+        <TagsInput
+          addKeys={
+            Array [
+              9,
+              13,
+            ]
+          }
+          addOnBlur={false}
+          addOnPaste={false}
+          className="react-tagsinput"
+          disabled={false}
+          focusedClassName="react-tagsinput--focused"
+          inputProps={Object {}}
+          maxTags={-1}
+          onChange={[Function]}
+          onlyUnique={false}
+          pasteSplit={[Function]}
+          preventSubmit={true}
+          removeKeys={
+            Array [
+              8,
+            ]
+          }
+          renderInput={[Function]}
+          renderLayout={[Function]}
+          renderTag={[Function]}
+          tagDisplayProp={null}
+          tagProps={
+            Object {
+              "className": "react-tagsinput-tag",
+              "classNameRemove": "react-tagsinput-remove",
+            }
+          }
+          validationRegex={/\\.\\*/}
+          value={Array []}
+        />
         <div
-          className="modal-dialog bulk-add"
-          role="document"
+          style={
+            Object {
+              "margin": "10px 0",
+            }
+          }
         >
-          <div
-            className="modal-content"
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-name"
+            onClick={[Function]}
+            tag="button"
           >
-            <form
-              onSubmit={[Function]}
-            >
-              <div
-                className="modal-header"
-              >
-                <h5
-                  className="modal-title"
-                >
-                  Bulk Import 
-                  Widgets
-                </h5>
-                <button
-                  aria-label="Close"
-                  className="close"
-                  onClick={[Function]}
-                  type="button"
-                >
-                  <span
-                    aria-hidden="true"
-                  >
-                    ×
-                  </span>
-                </button>
-              </div>
-              <div
-                className="modal-body"
-              >
-                <h3>
-                  CSV Columns
-                </h3>
-                <div
-                  className="react-tagsinput"
-                  onClick={[Function]}
-                >
-                  <span>
-                    <input
-                      className="react-tagsinput-input"
-                      onBlur={[Function]}
-                      onChange={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onPaste={[Function]}
-                      placeholder="Add a tag"
-                      type="text"
-                      value=""
-                    />
-                  </span>
-                </div>
-                <div
-                  style={
-                    Object {
-                      "margin": "10px 0",
-                    }
-                  }
-                >
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    name
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    slug
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    type
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    radio
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    photo
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    start_date
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    checkbox
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    example
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    tags
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    copy
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    country
-                  </button>
-                  <button
-                    className="btn-sm btn btn-secondary"
-                    disabled={false}
-                    onClick={[Function]}
-                    type="button"
-                  >
-                    canada
-                  </button>
-                </div>
-                <p>
-                  <small>
-                    <em>
-                      Click on column names to add them
-                    </em>
-                  </small>
-                </p>
-                <h3>
-                  CSV File
-                </h3>
-                <input
-                  disabled={false}
-                  id="csvFile"
-                  onChange={[Function]}
-                  type="file"
-                />
-              </div>
-              <div
-                className="modal-footer"
-              >
-                <button
-                  className="btn btn-primary"
-                  onClick={[Function]}
-                  type="submit"
-                >
-                  Add
-                </button>
-                 
-                 
-                <button
-                  className="btn btn-secondary"
-                  disabled={false}
-                  onClick={[Function]}
-                  type="button"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
+            name
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-slug"
+            onClick={[Function]}
+            tag="button"
+          >
+            slug
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-type"
+            onClick={[Function]}
+            tag="button"
+          >
+            type
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-radio"
+            onClick={[Function]}
+            tag="button"
+          >
+            radio
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-photo"
+            onClick={[Function]}
+            tag="button"
+          >
+            photo
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-start_date"
+            onClick={[Function]}
+            tag="button"
+          >
+            start_date
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-checkbox"
+            onClick={[Function]}
+            tag="button"
+          >
+            checkbox
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-example"
+            onClick={[Function]}
+            tag="button"
+          >
+            example
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-tags"
+            onClick={[Function]}
+            tag="button"
+          >
+            tags
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-copy"
+            onClick={[Function]}
+            tag="button"
+          >
+            copy
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-country"
+            onClick={[Function]}
+            tag="button"
+          >
+            country
+          </Button>
+          <Button
+            className="btn-sm"
+            color="secondary"
+            disabled={false}
+            key="column-btn-canada"
+            onClick={[Function]}
+            tag="button"
+          >
+            canada
+          </Button>
         </div>
-      </div>
-      <div
-        className="modal-backdrop fade"
-      />
-    </div>
-  </Portal>
+        <p>
+          <small>
+            <em>
+              Click on column names to add them
+            </em>
+          </small>
+        </p>
+        <h3>
+          CSV File
+        </h3>
+        <input
+          disabled={false}
+          id="csvFile"
+          onChange={[Function]}
+          type="file"
+        />
+      </ModalBody>
+      <ModalFooter
+        tag="div"
+      >
+        <Button
+          color="primary"
+          tag="button"
+          type="submit"
+        >
+          Add
+        </Button>
+         
+         
+        <Button
+          color="secondary"
+          disabled={false}
+          onClick={[Function]}
+          tag="button"
+        >
+          Cancel
+        </Button>
+      </ModalFooter>
+    </form>
+  </Modal>
 </div>
 `;

@@ -8,6 +8,7 @@ import GridView from 'components/grid-view';
 
 export default class ItemList extends React.PureComponent {
     static propTypes = {
+        currentView: PropTypes.string,
         items: PropTypes.arrayOf(PropTypes.object.isRequired),
         filteredItems: PropTypes.arrayOf(PropTypes.object).isRequired
     };

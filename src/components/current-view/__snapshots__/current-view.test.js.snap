@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CurrentView matches snapshot 1`] = `<Connect(TableView) />`;
+
+exports[`CurrentView shows AddNew Jumbotron if no items 1`] = `
+<Connect(AddNew)
+  displayAsJumbotron={true}
+/>
+`;
+
+exports[`CurrentView shows NoMatchingItems Jumbotron if no filtered items 1`] = `<Connect(NoMatchingItems) />`;
+
+exports[`CurrentView shows grid view 1`] = `<Connect(GridView) />`;
+
+exports[`CurrentView shows table view 1`] = `<Connect(TableView) />`;

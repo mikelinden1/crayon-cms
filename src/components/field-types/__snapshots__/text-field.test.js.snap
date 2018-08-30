@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TextField matches snapshot 1`] = `
+<textarea
+  className="form-control"
+  disabled={false}
+  name="test"
+  onChange={[Function]}
+  rows={4}
+  value="value"
+/>
+`;

@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PhotoField matches snapshot 1`] = `
+<div
+  className="photo-field input-group"
+>
+  <input
+    className="form-control"
+    disabled={false}
+    name="test"
+    onChange={[Function]}
+    type="text"
+    value="val1"
+  />
+  <span
+    className="input-group-btn"
+  >
+    <Button
+      className="btn-sm"
+      color="primary"
+      disabled={false}
+      onClick={[Function]}
+      tag="button"
+    >
+      Select
+    </Button>
+  </span>
+</div>
+`;

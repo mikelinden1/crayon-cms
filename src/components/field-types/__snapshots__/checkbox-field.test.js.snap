@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxField matches snapshot 1`] = `
+<div
+  className="custom-control custom-checkbox"
+  style={
+    Object {
+      "margin": "30px 0",
+    }
+  }
+>
+  <input
+    checked={true}
+    className="custom-control-input"
+    disabled={false}
+    id="test"
+    name="test"
+    onChange={[Function]}
+    type="checkbox"
+  />
+  <label
+    className="custom-control-label"
+    htmlFor="test"
+  >
+    Test
+  </label>
+</div>
+`;

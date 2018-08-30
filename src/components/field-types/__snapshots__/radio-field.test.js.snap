@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioField matches snapshot 1`] = `
+Array [
+  <div
+    className="custom-control custom-radio"
+    key="val1-id-field"
+>
+    <input
+        checked={true}
+        className="custom-control-input"
+        disabled={false}
+        id="val1-id"
+        name="test"
+        onChange={[Function]}
+        type="radio"
+        value="val1"
+    />
+    <label
+        className="custom-control-label"
+        htmlFor="val1-id"
+    >
+        val1
+    </label>
+</div>,
+  <div
+    className="custom-control custom-radio"
+    key="val2-id-field"
+>
+    <input
+        checked={false}
+        className="custom-control-input"
+        disabled={false}
+        id="val2-id"
+        name="test"
+        onChange={[Function]}
+        type="radio"
+        value="val2"
+    />
+    <label
+        className="custom-control-label"
+        htmlFor="val2-id"
+    >
+        val2
+    </label>
+</div>,
+  <div
+    className="custom-control custom-radio"
+    key="val3-id-field"
+>
+    <input
+        checked={false}
+        className="custom-control-input"
+        disabled={false}
+        id="val3-id"
+        name="test"
+        onChange={[Function]}
+        type="radio"
+        value="val3"
+    />
+    <label
+        className="custom-control-label"
+        htmlFor="val3-id"
+    >
+        val3
+    </label>
+</div>,
+]
+`;

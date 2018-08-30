@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RteField matches snapshot 1`] = `
+<CKEditor
+  activeClass=""
+  config={
+    Object {
+      "allowedContent": true,
+      "filebrowserUploadUrl": "http://localhost/php-crud-api/ck-upload?uploadFullPath=http://localhost/uploads&uploadPath=../uploads",
+    }
+  }
+  content="<p>test</p>"
+  events={
+    Object {
+      "afterPaste": [Function],
+      "blur": [Function],
+      "change": [Function],
+      "key": [Function],
+    }
+  }
+  isScriptLoaded={false}
+  scriptUrl="https://cdn.ckeditor.com/4.6.2/standard/ckeditor.js"
+/>
+`;

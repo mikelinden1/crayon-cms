@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DatePickerField matches snapshot 1`] = `
+<DatePicker
+  allowSameDay={false}
+  className="form-control"
+  dateFormat="LLL"
+  dateFormatCalendar="MMMM YYYY"
+  disabled={false}
+  disabledKeyboardNavigation={false}
+  dropdownMode="scroll"
+  monthsShown={1}
+  onBlur={[Function]}
+  onChange={[Function]}
+  onChangeRaw={[Function]}
+  onClickOutside={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onMonthChange={[Function]}
+  onSelect={[Function]}
+  onYearChange={[Function]}
+  preventOpenOnFocus={false}
+  selected={"1990-02-14T17:49:00.000Z"}
+  shouldCloseOnSelect={true}
+  showTimeSelect={true}
+  timeCaption="Time"
+  timeIntervals={15}
+  withPortal={false}
+/>
+`;

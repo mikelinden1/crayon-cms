@@ -28,7 +28,7 @@ class FieldMultiValueWrapper extends React.PureComponent {
     }
 
     render() {
-        const { allValue, name, currentModule, prop } = this.props;
+        const { allValue, prop } = this.props;
 
         if (!allValue || !allValue.length || typeof allValue === 'string') {
             return <ul className="field-multi-values"></ul>;

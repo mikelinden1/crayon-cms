@@ -11,7 +11,9 @@ import Icon from 'components/icon';
 export default class Header extends React.PureComponent {
     static propTypes = {
         loggedIn: PropTypes.bool.isRequired,
-        user: PropTypes.object,
+        user: PropTypes.shape({
+            name: PropTypes.string
+        }),
         actions: PropTypes.shape({
             logout: PropTypes.func.isRequired
         }).isRequired
@@ -24,7 +26,7 @@ export default class Header extends React.PureComponent {
         const rightSide =   loggedIn
                             ?   <div style={{display:'flex'}}>
                                     <div className="welcome">Hi, {userName}!</div>
-                                    <button onClick={() => logout()}><Icon icon={faSignOutAlt} /> Logout</button>
+                                    <button className="logout-btn" onClick={() => logout()}><Icon icon={faSignOutAlt} /> Logout</button>
                                 </div>
                             :   null;
 

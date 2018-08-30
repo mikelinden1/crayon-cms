@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ArchiveSwitcher matches snapshot 1`] = `
+<div
+  className="btn-group"
+  style={
+    Object {
+      "border": "1px solid #1a1a1a",
+    }
+  }
+>
+  <Button
+    color="primary"
+    onClick={[Function]}
+    tag="button"
+  >
+    All 
+    tests
+  </Button>
+  <Button
+    color="secondary"
+    onClick={[Function]}
+    tag="button"
+  >
+    Future
+  </Button>
+  <Button
+    color="secondary"
+    onClick={[Function]}
+    tag="button"
+  >
+    Archive
+  </Button>
+</div>
+`;

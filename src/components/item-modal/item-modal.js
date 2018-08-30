@@ -12,11 +12,16 @@ import { DEFAULT_ERROR_MESSAGE } from 'utils/constants';
 
 export default class ItemModal extends React.Component {
     static propTypes = {
+        open: PropTypes.bool,
         newItem: PropTypes.object.isRequired,
         editMode: PropTypes.bool,
         saving: PropTypes.bool,
         changeMade: PropTypes.bool,
-        config: PropTypes.object.isRequired,
+        config: PropTypes.shape({
+            itemProps: PropTypes.array.isRequired,
+            modalGrid: PropTypes.array,
+            itemName: PropTypes.string.isRequired
+        }).isRequired,
         currentModule: PropTypes.string.isRequired,
         actions: PropTypes.shape({
             saveNewItem: PropTypes.func.isRequired,
@@ -75,8 +80,8 @@ export default class ItemModal extends React.Component {
         const { open, saving, error, editMode, hasValidationErrors, config: { itemName } } = this.props;
 
         const createBtn =   saving
-                            ? <Button color="primary" disabled><Spinner /></Button>
-                            : <Button color="primary" type="submit">Save</Button>;
+                            ? <Button className="save-btn" color="primary" disabled><Spinner /></Button>
+                            : <Button className="save-btn" color="primary" type="submit">Save</Button>;
 
         const fields = this.renderFields();
 
@@ -100,7 +105,7 @@ export default class ItemModal extends React.Component {
                     </ModalBody>
                     <ModalFooter>
                         {createBtn} {' '}
-                        <Button color="secondary" onClick={() => this.closeModal()} disabled={saving}>Cancel</Button>
+                        <Button className="cancel-btn" color="secondary" onClick={() => this.closeModal()} disabled={saving}>Cancel</Button>
                     </ModalFooter>
                 </form>
             </Modal>

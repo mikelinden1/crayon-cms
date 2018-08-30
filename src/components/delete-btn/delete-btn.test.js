@@ -20,12 +20,12 @@ it('DeleteBtn matches snapshot', () => {
     expect(wrapper).toMatchSnapshot();
 });
 
-it('DeleteBtn doesn\'t display if we don\'t have an archive config', () => {
+it('DeleteBtn doesn\'t display if deleteable not set', () => {
     const propsNoDelete = {
         ...props,
         config: {
             capabilities: {
-                deleteableu: false
+                deleteable: false
             }
         }
     };

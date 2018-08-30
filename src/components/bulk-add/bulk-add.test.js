@@ -1,11 +1,12 @@
 import BulkAdd from './bulk-add';
-import configSample from 'config-sample/widget-config';
+import config from 'config-sample/widget-config';
+import sinon from 'sinon';
 
 const props = {
     columns: [],
     open: true,
     adding: false,
-    config: configSample,
+    config,
     actions: {
         setColumns: () => {},
         addColumn: () => {},
@@ -17,6 +18,7 @@ const props = {
 };
 
 it('BulkAdd matches snapshot', () => {
-    const wrapper = mount(<BulkAdd {...props} />);
+    const wrapper = shallow(<BulkAdd {...props} />);
     expect(wrapper).toMatchSnapshot();
 });
+

@@ -9,7 +9,7 @@ import { faTrash, faBars } from '@fortawesome/fontawesome-free-solid';
 
 import Icon from 'components/icon';
 
-class FieldMultiValue extends React.PureComponent {
+class FieldMultiValuesRow extends React.PureComponent {
     static propTypes = {
         item: PropTypes.string.isRequired,
         isPhoto: PropTypes.bool.isRequired,
@@ -39,4 +39,4 @@ class FieldMultiValue extends React.PureComponent {
     }
 }
 
-export default SortableElement(FieldMultiValue);
+export default SortableElement(FieldMultiValuesRow);

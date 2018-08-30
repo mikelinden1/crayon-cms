@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FieldMultiValues matches snapshot 1`] = `
+<sortableList(FieldMultiValueWrapper)
+  actions={
+    Object {
+      "multiItemSortEnd": [Function],
+    }
+  }
+  allValue={
+    Array [
+      "val1",
+      "val2",
+      "val3",
+    ]
+  }
+  axis="y"
+  distance={0}
+  getHelperDimensions={[Function]}
+  helperClass="field-multi-values-row"
+  hideSortableGhost={true}
+  lockOffset="50%"
+  lockToContainerEdges={false}
+  name="test-field"
+  onSortEnd={[Function]}
+  pressDelay={0}
+  pressThreshold={5}
+  shouldCancelStart={[Function]}
+  transitionDuration={300}
+  useWindowAsScrollContainer={false}
+/>
+`;

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FieldMulti matches snapshot 1`] = `
+<div>
+  <div
+    className="row"
+  >
+    <div
+      className="col-md-9"
+    >
+      <Field
+        actions={
+          Object {
+            "setItemProp": [Function],
+            "setMultiItemProp": [Function],
+          }
+        }
+        allValue={
+          Array [
+            "val1",
+            "val2",
+            "val3",
+          ]
+        }
+        name="test-field"
+        onChange={[Function]}
+      />
+    </div>
+    <div
+      className="col-md-3"
+    >
+      <Button
+        className="btn-block"
+        color="success"
+        onClick={[Function]}
+        tag="button"
+      >
+        Add
+      </Button>
+    </div>
+  </div>
+  <Connect(FieldMultiValue)
+    name="test-field"
+  />
+</div>
+`;

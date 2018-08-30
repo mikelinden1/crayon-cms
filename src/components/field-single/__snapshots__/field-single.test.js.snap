@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FieldSingle matches snapshot 1`] = `
+<Field
+  actions={
+    Object {
+      "setItemProp": [Function],
+      "validateOnChange": [Function],
+    }
+  }
+  name="test-field"
+  onChange={[Function]}
+/>
+`;

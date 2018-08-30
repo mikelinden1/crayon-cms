@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GridView matches snapshot 1`] = `
+<div>
+  <div
+    className="grid-view"
+  >
+    <Connect(GridViewCard)
+      index={0}
+      item={
+        Object {
+          "id": 1,
+          "name": "item 1",
+        }
+      }
+      key="grid-card-1"
+    />
+    <Connect(GridViewCard)
+      index={1}
+      item={
+        Object {
+          "id": 2,
+          "name": "item 2",
+        }
+      }
+      key="grid-card-2"
+    />
+    <Connect(GridViewCard)
+      index={2}
+      item={
+        Object {
+          "id": 3,
+          "name": "item 3",
+        }
+      }
+      key="grid-card-3"
+    />
+  </div>
+</div>
+`;

@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GridView matches snapshot 1`] = `
+<div
+  className="card border-secondary"
+  key="grid-item-1"
+>
+  <div
+    className="card-body text"
+    key="grid-item-prop-name"
+  >
+    <h2>
+      <Connect(RenderPropValue)
+        column={
+          Object {
+            "gridTag": "h2",
+            "heading": "Name",
+            "name": "name",
+          }
+        }
+        item={
+          Object {
+            "id": 1,
+            "name": "item 1",
+          }
+        }
+      />
+    </h2>
+  </div>
+  <div
+    className="card-footer text-right"
+  >
+    <div
+      className="grid-item-id"
+    >
+      #
+      1
+    </div>
+    <ActionBtns
+      item={
+        Object {
+          "id": 1,
+          "name": "item 1",
+        }
+      }
+    />
+  </div>
+</div>
+`;

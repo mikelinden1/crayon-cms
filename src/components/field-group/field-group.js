@@ -9,7 +9,10 @@ export default class FieldGroup extends React.PureComponent {
         label: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         helpText: PropTypes.string,
-        validationErrors: PropTypes.array,
+        validationErrors: PropTypes.arrayOf(PropTypes.shape({
+            itemName: PropTypes.string.isRequired,
+            msg: PropTypes.string.isRequired
+        })),
         actions: PropTypes.shape({
             showMediaPicker: PropTypes.func.isRequired
         }).isRequired
@@ -40,14 +43,14 @@ export default class FieldGroup extends React.PureComponent {
         const fieldClasses = ['form-group'];
 
         let errorText = '';
-        if (validationErrors.length) {
+        if (validationErrors && validationErrors.length) {
             fieldClasses.push('has-error');
             const errorTextP = validationErrors.map((e, i) => <p key={`errormsg-${e.itemName}-${i}`}>{e.msg}</p>);
 
             errorText = <div className="invalid-feedback">{errorTextP}</div>;
         }
 
-        const helpText = help ? <p><small><em>{help}</em></small></p> : null;
+        const helpText = help ? <p className="help-text"><small><em>{help}</em></small></p> : null;
 
         return (
             <div className={fieldClasses.join(' ')}>

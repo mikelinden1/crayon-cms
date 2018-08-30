@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FieldGroup matches snapshot 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    className="control-label"
+  >
+    Test Field
+  </label>
+  <Connect(FieldSingle)
+    actions={
+      Object {
+        "showMediaPicker": [Function],
+      }
+    }
+    helpText="Help!"
+    label="Test Field"
+    name="test-field"
+  />
+  <p
+    className="help-text"
+  >
+    <small>
+      <em>
+        Help!
+      </em>
+    </small>
+  </p>
+</div>
+`;
+
+exports[`FieldGroup with an error matches snapshot 1`] = `
+<div
+  className="form-group has-error"
+>
+  <label
+    className="control-label"
+  >
+    Test Field
+  </label>
+  <Connect(FieldSingle)
+    actions={
+      Object {
+        "showMediaPicker": [Function],
+      }
+    }
+    helpText="Help!"
+    label="Test Field"
+    name="test-field"
+    validationErrors={
+      Array [
+        Object {
+          "itemName": "name",
+          "msg": "Name is required",
+        },
+      ]
+    }
+  />
+  <p
+    className="help-text"
+  >
+    <small>
+      <em>
+        Help!
+      </em>
+    </small>
+  </p>
+  <div
+    className="invalid-feedback"
+  >
+    <p
+      key="errormsg-name-0"
+    >
+      Name is required
+    </p>
+  </div>
+</div>
+`;
+
+exports[`FieldGroup with many matches snapshot 1`] = `
+<div
+  className="form-group"
+>
+  <label
+    className="control-label"
+  >
+    Test Field
+  </label>
+  <Connect(FieldMulti)
+    actions={
+      Object {
+        "showMediaPicker": [Function],
+      }
+    }
+    helpText="Help!"
+    label="Test Field"
+    many={true}
+    name="test-field"
+  />
+  <p
+    className="help-text"
+  >
+    <small>
+      <em>
+        Help!
+      </em>
+    </small>
+  </p>
+</div>
+`;

@@ -7,6 +7,9 @@ import sinon from 'sinon';
 import { BrowserRouter } from 'react-router-dom';
 import { shape } from 'prop-types';
 
+import { Provider } from 'react-redux';
+import configureStore from 'redux-mock-store';
+
 // Set the default serializer for Jest to be the from enzyme-to-json
 // This produces an easier to read (for humans) serialized format.
 expect.addSnapshotSerializer(createSerializer({ mode: 'deep' }));
@@ -29,6 +32,9 @@ const router = {
     }
 };
 
+global.mockStore = configureStore();
+global.Provider = Provider;
+
 const createContext = () => ({
     context: { router },
     childContextTypes: { router: shape({}) },
@@ -36,3 +42,4 @@ const createContext = () => ({
 
 global.mountWrap = (node) => mount(node, createContext());
 global.shallowWrap = (node) => shallow(node, createContext());
+

@@ -15,7 +15,7 @@ it('AddNew matches snapshot', () => {
     expect(wrapper).toMatchSnapshot();
 });
 
-it('Displays the correct itemName', () => {
+it('AddNew displays the correct itemName', () => {
     const propsWithJumbotron = {
         ...props,
         displayAsJumbotron: true
@@ -27,7 +27,7 @@ it('Displays the correct itemName', () => {
     expect(text).toEqual(`Add The First ${wrapper.props().config.itemName}`)
 });
 
-it('Calls openItemModal onClick', () => {
+it('AddNew calls openItemModal onClick', () => {
     const spy = sinon.spy();
 
     const propsWithSpy = {

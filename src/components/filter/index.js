@@ -5,16 +5,27 @@ import { fetchDatasource } from 'redux/actions/data-sources';
 import { setFilter } from 'redux/actions/filters';
 import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 import getModuleReduxProp from 'utils/get-module-redux-prop';
+import getPropByName from 'utils/get-prop-by-name';
 
 import Filter from './filter';
 
+function mapFilters(state, ownProps) {
+    const config = getCurrentModuleConfig(state, ownProps);
+
+    if (!config || !config.filtering || ! config.filtering.filterFields) {
+        return [];
+    }
+
+    return config.filtering.filterFields.map(prop => getPropByName(state.currentModule, prop));
+}
+
 function mapStateToProps(state, ownProps) {
+
     return {
         ...ownProps,
         datasources: getModuleReduxProp(state, 'datasources'),
         filterVals: getModuleReduxProp(state, 'filters'),
-        currentModule: state.currentModule,
-        config: getCurrentModuleConfig(state, ownProps)
+        filters: mapFilters(state, ownProps)
     };
 }
 

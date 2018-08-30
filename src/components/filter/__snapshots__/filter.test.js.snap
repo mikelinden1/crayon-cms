@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Filter matches snapshot 1`] = `
+<DropdownField
+  actions={
+    Object {
+      "fetchDatasource": [Function],
+      "setFilter": [Function],
+    }
+  }
+  key="name-filter"
+  label="Name"
+  name="name"
+  onChange={[Function]}
+  placeholder="Name Filter"
+  value="Mike"
+/>
+`;

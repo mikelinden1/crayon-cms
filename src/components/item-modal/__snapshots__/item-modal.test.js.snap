@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ItemModal matches snapshot 1`] = `
+<Modal
+  autoFocus={true}
+  backdrop={true}
+  backdropTransition={
+    Object {
+      "mountOnEnter": true,
+      "timeout": 150,
+    }
+  }
+  centered={false}
+  fade={true}
+  isOpen={true}
+  keyboard={true}
+  modalTransition={
+    Object {
+      "timeout": 300,
+    }
+  }
+  onClosed={[Function]}
+  onOpened={[Function]}
+  role="dialog"
+  toggle={[Function]}
+  zIndex={1050}
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <ModalHeader
+      closeAriaLabel="Close"
+      tag="h5"
+      toggle={[Function]}
+      wrapTag="div"
+    >
+      New
+       
+      Test
+    </ModalHeader>
+    <ModalBody
+      tag="div"
+    >
+      <Connect(FieldGroup)
+        key="name-field"
+        name="name"
+        type="text"
+      />
+      <Connect(FieldGroup)
+        key="dropdown-field"
+        name="dropdown"
+        options={
+          Array [
+            Object {
+              "label": "Val1",
+              "value": "val1",
+            },
+            Object {
+              "label": "Val2",
+              "value": "val2",
+            },
+          ]
+        }
+        type="dropdown"
+      />
+    </ModalBody>
+    <ModalFooter
+      tag="div"
+    >
+      <Button
+        className="save-btn"
+        color="primary"
+        tag="button"
+        type="submit"
+      >
+        Save
+      </Button>
+       
+       
+      <Button
+        className="cancel-btn"
+        color="secondary"
+        onClick={[Function]}
+        tag="button"
+      >
+        Cancel
+      </Button>
+    </ModalFooter>
+  </form>
+</Modal>
+`;

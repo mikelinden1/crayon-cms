@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeleteBtn matches snapshot 1`] = `
+<Button
+  color="danger"
+  onClick={[Function]}
+  tag="button"
+>
+  Delete
+</Button>
+`;
+
+exports[`DeleteBtn shows a spinner when deleting 1`] = `
+<Button
+  color="danger"
+  disabled={true}
+  tag="button"
+>
+  <Spinner />
+</Button>
+`;

@@ -7,7 +7,11 @@ import Spinner from 'components/spinner';
 export default class DeleteBtn extends React.PureComponent {
     static propTypes = {
         item: PropTypes.object.isRequired,
-        config: PropTypes.object.isRequired,
+        config: PropTypes.shape({
+            capabilities: PropTypes.shape({
+                deletable: PropTypes.bool
+            }).isRequired
+        }).isRequired,
         actions: PropTypes.shape({
             deleteItem: PropTypes.func.isRequired
         }).isRequired

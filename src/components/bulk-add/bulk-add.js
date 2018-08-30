@@ -13,7 +13,14 @@ export default class BulkAdd extends React.Component {
         adding: PropTypes.bool.isRequired,
         csvContents: PropTypes.string,
         error: PropTypes.string,
-        config: PropTypes.object.isRequired,
+        config: PropTypes.shape({
+            capabilities: PropTypes.shape({
+                bulkImport: PropTypes.bool
+            }).isRequired,
+            itemProps: PropTypes.array.isRequired,
+            itemName: PropTypes.string.isRequired,
+            itemNamePlural: PropTypes.string.isRequired
+        }).isRequired,
         actions: PropTypes.shape({
             setColumns: PropTypes.func.isRequired,
             addColumn: PropTypes.func.isRequired,

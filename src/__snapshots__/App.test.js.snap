@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App matches snapshot 1`] = `
+<div>
+  <Connect(Header) />
+  <div
+    className="app-wrapper"
+  >
+    <withRouter(Connect(Main)) />
+  </div>
+  <div
+    className="powered-by text-center"
+  >
+    <p>
+      <em>
+        Powered by Crayon CMS by Mike Linden
+      </em>
+    </p>
+  </div>
+</div>
+`;

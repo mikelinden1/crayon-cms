@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Alert } from 'reactstrap';
 
+import BulkActionApply from './bulk-action-apply';
 import TableHeader from './table-header';
 import TableBody from './table-body';
 
@@ -15,10 +16,13 @@ export default class TableView extends React.PureComponent {
         }
 
         return (
-            <table className="table table-striped">
-                <TableHeader />
-                <TableBody />
-            </table>
+            <div>
+                <BulkActionApply />
+                <table className="table table-striped">
+                    <TableHeader />
+                    <TableBody />
+                </table>
+            </div>
         );
     }
 }

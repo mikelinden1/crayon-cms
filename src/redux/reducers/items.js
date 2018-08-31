@@ -49,6 +49,13 @@ function itemsCreator(id) {
                     itemSaving: action.payload
                 };
             }
+            case `${ActionTypes.SAVE_BULK_EDIT}_${id}`: {
+                return {
+                    ...state,
+                    bulkItemsProcessing: action.payload.selectedItems,
+                    bulkDataSaving: action.payload.data
+                }
+            }
             case `${ActionTypes.SAVE_NEW_ITEM}_${id}_FULFILLED`: {
                 const newId = action.payload.data;
 
@@ -74,7 +81,7 @@ function itemsCreator(id) {
                 const items = [...state.items];
 
                 const newItem = state.itemSaving;
-                const index = items.map(function(o) { return o.id; }).indexOf(newItem.id);
+                const index = items.map((o) => o.id).indexOf(newItem.id);
 
                 items[index] = newItem;
 
@@ -82,6 +89,31 @@ function itemsCreator(id) {
                     ...state,
                     items,
                     itemSaving: null
+                };
+            }
+            case `${ActionTypes.SAVE_BULK_EDIT}_${id}_FULFILLED`: {
+                const items = [...state.items];
+
+                const itemIds = state.bulkItemsProcessing;
+                const newItemData = state.bulkDataSaving;
+
+                itemIds.forEach((itemId) => {
+                    const index = items.map((o) => o.id).indexOf(itemId);
+                    const oldItem = items[index];
+
+                    const newItem = {
+                        ...oldItem,
+                        ...newItemData
+                    };
+
+                    items[index] = newItem;
+                });
+
+                return {
+                    ...state,
+                    items,
+                    bulkItemsProcessing: null,
+                    bulkDataSaving: null
                 };
             }
             case `${ActionTypes.ITEM_SORT_END}_${id}`: {
@@ -100,7 +132,7 @@ function itemsCreator(id) {
                 const items = [...state.items];
 
                 const deleteItemId = state.itemDeletingId;
-                const index = items.map(function(o) { return o.id; }).indexOf(deleteItemId);
+                const index = items.map((o) => o.id).indexOf(deleteItemId);
 
                 items[index] = {
                     ...items[index],
@@ -116,7 +148,7 @@ function itemsCreator(id) {
                 const items = [...state.items];
 
                 const deleteItemId = state.itemDeletingId;
-                const index = items.map(function(o) { return o.id; }).indexOf(deleteItemId);
+                const index = items.map((o) => o.id).indexOf(deleteItemId);
 
                 items.splice(index, 1);
 
@@ -124,6 +156,49 @@ function itemsCreator(id) {
                     ...state,
                     items,
                     itemDeletingId: null
+                };
+            }
+            case `${ActionTypes.BULK_DELETE}_${id}`: {
+                return {
+                    ...state,
+                    bulkItemsProcessing: action.payload
+                }
+            }
+            case `${ActionTypes.BULK_DELETE}_${id}_PENDING`: {
+                const items = [...state.items];
+                const itemIds = state.bulkItemsProcessing;
+
+                itemIds.forEach((itemId) => {
+                    const index = items.map((o) => o.id).indexOf(itemId);
+                    const oldItem = items[index];
+
+                    const newItem = {
+                        ...oldItem,
+                        deleting: true
+                    };
+
+                    items[index] = newItem;
+                });
+
+                return {
+                    ...state,
+                    items
+                };
+            }
+            case `${ActionTypes.BULK_DELETE}_${id}_FULFILLED`: {
+                const items = [...state.items];
+
+                const itemIds = state.bulkItemsProcessing;
+
+                itemIds.forEach((itemId) => {
+                    const index = items.map((o) => o.id).indexOf(itemId);
+                    items.splice(index, 1);
+                });
+
+                return {
+                    ...state,
+                    items,
+                    bulkItemsProcessing: null
                 };
             }
             default: {

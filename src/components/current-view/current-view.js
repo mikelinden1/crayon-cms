@@ -17,10 +17,12 @@ export default class ItemList extends React.PureComponent {
         const { currentView, items, filteredItems } = this.props;
 
         if (!items.length) {
+            // show no items yet jumbotron
             return <AddNew displayAsJumbotron={true} />;
         }
 
         if (!filteredItems.length) {
+            // show nothing matches jumbotron
             return <NoMatchingItems />;
         }
 

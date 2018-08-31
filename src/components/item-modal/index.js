@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { closeItemModal } from 'redux/actions/item-modal';
-import { saveNewItem, saveEditItem } from 'redux/actions/items';
+import { saveNewItem, saveEditItem, saveBulkEdit } from 'redux/actions/items';
 import { getCurrentModuleConfig } from 'redux/selectors/get-current-module-config';
 import getModuleReduxProp from 'utils/get-module-redux-prop';
 
@@ -16,6 +16,7 @@ function mapStateToProps(state, ownProps) {
         open: getModuleReduxProp(state, 'itemModal', 'open'),
         error: getModuleReduxProp(state, 'itemModal', 'error'),
         saving: getModuleReduxProp(state, 'itemModal', 'saving'),
+        bulkEdit: getModuleReduxProp(state, 'itemModal', 'bulkEdit'),
         newItem: getModuleReduxProp(state, 'modalItemProps'),
         hasValidationErrors: validationErrors && validationErrors.length,
         editMode: getModuleReduxProp(state, 'modalItemProps', 'id') !== undefined,
@@ -30,7 +31,8 @@ function mapDispatchToProps(dispatch) {
         actions: bindActionCreators({
             closeItemModal,
             saveNewItem,
-            saveEditItem
+            saveEditItem,
+            saveBulkEdit
         }, dispatch)
     };
 }

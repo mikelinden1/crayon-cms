@@ -16,6 +16,7 @@ import sort from './sort';
 import archive from './archive';
 import paginator from './paginator';
 import bulkAdd from './bulk-add';
+import bulkActions from './bulk-actions';
 
 const rootReducers = {
     currentModule,
@@ -32,17 +33,18 @@ export default combineReducers(reducers);
 
 function createModuleReducers(id) {
     return combineReducers({
-        items: items(id),
-        itemModal: itemModal(id),
-        modalItemProps: modalItemProps(id),
-        modalMultiItemProps: modalMultiItemProps(id),
-        datasources: datasources(id),
-        currentView: currentView(id),
-        filters: filters(id),
-        search: search(id),
-        sort: sort(id),
-        archive: archive(id),
-        paginator: paginator(id),
-        bulkAdd: bulkAdd(id)
+        items               : items(id),
+        itemModal           : itemModal(id),
+        modalItemProps      : modalItemProps(id),
+        modalMultiItemProps : modalMultiItemProps(id),
+        datasources         : datasources(id),
+        currentView         : currentView(id),
+        filters             : filters(id),
+        search              : search(id),
+        sort                : sort(id),
+        archive             : archive(id),
+        paginator           : paginator(id),
+        bulkAdd             : bulkAdd(id),
+        bulkActions         : bulkActions(id)
     });
 }

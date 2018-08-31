@@ -161,6 +161,41 @@ export function saveEditItem(data) {
     };
 };
 
+export function saveBulkEdit(data) {
+    return (dispatch, getState) => {
+        const state = getState();
+        const moduleId = state.currentModule;
+
+        const selectedItems = state[moduleId].bulkActions.selectedItems;
+
+        dispatch({
+            type: `${ActionTypes.SAVE_BULK_EDIT}_${moduleId}`,
+            payload: {
+                data,
+                selectedItems
+            }
+        });
+
+        // the api expects the data for all items being updated, so we need to duplicate the data for each item selected
+        let dataDuplicated = selectedItems.reduce((allData, item) => {
+            allData.push(data);
+            return allData;
+        }, []);
+
+        delete data.sort;
+
+        dataDuplicated = stringifyArrays(dataDuplicated);
+
+        const action = {};
+
+        const idStr = selectedItems.join(',');
+        action.type = `${ActionTypes.SAVE_BULK_EDIT}_${moduleId}`;
+        action.payload = axios.put(`${API_BASE}/${moduleId}/${idStr}`, dataDuplicated);
+
+        dispatch(action);
+    };
+};
+
 export function deleteItem(item) {
     return (dispatch, getState) => {
         const state = getState();

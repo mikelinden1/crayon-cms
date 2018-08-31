@@ -15,12 +15,14 @@ export default class ItemModal extends React.Component {
         newItem: PropTypes.object.isRequired,
         editMode: PropTypes.bool,
         saving: PropTypes.bool,
+        bulkEdit: PropTypes.bool,
         changeMade: PropTypes.bool,
         config: PropTypes.object.isRequired,
         currentModule: PropTypes.string.isRequired,
         actions: PropTypes.shape({
             saveNewItem: PropTypes.func.isRequired,
             saveEditItem: PropTypes.func.isRequired,
+            saveBulkEdit: PropTypes.func.isRequired,
             closeItemModal: PropTypes.func.isRequired
         }).isRequired
     };
@@ -36,12 +38,16 @@ export default class ItemModal extends React.Component {
     saveItem(e) {
         e.preventDefault();
 
-        const { newItem, editMode, actions: { saveNewItem, saveEditItem } } = this.props;
+        const { newItem, editMode, bulkEdit, actions: { saveNewItem, saveBulkEdit, saveEditItem } } = this.props;
 
         if (editMode) {
             saveEditItem(newItem);
         } else {
-            saveNewItem(newItem);
+            if (bulkEdit) {
+                saveBulkEdit(newItem);
+            } else {
+                saveNewItem(newItem);
+            }
         }
     }
 
@@ -72,7 +78,7 @@ export default class ItemModal extends React.Component {
     }
 
     render() {
-        const { open, saving, error, editMode, hasValidationErrors, config: { itemName } } = this.props;
+        const { open, saving, error, editMode, bulkEdit, hasValidationErrors, config: { itemName, itemNamePlural } } = this.props;
 
         const createBtn =   saving
                             ? <Button color="primary" disabled><Spinner /></Button>
@@ -81,6 +87,7 @@ export default class ItemModal extends React.Component {
         const fields = this.renderFields();
 
         const headerAction = editMode ? 'Edit' : 'New';
+        const entireHeader = bulkEdit ? `Bulk Edit ${itemNamePlural}` : `${headerAction} ${itemName}`;
 
         const errorAlert =  error
                             ?   <Alert color="danger">{DEFAULT_ERROR_MESSAGE}</Alert>
@@ -92,9 +99,10 @@ export default class ItemModal extends React.Component {
             <Modal isOpen={open} toggle={() => this.closeModal()}>
                 <form onSubmit={(e) => this.saveItem(e)}>
                     <ModalHeader toggle={() => this.closeModal()}>
-                        {headerAction} {itemName}
+                        {entireHeader}
                     </ModalHeader>
                     <ModalBody>
+                        { bulkEdit ? <p><em>Fields with values will save for ALL items - empty fields will be ignored.</em></p> : null }
                         {errorAlert}
                         {fields}
                     </ModalBody>

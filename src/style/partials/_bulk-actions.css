@@ -1,0 +1,10 @@
+.bulk-actions-wrapper {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.bulk-actions-wrapper select {
+    margin-right: 10px;
+}

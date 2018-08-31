@@ -3,7 +3,8 @@ import { ActionTypes } from 'utils/constants';
 const initialState = {
     open: false,
     saving: false,
-    changeMade: false
+    changeMade: false,
+    bulkEdit: false
 };
 
 function itemModalCreator(id) {
@@ -22,6 +23,15 @@ function itemModalCreator(id) {
                     ...state,
                     open: false,
                     error: null,
+                    changeMade: false,
+                    bulkEdit: false
+                };
+            }
+            case `${ActionTypes.APPLY_BULK_EDIT}_${id}`: {
+                return {
+                    ...state,
+                    bulkEdit: true,
+                    open: true,
                     changeMade: false
                 };
             }
@@ -43,6 +53,7 @@ function itemModalCreator(id) {
                     validationErrors: action.payload
                 };
             }
+            case `${ActionTypes.SAVE_BULK_EDIT}_${id}_PENDING`:
             case `${ActionTypes.SAVE_EDIT_ITEM}_${id}_PENDING`:
             case `${ActionTypes.SAVE_NEW_ITEM}_${id}_PENDING`: {
                 return {
@@ -50,6 +61,7 @@ function itemModalCreator(id) {
                     saving: true
                 };
             }
+            case `${ActionTypes.SAVE_BULK_EDIT}_${id}_FULFILLED`:
             case `${ActionTypes.SAVE_EDIT_ITEM}_${id}_FULFILLED`: {
                 return {
                     ...state,

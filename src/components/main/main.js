@@ -10,6 +10,7 @@ import Spinner from 'components/spinner';
 import Login from 'components/login';
 
 import Homepage from 'components/homepage';
+import MediaModule from 'components/media-module';
 import ModuleRoot from 'components/module-root';
 import MediaPicker from 'components/media-picker';
 
@@ -44,6 +45,7 @@ export default class Main extends React.PureComponent {
             <div className="loggedin">
                 <Switch>
                     <Route exact path='/' render={(props) => <Homepage />} />
+                    <Route exact path='/media' render={(props) => <MediaModule />} />
                     {config.moduleOrder.map((moduleId) => {
                         return <Route key={`module-route-${moduleId}`} exact path={`/${moduleId}`} render={(props) => <ModuleRoot moduleId={moduleId} {...props} />} />;
                     })}

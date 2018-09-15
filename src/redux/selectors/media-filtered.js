@@ -13,7 +13,7 @@ export const applyMediaFilters = createSelector(
         }
 
         const moduleItems = items.filter((item) => {
-            if (!moduleId) {
+            if (!moduleId || moduleId === 'media') {
                 return item;
             }
 

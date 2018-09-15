@@ -53,19 +53,13 @@ export default class MediaPicker extends React.PureComponent {
     displayDropZone() {
         const { uploading, actions: { upload } } = this.props;
 
-        if (uploading) {
-            return (
-                <Dropzone className="file-drop-zone uploading" disabled={true} acceptStyle={{border: '2px solid red'}} onDrop={(files) => window.alert('Cannot upload while another file is processing.')}>
-                    <div><Spinner /></div>
-                </Dropzone>
-            );
-        } else {
-            return (
-                <Dropzone className="file-drop-zone" acceptStyle={{border: '2px solid green'}} onDrop={(files) => upload(files)}>
-                    <div>Drag files here or click to select</div>
-                </Dropzone>
-            );
-        }
+        const text = uploading ? <div><Spinner /></div> : <div>Drag files here or click to select</div>;
+
+        return (
+            <Dropzone className="file-drop-zone" disabled={uploading} acceptStyle={{border: '2px solid green'}} onDrop={(files) => upload(files)}>
+                {text}
+            </Dropzone>
+        );
     }
 
     render() {

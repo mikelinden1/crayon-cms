@@ -85,6 +85,7 @@ export default function mediaPicker(state = initialState, action) {
 
             return {
                 ...state,
+                uploading: false,
                 items,
                 selectedItem: newItem
             };

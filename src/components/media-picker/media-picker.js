@@ -44,14 +44,32 @@ export default class MediaPicker extends React.PureComponent {
             }
             return (
                 <div key={`media-item-${item.id}`} onClick={() => clickItem(item)} className={classes.join(' ')}>
-                    <img src={`${getEnvVar('uploadFullPath')}/${item.filename}`} alt="Media picker item" />
+                    <img src={`${getEnvVar('uploadFullPath')}/thumb_${item.filename}`} alt="Media picker item" />
                 </div>
             );
         });
     }
+    
+    displayDropZone() {
+        const { uploading, actions: { upload } } = this.props;
+
+        if (uploading) {
+            return (
+                <Dropzone className="file-drop-zone uploading" disabled={true} acceptStyle={{border: '2px solid red'}} onDrop={(files) => window.alert('Cannot upload while another file is processing.')}>
+                    <div><Spinner /></div>
+                </Dropzone>
+            );
+        } else {
+            return (
+                <Dropzone className="file-drop-zone" acceptStyle={{border: '2px solid green'}} onDrop={(files) => upload(files)}>
+                    <div>Drag files here or click to select</div>
+                </Dropzone>
+            );
+        }
+    }
 
     render() {
-        const { fetched, open, selectedItem, actions: { close, select, upload } } = this.props;
+        const { fetched, open, selectedItem, actions: { close, select } } = this.props;
 
         return (
             <Modal className="media-picker" isOpen={open} toggle={() => close()}>
@@ -61,10 +79,7 @@ export default class MediaPicker extends React.PureComponent {
                 <ModalBody>
                     <MediaFilters />
                     <div className="media-grid">
-                        <Dropzone className="file-drop-zone" acceptStyle={{border: '2px solid green'}} onDrop={(files) => upload(files)}>
-                            <div>Drag files here or click to select</div>
-                        </Dropzone>
-
+                        {this.displayDropZone()}
                         {this.mapMedia()}
                     </div>
                 </ModalBody>

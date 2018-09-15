@@ -11,6 +11,7 @@ function mapStateToProps(state, ownProps) {
         open: state.mediaPicker.open,
         fetched: state.mediaPicker.fetched,
         fetching: state.mediaPicker.fetching,
+        uploading: state.mediaPicker.uploading,
         items: applyMediaFilters(state, ownProps),
         selectedItem: state.mediaPicker.selectedItem
     };

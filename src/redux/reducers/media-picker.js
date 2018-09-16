@@ -21,13 +21,17 @@ export default function mediaPicker(state = initialState, action) {
                 ...state,
                 open: false,
                 target: null,
-                selectedItem: null
+                selectedItem: null,
+                editingTitle: false,
+                newName: null
             };
         }
         case ActionTypes.MEDIA_PICKER_CLICK_ITEM: {
             return {
                 ...state,
-                selectedItem: action.payload
+                selectedItem: action.payload,
+                newName: action.payload.name,
+                editingTitle: false
             }
         }
         case ActionTypes.SET_MEDIA_MODULE_FILTER:
@@ -87,7 +91,8 @@ export default function mediaPicker(state = initialState, action) {
                 ...state,
                 uploading: false,
                 items,
-                selectedItem: newItem
+                selectedItem: newItem,
+                setNewName: newItem.name
             };
         }
         case ActionTypes.DELETE_MEDIA: {
@@ -110,6 +115,46 @@ export default function mediaPicker(state = initialState, action) {
                 deletingId: null,
                 selectedItem,
                 items
+            };
+        }
+        case ActionTypes.MEDIA_TOGGLE_NAME_EDIT: {
+            return {
+                ...state,
+                editingTitle: !state.editingTitle
+            };
+        }
+        case ActionTypes.MEDIA_SET_NAME: {
+            return {
+                ...state,
+                newName: action.payload
+            };
+        }
+        case ActionTypes.MEDIA_SAVE_NAME: {
+            return {
+                ...state,
+                savingNameData: action.payload
+            };
+        }
+        case ActionTypes.MEDIA_SAVE_NAME + '_PENDING': {
+            return {
+                ...state,
+                savingName: true
+            };
+        }
+        case ActionTypes.MEDIA_SAVE_NAME + '_FULFILLED': {
+            const newName = state.savingNameData.name;
+            const nameId = state.savingNameData.id;
+
+            const items = [...state.items];
+            const item = items.find(item => item.id === nameId);
+            item.name = newName;
+
+            return {
+                ...state,
+                items,
+                editingTitle: false,
+                savingName: false,
+                savingNameData: null
             };
         }
         case ActionTypes.UPLOAD_PROGRESS: {

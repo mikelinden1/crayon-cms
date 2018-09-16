@@ -80,7 +80,7 @@ export function mediaPickerUpload(files) {
 }
 
 export function deleteMedia(id) {
-    return (dispatch, getState) => {
+    return (dispatch) => {
         if (window.confirm(`Are you sure you want to delete this photo?`)) {
             dispatch({
                 type: ActionTypes.DELETE_MEDIA,
@@ -115,5 +115,36 @@ export function setMediaModuleFilter(val) {
     return {
         type: ActionTypes.SET_MEDIA_MODULE_FILTER,
         payload: val
+    };
+}
+
+export function mediaToggleNameEdit() {
+    return {
+        type: ActionTypes.MEDIA_TOGGLE_NAME_EDIT
+    };
+}
+
+export function mediaSetNewName(name) {
+    return {
+        type: ActionTypes.MEDIA_SET_NAME,
+        payload: name
+    };
+}
+
+export function mediaSaveName(id, name) {
+    return (dispatch) => {
+        dispatch({
+            type: ActionTypes.MEDIA_SAVE_NAME,
+            payload: { id, name }
+        });
+
+        const data = { id, name };
+
+        const action = {};
+
+        action.type = ActionTypes.MEDIA_SAVE_NAME;
+        action.payload = axios.put(`${API_BASE}/media`, data);
+
+        dispatch(action);
     };
 }

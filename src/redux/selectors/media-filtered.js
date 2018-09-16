@@ -25,7 +25,9 @@ export const applyMediaFilters = createSelector(
                 return item;
             }
 
-            return item.uploaded_as.indexOf(search) !== -1 || item.filename.indexOf(search) !== -1;
+            return  item.uploaded_as.indexOf(search) !== -1 || 
+                    item.filename.indexOf(search) !== -1 ||
+                    item.name.indexOf(search) !== -1;
         });
 
         const sortedItems = searchItems.sort((a, b) => {

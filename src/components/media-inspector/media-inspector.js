@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { getEnvVar } from 'utils/get-env-var';
 import { Button } from 'reactstrap';
 import Spinner from 'components/spinner';
-
+import MediaName from 'components/media-name';
 export default class MediaInspector extends React.PureComponent {
     static propTypes = {
         selectedItem: PropTypes.object,
@@ -26,7 +26,7 @@ export default class MediaInspector extends React.PureComponent {
             <div className="media-inspector">
                 <img src={`${getEnvVar('uploadFullPath')}/thumb_${selectedItem.filename}`} alt="Media inspector" />
                 <div className="media-info">
-                    <h3>{selectedItem.filename}</h3>
+                    <MediaName />
                     <label>Uploaded By</label>
                     <p>{selectedItem.uploaded_by}</p>
                     <label>Uploaded On</label>

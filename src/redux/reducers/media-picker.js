@@ -92,7 +92,7 @@ export default function mediaPicker(state = initialState, action) {
                 uploading: false,
                 items,
                 selectedItem: newItem,
-                setNewName: newItem.name
+                newName: newItem.name
             };
         }
         case ActionTypes.DELETE_MEDIA: {

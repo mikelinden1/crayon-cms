@@ -79,6 +79,24 @@ export function mediaPickerUpload(files) {
     };
 }
 
+export function deleteMedia(id) {
+    return (dispatch, getState) => {
+        if (window.confirm(`Are you sure you want to delete this photo?`)) {
+            dispatch({
+                type: ActionTypes.DELETE_MEDIA,
+                payload: id
+            });
+
+            const action = {};
+
+            action.type = ActionTypes.DELETE_MEDIA;
+            action.payload = axios.delete(`${API_BASE}/media/${id}?uploadDir=${getEnvVar('uploadPath')}`);
+
+            dispatch(action);
+        }
+    };
+}
+
 export function setMediaSearch(val) {
     return {
         type: ActionTypes.SET_MEDIA_SEARCH,

@@ -90,6 +90,28 @@ export default function mediaPicker(state = initialState, action) {
                 selectedItem: newItem
             };
         }
+        case ActionTypes.DELETE_MEDIA: {
+            return {
+                ...state,
+                deletingId: action.payload
+            };
+        }
+        case ActionTypes.DELETE_MEDIA + '_FULFILLED': {
+            const deleteId = state.deletingId;
+            const selectedId = state.selectedItem ? state.selectedItem.id : null;
+            const clearSelected = deleteId === selectedId;
+
+            const selectedItem = clearSelected ? null : state.selectedItem;
+
+            const items = [...state.items].filter(item => item.id !== deleteId);
+
+            return {
+                ...state,
+                deletingId: null,
+                selectedItem,
+                items
+            };
+        }
         case ActionTypes.UPLOAD_PROGRESS: {
             return {
                 ...state,

@@ -40,6 +40,11 @@
     top: 32px;
 }
 
+.media-module .media-browser {
+    background-color: #fff;
+    width: 100%;
+}
+
 .media-module .media-filters {
     margin-bottom: 15px;
     margin-top: 15px;
@@ -53,13 +58,52 @@
 }
 
 .media-module .media-inspector {
-    flex-basis: 350px;
-    padding: 30px;
+    width: 350px;
+    flex-grow: 0;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     background-color: #eee;
+}
+
+.media-module .media-inspector {
+    justify-content: space-between;
+    overflow-y: auto
+}
+
+.media-module .media-inspector.empty {
+    padding: 30px;
+    justify-content: center;
     text-align: center;
+}
+
+.media-module .media-inspector img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.media-module .media-inspector .media-info {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.media-module .media-inspector .media-info label {
+    font-family: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 900;
+    font-size: 10px;
+    margin-top: 10px;
+}
+
+.media-module .media-inspector .delete {
+    width: 100%;
+}
+
+.media-module .media-inspector .delete button {
+    display: block;
+    width: 100%;
 }
 
 .media-grid .media-item.selected:before {

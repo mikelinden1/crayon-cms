@@ -6,7 +6,7 @@ import { getEnvVar } from 'utils/get-env-var';
 
 import Spinner from 'components/spinner';
 import MediaFilters from 'components/media-filters';
-
+import MediaInspector from 'components/media-inspector';
 export default class MediaModule extends React.PureComponent {
     static propTypes = {
         open: PropTypes.bool,
@@ -30,11 +30,7 @@ export default class MediaModule extends React.PureComponent {
     }
 
     mapMedia() {
-        const { fetched, items, selectedItem, actions: { clickItem } } = this.props;
-
-        if (!fetched) {
-            return <p><Spinner /> Loading media...</p>;
-        }
+        const { items, selectedItem, actions: { clickItem } } = this.props;
 
         return items.map((item) => {
             const classes = ['media-item'];
@@ -53,24 +49,22 @@ export default class MediaModule extends React.PureComponent {
     displayDropZone() {
         const { uploading, actions: { upload } } = this.props;
 
+        const text = uploading ? <div><Spinner /></div> : <div>Drag files here or click to select</div>;
+
         return (
             <Dropzone className="file-drop-zone" disabled={uploading} acceptStyle={{border: '2px solid green'}} onDrop={(files) => upload(files)}>
-                <div>Drag files here or click to select</div>
+                {text}
             </Dropzone>
         );
     }
 
-    displayInspector() {
-        const { selectedItem } = this.props;
-
-        if (selectedItem) {
-            // show controls
-            console.log('selected item', selectedItem);
-        } else {
-            return <p><em>Select a photo to inspect.</em></p>
-        }
-    }
     render() {
+        const { fetched } = this.props;
+
+        if (!fetched) {
+            return <p><Spinner /> Loading media...</p>;
+        }
+
         return (
             <div className="media-module">
                 <div className="media-browser">
@@ -80,9 +74,7 @@ export default class MediaModule extends React.PureComponent {
                         {this.mapMedia()}
                     </div>
                 </div>
-                <div className="media-inspector">
-                    {this.displayInspector()}
-                </div>
+                <MediaInspector />
             </div>
         );
     }

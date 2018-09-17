@@ -23,8 +23,19 @@ export default class RenderPropValue extends React.PureComponent {
 
     render() {
         const { column, item, config: { id: moduleId, itemName } } = this.props;
+        const columnProp = getPropByName(moduleId, column.name);
 
-        const value = item[column.name];
+        let value = item[column.name];
+
+        if (columnProp && columnProp.many) {
+            try {
+                value = JSON.parse(value);
+                value = value.length ? value[0] : null;
+            } catch(e) {
+                console.log(`Error parsing column value for ${column.name} (many is true)`, e);
+            }
+        }
+
         const displayType = column.displayType;
 
         if (!displayType) {
@@ -44,11 +55,10 @@ export default class RenderPropValue extends React.PureComponent {
                 }
             case 'image-fullwidth':
             case 'image':
+
                 if (!value || value === '') {
                     return <div className="no-photo">No Photo</div>;
                 }
-
-                const columnProp = getPropByName(moduleId, column.name);
 
                 if (!columnProp) {
                     console.error('Missing prop in photos', column.name);

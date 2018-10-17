@@ -31,8 +31,8 @@ export default class Header extends React.PureComponent {
         return (
             <div>
                 <header id="top-bar">
-                    <Link to='/'><Icon icon={faTachometerAlt} /> Admin Dashboard</Link>
-                    <a href={getEnvVar('siteUrl')}><Icon icon={faHome} /> Site Home</a>
+                    <Link to='/'><Icon icon={faTachometerAlt} /><span className="label"> Admin Dashboard</span></Link>
+                    <a href={getEnvVar('siteUrl')}><Icon icon={faHome} /><span className="label"> Site Home</span></a>
                     <div className="grow" />
                     {rightSide}
                 </header>

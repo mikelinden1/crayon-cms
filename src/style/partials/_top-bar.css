@@ -34,3 +34,9 @@
 #header-pad {
     height: 45px;
 }
+
+@media screen and (max-width: 600px) {
+    #top-bar .label {
+        display: none;
+    }
+}

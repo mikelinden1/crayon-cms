@@ -1,7 +1,29 @@
+.module-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+}
+
+@media screen and (max-width: 900px) {
+    .module-icon-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .module-icon-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .module-icon-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 .module-icon {
-    display: inline-block;
     padding: 30px;
-    margin: 15px;
     text-align: center;
     text-decoration: none;
 }

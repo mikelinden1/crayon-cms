@@ -19,7 +19,7 @@ export default class Homepage extends React.PureComponent {
         });
 
         return (
-            <div>
+            <div className="module-icon-grid">
                 {modules}
                 <Link key="module-link-media" to="/media" className="module-icon">
                     <div className="icon"><Icon icon={faImages} /></div>

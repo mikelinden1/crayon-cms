@@ -20,9 +20,9 @@ function mapStateToProps(state, ownProps) {
         newItem: getModuleReduxProp(state, 'modalItemProps'),
         hasValidationErrors: validationErrors && validationErrors.length,
         editMode: getModuleReduxProp(state, 'modalItemProps', 'id') !== undefined,
-        changeMade: getModuleReduxProp(state, 'itemModal', 'changeMade'),
         currentModule: state.currentModule,
-        config: getCurrentModuleConfig(state, ownProps)
+        config: getCurrentModuleConfig(state, ownProps),
+        startingFingerprint: getModuleReduxProp(state, 'itemModal', 'itemFingerprint')
     };
 }
 

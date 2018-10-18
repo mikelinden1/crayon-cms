@@ -1,10 +1,11 @@
 import { ActionTypes } from 'utils/constants';
+import hashObject from 'utils/hash-object';
 
 const initialState = {
     open: false,
     saving: false,
-    changeMade: false,
-    bulkEdit: false
+    bulkEdit: false,
+    itemFingerprint: null
 };
 
 function itemModalCreator(id) {
@@ -12,10 +13,12 @@ function itemModalCreator(id) {
         switch (action.type) {
             case `${ActionTypes.EDIT_ITEM}_${id}`:
             case `${ActionTypes.OPEN_ITEM_DIALOG}_${id}`: {
+                const itemFingerprint = hashObject(action.payload);
+
                 return {
                     ...state,
                     open: true,
-                    changeMade: false
+                    itemFingerprint
                 };
             }
             case `${ActionTypes.CLOSE_ITEM_DIALOG}_${id}`: {
@@ -23,7 +26,6 @@ function itemModalCreator(id) {
                     ...state,
                     open: false,
                     error: null,
-                    changeMade: false,
                     bulkEdit: false
                 };
             }
@@ -31,20 +33,7 @@ function itemModalCreator(id) {
                 return {
                     ...state,
                     bulkEdit: true,
-                    open: true,
-                    changeMade: false
-                };
-            }
-            case `${ActionTypes.MULTI_ITEM_SORT_END}_${id}`:
-            case `${ActionTypes.DELETE_MULTI_ITEM}_${id}`:
-            case `${ActionTypes.SET_PROP_VALUE}_${id}`: {
-                if (action.payload.ignoreChange) {
-                    return { ...state };
-                }
-
-                return {
-                    ...state,
-                    changeMade: true
+                    open: true
                 };
             }
             case `${ActionTypes.VALIDATION_CHECK}_${id}`: {

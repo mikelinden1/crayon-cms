@@ -13,6 +13,7 @@ import Homepage from 'components/homepage';
 import MediaModule from 'components/media-module';
 import ModuleRoot from 'components/module-root';
 import MediaPicker from 'components/media-picker';
+import Activity from 'components/activity';
 
 export default class Main extends React.PureComponent {
     static propTypes = {
@@ -51,6 +52,7 @@ export default class Main extends React.PureComponent {
                     })}
                 </Switch>
                 <MediaPicker />
+                <Activity />
             </div>
         );
     }

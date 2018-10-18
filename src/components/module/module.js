@@ -19,17 +19,27 @@ export default class Main extends React.PureComponent {
         fetched: PropTypes.bool,
         fetching: PropTypes.bool,
         error: PropTypes.bool,
+        currentModule: PropTypes.string.isRequired,
         actions: PropTypes.shape({
             fetchItems: PropTypes.func.isRequired
         }).isRequired
     };
 
     componentWillMount() {
-        const { fetched, fetching, actions: { fetchItems } } = this.props;
+        const { currentModule, fetched, fetching, actions: { fetchItems, startPolling } } = this.props;
 
         if (!fetched && !fetching) {
-            fetchItems();
+            fetchItems(currentModule);
+        } else {
+            startPolling(currentModule);
         }
+    }
+
+    componentWillUnmount() {
+        // stop polling
+        const { currentModule, actions: { stopPolling } } = this.props;
+
+        stopPolling(currentModule);
     }
 
     render() {

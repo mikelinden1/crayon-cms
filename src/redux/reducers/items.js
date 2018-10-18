@@ -3,7 +3,9 @@ import { ActionTypes } from 'utils/constants';
 const initialState = {
     fetching: false,
     fetched: false,
-    items: null
+    items: null,
+    pollerId: null,
+    pollingStopped: false
 };
 
 function itemsCreator(id) {
@@ -30,6 +32,20 @@ function itemsCreator(id) {
                     fetching: false,
                     fetched: true,
                     error: true
+                };
+            }
+            case `${ActionTypes.START_POLLING}_${id}`: {
+                return {
+                    ...state,
+                    pollerId: action.payload,
+                    pollingStopped: false
+                };
+            }
+            case `${ActionTypes.STOP_POLLING}_${id}`: {
+                return {
+                    ...state,
+                    pollerId: null,
+                    pollingStopped: true
                 };
             }
             case `${ActionTypes.SAVE_BULK_ITEMS}_${id}_FULFILLED`: {

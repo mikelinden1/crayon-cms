@@ -17,11 +17,13 @@ import archive from './archive';
 import paginator from './paginator';
 import bulkAdd from './bulk-add';
 import bulkActions from './bulk-actions';
+import activity from './activity';
 
 const rootReducers = {
     currentModule,
     userState,
-    mediaPicker
+    mediaPicker,
+    activity
  };
 
 const reducers = config.moduleOrder.reduce((r, moduleId) => {

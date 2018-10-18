@@ -8,39 +8,80 @@ import { arrayMove } from 'react-sortable-hoc';
 
 const API_BASE = getEnvVar('apiBase');
 
-export function fetchItems() {
+export function fetchItems(moduleId) {
+    console.log('fetch', moduleId);
+
     return (dispatch, getState) => {
-        const state = getState();
-        const moduleConfig = config.modules[state.currentModule];
+        const actionBase = `${ActionTypes.FETCH_ITEMS}_${moduleId}`;
 
-        startPolling(dispatch, state.currentModule);
+        dispatch({ type: `${actionBase}_PENDING` });
 
-        const action = {};
+        axios.get(`${API_BASE}/${moduleId}?transform=1`).then((payload) => {
+            dispatch({
+                type: `${actionBase}_FULFILLED`,
+                payload
+            });
 
-        action.type = `${ActionTypes.FETCH_ITEMS}_${state.currentModule}`;
-        action.payload = axios.get(`${API_BASE}/${moduleConfig.id}?transform=1`);
+            pollAfterFetch(dispatch, getState, moduleId);
+        }).catch((payload) => {
+            dispatch({
+                type: `${actionBase}_REJECTED`,
+                payload
+            });
 
-        dispatch(action);
+            pollAfterFetch(dispatch, getState, moduleId);
+        });
     };
 };
 
-export function startPolling(dispatch, moduleId) {
-    if (moduleId) {
-        setTimeout(() => refreshItems(dispatch, moduleId), 30000);
+function pollAfterFetch(dispatch, getState, moduleId) {
+    const state = getState();
+    const pollingStopped = state[moduleId].items.pollingStopped;
+
+    if (!pollingStopped) {
+        startPolling(moduleId)(dispatch, getState);
     }
 }
 
-function refreshItems(dispatch, moduleId) {
-    const moduleConfig = config.modules[moduleId];
+export function startPolling(moduleId) {
+    console.log('start polling', moduleId);
+    return (dispatch, getState) => {
+        const pollerId = setTimeout(() => refreshItems(dispatch, getState, moduleId), 30000);
 
-    axios.get(`${API_BASE}/${moduleConfig.id}?transform=1`).then((data) => {
         dispatch({
-            type: `${ActionTypes.FETCH_ITEMS}_${moduleId}_FULFILLED`,
-            payload: data
+            type: `${ActionTypes.START_POLLING}_${moduleId}`,
+            payload: pollerId
         });
+    };
+}
 
-        startPolling(dispatch, moduleId);
-    })
+export function stopPolling(moduleId) {
+    return (dispatch, getState) => {
+        const state = getState();
+        const pollerId = state[moduleId].items.pollerId;
+        console.log('stop polling', pollerId);
+
+        clearTimeout(pollerId);
+
+        dispatch({
+            type: `${ActionTypes.STOP_POLLING}_${moduleId}`
+        });
+    };
+}
+
+function refreshItems(dispatch, getState, moduleId) {
+    console.log('refresh called', moduleId);
+
+    const state = getState();
+    const active = state.activity.active;
+
+    if (active) {
+        console.log('active - fetching');
+        fetchItems(moduleId)(dispatch, getState);
+    } else {
+        console.log('inactive - waiting');
+        setTimeout(() => refreshItems(dispatch, getState, moduleId), 10000);
+    }
 }
 
 export function validateOnChange() {

@@ -14,15 +14,10 @@ export default class Activity extends React.PureComponent {
         const { actions: { startActivityTracking, activityDetected } } = this.props;
 
         startActivityTracking();
-        window.onclick = window.onmousemove = activityDetected;
+        window.onclick = window.onmousemove = window.keyup = activityDetected;
     }
 
     render() {
-        const { active } = this.props;
-
-        if (!active) {
-            return <p>Inactive</p>
-        }
-        return <p>Active</p>;
+        return null
     }
 }

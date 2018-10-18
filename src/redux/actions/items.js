@@ -9,8 +9,6 @@ import { arrayMove } from 'react-sortable-hoc';
 const API_BASE = getEnvVar('apiBase');
 
 export function fetchItems(moduleId) {
-    console.log('fetch', moduleId);
-
     return (dispatch, getState) => {
         const actionBase = `${ActionTypes.FETCH_ITEMS}_${moduleId}`;
 
@@ -44,7 +42,6 @@ function pollAfterFetch(dispatch, getState, moduleId) {
 }
 
 export function startPolling(moduleId) {
-    console.log('start polling', moduleId);
     return (dispatch, getState) => {
         const pollerId = setTimeout(() => refreshItems(dispatch, getState, moduleId), 30000);
 
@@ -59,7 +56,6 @@ export function stopPolling(moduleId) {
     return (dispatch, getState) => {
         const state = getState();
         const pollerId = state[moduleId].items.pollerId;
-        console.log('stop polling', pollerId);
 
         clearTimeout(pollerId);
 
@@ -70,16 +66,12 @@ export function stopPolling(moduleId) {
 }
 
 function refreshItems(dispatch, getState, moduleId) {
-    console.log('refresh called', moduleId);
-
     const state = getState();
     const active = state.activity.active;
 
     if (active) {
-        console.log('active - fetching');
         fetchItems(moduleId)(dispatch, getState);
     } else {
-        console.log('inactive - waiting');
         setTimeout(() => refreshItems(dispatch, getState, moduleId), 10000);
     }
 }

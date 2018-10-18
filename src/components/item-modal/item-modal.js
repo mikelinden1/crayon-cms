@@ -7,6 +7,7 @@ import Spinner from 'components/spinner';
 import FieldGroup from 'components/field-group';
 
 import getPropByName from 'utils/get-prop-by-name';
+import hashObject from 'utils/hash-object';
 
 import { DEFAULT_ERROR_MESSAGE } from 'utils/constants';
 
@@ -16,9 +17,9 @@ export default class ItemModal extends React.Component {
         editMode: PropTypes.bool,
         saving: PropTypes.bool,
         bulkEdit: PropTypes.bool,
-        changeMade: PropTypes.bool,
         config: PropTypes.object.isRequired,
         currentModule: PropTypes.string.isRequired,
+        startingFingerprint: PropTypes.number,
         actions: PropTypes.shape({
             saveNewItem: PropTypes.func.isRequired,
             saveEditItem: PropTypes.func.isRequired,
@@ -28,9 +29,11 @@ export default class ItemModal extends React.Component {
     };
 
     closeModal() {
-        const { changeMade, actions: { closeItemModal } } = this.props;
+        const { startingFingerprint, newItem, actions: { closeItemModal } } = this.props;
 
-        if (!changeMade || window.confirm('You have unsaved changes, are you sure you want to close this window?')) {
+        const newFingerprint = hashObject(newItem);
+
+        if (newFingerprint === startingFingerprint || window.confirm('You have unsaved changes, are you sure you want to close this window?')) {
             closeItemModal();
         }
     }

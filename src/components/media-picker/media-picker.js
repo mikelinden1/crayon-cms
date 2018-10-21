@@ -42,9 +42,12 @@ export default class MediaPicker extends React.PureComponent {
             if (selectedItem && selectedItem.id === item.id) {
                 classes.push('selected');
             }
+
+            const thumbnail = `${getEnvVar('uploadFullPath')}/thumb_${item.filename}`;
+
             return (
                 <div key={`media-item-${item.id}`} onClick={() => clickItem(item)} className={classes.join(' ')}>
-                    <img src={`${getEnvVar('uploadFullPath')}/thumb_${item.filename}`} alt="Media picker item" />
+                    <img src={thumbnail} alt="Media picker item" />
                 </div>
             );
         });

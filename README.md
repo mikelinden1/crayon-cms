@@ -5,7 +5,7 @@ Crayon CMS is a Frontend CMS written in React + Redux + Reselect that is complet
 Run `yarn install` from the project root to install dependencies.
 
 ## Config
-Rename `src/config-sample` to `src-config` and configure cms modules.
+Rename `src/config-sample` to `src/config` and configure cms modules.
 
 ## Serve
 Run `yarn serve`

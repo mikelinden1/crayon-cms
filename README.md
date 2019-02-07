@@ -8,7 +8,7 @@ Run `yarn install` from the project root to install dependencies.
 Rename `src/config-sample` to `src/config` and configure cms modules.
 
 ## Serve
-Run `yarn serve`
+Run `yarn start`
 
 ## Build
 Run `yarn build`

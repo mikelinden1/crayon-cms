@@ -53,11 +53,8 @@ export default class ModuleRoot extends React.PureComponent {
             return <Message error>There are errors in the config file. See console.</Message>;
         }
 
-        const { moduleName } = config;
-
         return (
             <div id="module-root">
-                <h1 style={{marginBottom: '20px' }}>{moduleName}</h1>
                 <Module />
             </div>
         );

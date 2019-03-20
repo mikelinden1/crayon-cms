@@ -14,7 +14,6 @@ export default class RecordCount extends React.PureComponent {
         const itemName_total = numOfItems === 1 ? itemName.toLowerCase() : itemNamePlural;
             
         if (numOfItemsDisplayed !== numOfItems) {
-            const itemName_display = numOfItemsDisplayed === 1 ? itemName.toLowerCase() : itemNamePlural;
             return <p style={{ textAlign: 'center' }}><small>Showing {numOfItemsDisplayed} of {numOfItems} {itemName_total}</small></p>;
         }
 

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import ActionBtns from 'components/action-btns';
 import RenderPropValue from 'components/render-prop-value';
 
+import { Card, Image } from 'semantic-ui-react';
+
 export default class GridViewCard extends React.PureComponent {
     static propTypes = {
         item: PropTypes.PropTypes.object.isRequired,
@@ -11,39 +13,27 @@ export default class GridViewCard extends React.PureComponent {
 
     render() {
         const { item, config } = this.props;
-        const { views: { grid: { layout: gridViewLayout, showId } } } = config;
+        const { views: { grid: { photo, header, meta, description } } } = config;
+        console.log(photo, header, meta, description);
 
         return (
-            <div key={`grid-item-${item.id}`} className="card border-secondary">
-                {
-                    gridViewLayout.map((prop) => {
-                        const gridTag = prop.gridTag ? prop.gridTag : 'div';
-                        const displayType = prop.displayType ? prop.displayType : 'text';
-
-                        const itemValueRendered = <RenderPropValue column={prop} item={item} />;
-
-                        const itemRendered = React.createElement(
-                            gridTag,
-                            {},
-                            itemValueRendered
-                        );
-
-                        return (
-                            <div key={`grid-item-prop-${prop.name}`} className={`card-body ${displayType}`}>
-                                {itemRendered}
-                            </div>
-                        );
-                    })
-                }
-                <div className="card-footer text-right">
-                    {
-                    showId
-                    ? <div className="grid-item-id">#{item.id}</div>
-                    : null
-                    }
+            <Card fluid key={`grid-item-${item.id}`}>
+                <Image src={item[photo]} />
+                <Card.Content>
+                    <Card.Header>
+                        <RenderPropValue column={header} item={item} />
+                    </Card.Header>
+                    <Card.Meta>
+                        <RenderPropValue column={meta} item={item} />
+                    </Card.Meta>
+                    <Card.Description>
+                        <RenderPropValue column={description} item={item} />
+                    </Card.Description>
+                </Card.Content>
+                <Card.Content extra>
                     <ActionBtns item={item} />
-                </div>
-            </div>
+                </Card.Content>
+            </Card>
         );
     }
 }

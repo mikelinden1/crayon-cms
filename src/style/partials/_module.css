@@ -4,6 +4,6 @@
 
 .add-new-btn {
     position: absolute !important;
-    top: 0;
-    right: 0;
+    top: 15px;
+    right: 10px;
 }

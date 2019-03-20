@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Alert } from 'reactstrap';
+import { Message } from 'semantic-ui-react';
 
 import GridViewCard from 'components/grid-view-card';
 
@@ -22,7 +22,7 @@ export default class GridView extends React.PureComponent {
 
         if (!gridConfig) {
             console.error('Missing grid view config');
-            return <Alert color="danger">Missing grid view config</Alert>;
+            return <Message error>Missing grid view config</Message>;
         }
 
         return (

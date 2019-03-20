@@ -23,6 +23,7 @@ export default class RenderPropValue extends React.PureComponent {
 
     render() {
         const { column, item, config: { id: moduleId, itemName } } = this.props;
+        
         const columnProp = getPropByName(moduleId, column.name);
 
         let value = item[column.name];

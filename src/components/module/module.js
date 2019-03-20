@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Message, Loader, Grid, Rail } from 'semantic-ui-react';
+import { Message, Loader, Grid } from 'semantic-ui-react';
 
 
 import AddNew from 'components/add-new';
-import FilterSortSearch from 'components/filter-sort-search';
-import Switchers from 'components/switchers';
+import ModuleRail from 'components/module-rail';
 import CurrentView from 'components/current-view';
 import Paginator from 'components/paginator';
 import ItemsPerPage from 'components/items-per-page';
@@ -54,27 +53,23 @@ export default class Main extends React.PureComponent {
             const itemNamePlural = itemP ? itemP : itemName + 's';
             return <Message error>Error loading {itemNamePlural.toLowerCase()}</Message>;
         }
+        
+        const { moduleName } = config;
 
         return (
-            <div>
-                <AddNew />
-                <Grid columns={2}>
-                    <Grid.Column width={12}>
-                        <div>
-                            <Switchers />
-                            <CurrentView />
-                            <Paginator />
-                            <ItemsPerPage />
-                            <RecordCount />
-                            <ItemModal />
-                            <BulkAdd />
-                        </div>
-                        <Rail position="right" close="very">
-                            <FilterSortSearch />
-                        </Rail>
-                    </Grid.Column>
-                </Grid>
-            </div>
+            <Grid columns={2}>
+                <Grid.Column width={12}>
+                    <h1 style={{marginBottom: '20px' }}>{moduleName}</h1>
+                    <AddNew />
+                    <CurrentView />
+                    <Paginator />
+                    <ItemsPerPage />
+                    <RecordCount />
+                    <ItemModal />
+                    <BulkAdd />
+                    <ModuleRail />
+                </Grid.Column>
+            </Grid>
         );
     }
 }

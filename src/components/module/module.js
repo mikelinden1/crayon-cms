@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Message, Loader, Grid } from 'semantic-ui-react';
+import { Message, Loader } from 'semantic-ui-react';
 
 
 import AddNew from 'components/add-new';
@@ -58,22 +58,24 @@ export default class Main extends React.PureComponent {
         const { moduleName } = config;
 
         return (
-            <Grid columns={2}>
-                <Grid.Column width={12}>
-                    <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '20px' }}>
-                        <h1 style={{ flexGrow: 1 }}>{moduleName}</h1>
+            <section className="module">
+                <div className="module-left">
+                    <div className="module-header">
+                        <h1>{moduleName}</h1>
                         <ViewSwitcher />
                         <AddNew />
                     </div>
-                    <CurrentView />
-                    <Paginator />
-                    <ItemsPerPage />
-                    <RecordCount />
-                    <ItemModal />
-                    <BulkAdd />
-                    <ModuleRail />
-                </Grid.Column>
-            </Grid>
+                    <div className="module-items">
+                        <CurrentView />
+                        <Paginator />
+                        <ItemsPerPage />
+                        <RecordCount />
+                        <BulkAdd />
+                    </div>
+                </div>
+                <ModuleRail />
+                <ItemModal />
+            </section>
         );
     }
 }

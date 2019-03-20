@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Rail, Button, Icon } from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
 
 import ArchiveSwitcher from 'components/archive-switcher';
 import Search from 'components/search';
@@ -9,9 +9,9 @@ import Filter from 'components/filter';
 export default class Switchers extends React.PureComponent {
     render() {
         const { actions: { clearFilters } } = this.props;
-        
+
         return (
-            <Rail className="module-rail" position="right">
+            <section className="module-rail">
                 <ArchiveSwitcher />
                 <Search />
                 <Filter />
@@ -19,7 +19,7 @@ export default class Switchers extends React.PureComponent {
                     <Icon name="close" />
                     Clear Filters
                 </Button>
-            </Rail>
+            </section>
         );
     }
 }

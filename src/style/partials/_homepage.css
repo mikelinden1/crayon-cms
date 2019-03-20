@@ -28,17 +28,17 @@
     text-decoration: none;
 }
 
-.module-icon .icon {
-    font-size: 100px;
+.module-icon .ui.icon.header .icon {
+    font-size: 4em;
 }
 
-.module-icon .module-name {
+.module-icon h2.ui {
     font-size: 16px;
     text-transform: uppercase;
     font-weight: bold;
 }
 
-.module-icon:hover {
+.module-icon:hover .ui.icon.header {
     color: #0068a0;
     text-decoration: none;
 }

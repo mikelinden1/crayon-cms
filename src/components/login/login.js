@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button, Alert } from 'reactstrap';
-import Spinner from 'components/spinner';
+// import { Button, Alert } from 'reactstrap';
+import { Button, Form, Grid, Header, Message, Segment } from 'semantic-ui-react'
 
 export default class Login extends React.PureComponent {
     static propTypes = {
@@ -25,33 +25,38 @@ export default class Login extends React.PureComponent {
 
         login(payload);
     }
+    
+    ErrorMsg = () => {
+        return this.props.error
+            ?   <Message color="red">{this.props.error}</Message>
+            :   null;
+    }
 
     render() {
-        const { processing, error } = this.props;
-
-        const errorMsg =    error
-                            ?   <Alert color="danger">{error}</Alert>
-                            :   null;
-
-        const loginBtn =   processing
-                            ? <Button color="primary" disabled><Spinner /></Button>
-                            : <Button color="primary" type="submit">Login</Button>;
+        const { error, processing } = this.props;
 
         return (
-            <div className="login-wrapper">
-                <h1>Login</h1>
-                {errorMsg}
-                <form onSubmit={(e) => this.login(e)}>
-                    <div className="form-group">
-                        <label className="control-label">Username</label>
-                        <input type="text" name="username" className="form-control" disabled={processing} required={true} />
-                    </div>
-                    <div className="form-group">
-                        <label className="control-label">Password</label>
-                        <input type="password" name="password" className="form-control" disabled={processing} required={true} />
-                    </div>
-                    <div className="text-center">{loginBtn}</div>
-                </form>
+            <div className='login-form'>
+                <Grid textAlign='center' style={{ height: '100%', marginTop: '30px' }} verticalAlign='middle'>
+                    <Grid.Column style={{ maxWidth: 450 }}>
+                        <Header as='h2' textAlign='center'>Login to Your Account</Header>
+                        <Form onSubmit={(e) => this.login(e)} size='large'>
+                            <Segment stacked>
+                                <Message error={true} visible={error}>{error}</Message>
+                                <Form.Input fluid icon='user' name="username" iconPosition='left' placeholder='Username' />
+                                <Form.Input
+                                    fluid
+                                    icon='lock'
+                                    name="password"
+                                    iconPosition='left'
+                                    placeholder='Password'
+                                    type='password'
+                                />
+                                <Button color='blue' loading={processing} fluid size='large'>Login</Button>
+                            </Segment>
+                        </Form>
+                    </Grid.Column>
+                </Grid>
             </div>
         );
     }

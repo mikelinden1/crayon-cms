@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 
 import { getEnvVar } from 'utils/get-env-var';
 
-import { faHome, faTachometerAlt, faSignOutAlt } from '@fortawesome/fontawesome-free-solid';
-
 import {
     Menu,
     Button,

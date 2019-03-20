@@ -23,7 +23,7 @@ export default class ViewSwitcher extends React.PureComponent {
         const oppositeView = currentView === 'table' ? 'grid' : 'table';
 
         return (
-            <Button.Group onClick={() => switchView(oppositeView)}>
+            <Button.Group style={{ paddingRight: '10px' }} onClick={() => switchView(oppositeView)}>
                 <Button color={currentView === 'table' ? 'blue' : null}>
                     <Icon name="bars" />
                 </Button>

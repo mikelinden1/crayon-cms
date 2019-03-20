@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
-
-import Spinner from 'components/spinner';
+import { Dropdown } from 'semantic-ui-react';
 
 export default class DropdownField extends React.PureComponent {
     static propTypes = {
@@ -37,13 +34,10 @@ export default class DropdownField extends React.PureComponent {
         const { onChange } = this.props;
 
         let output;
-        if (val && val.length) {
-            output = val.reduce((all, item) => {
-                all.push(item.value);
-                return all;
-            }, []);
+        if (val && val.reduce) {
+            output = val.length ? val : null;
         } else {
-            output = val ? val.value : '';
+            output = val;
         }
 
         onChange(output);
@@ -55,16 +49,13 @@ export default class DropdownField extends React.PureComponent {
 
         const multiple = m ? m : false;
 
-        if (source && (!datasources[name] || !datasources[name].fetched)) {
-            // pull data from external source
-            return <div><Spinner /> Loading data</div>;
-        }
+        const loading = source && (!datasources[name] || !datasources[name].fetched);
 
         let options;
         if (!source) {
             options = manualOptions;
         } else {
-            options = datasources[name].data;
+            options = loading ? [] : datasources[name].data;
         }
 
         let value = inputValue;
@@ -72,31 +63,29 @@ export default class DropdownField extends React.PureComponent {
             value = JSON.parse(value);
         }
 
-
-        let selected;
-
-        if (value) {
-            if (value.reduce) { // if value has the reduce method it is an array
-                selected = value.reduce((selected, val) => {
-                    selected.push(options.find((opt) => opt.value === val));
-                    return selected;
-                }, []);
-            } else {
-                selected = options.find((opt) => opt.value === value);
-            }
-        } else {
-            selected = multiple ? [] : '';
-        }
+        // map options for semantic UI 
+        options = options.map(opt => {
+            return {
+                key: opt.value,
+                value: opt.value,
+                text: opt.label
+            };
+        });
 
         return (
-            <Select
-                disabled={disabled}
-                name={name}
-                value={selected}
-                multi={multiple}
+            <Dropdown
                 placeholder={placeholder}
-                onChange={(e) => this.handleChange(e)}
+                fluid
+                selection
+                clearable
+                closeOnChange
+                loading={loading}
+                disabled={disabled}
+                multiple={multiple}
+                search={multiple}
                 options={options}
+                value={value}
+                onChange={(e, data) => this.handleChange(data.value)}
             />
         );
     }

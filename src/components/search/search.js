@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { faSearch } from '@fortawesome/fontawesome-free-solid';
-import Icon from 'components/icon';
+import { Search as SearchControl } from 'semantic-ui-react';
 
 export default class Search extends React.PureComponent {
     static propTypes = {
@@ -21,15 +20,13 @@ export default class Search extends React.PureComponent {
         }
 
         return (
-            <div className="search-box">
-                <input type="search" placeholder="Search" className="form-control" value={search} onChange={(e) => setSearch(e.target.value)} name="search" />
-                <div className="search-icon"><Icon icon={faSearch} /></div>
-                {
-                search !== ''
-                ?   <button onClick={() => setSearch('')} className="clear-search">&times;</button>
-                :   null
-                }
-            </div>
+            <SearchControl 
+                fluid 
+                placeholder="Search"
+                showNoResults={false} 
+                value={search} 
+                onSearchChange={(e, data) => setSearch(data.value)} 
+            />
         );
     }
 }

@@ -14,8 +14,7 @@ export default class GridViewCard extends React.PureComponent {
     render() {
         const { item, config } = this.props;
         const { views: { grid: { photo, header, meta, description } } } = config;
-        console.log(photo, header, meta, description);
-
+        
         return (
             <Card fluid key={`grid-item-${item.id}`}>
                 <Image src={item[photo]} />

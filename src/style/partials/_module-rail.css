@@ -1,0 +1,13 @@
+.ui.fluid.search .ui.icon.input {
+    width: 100%;
+}
+
+.module-rail {
+    padding-top: 1rem !important;
+    display: flex;
+    flex-direction: column;
+}
+
+.module-rail > div {
+    margin-bottom: 12px !important;
+}

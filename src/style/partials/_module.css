@@ -1,9 +1,0 @@
-#module-root {
-    position: relative;
-}
-
-.add-new-btn {
-    position: absolute !important;
-    top: 15px;
-    right: 10px;
-}

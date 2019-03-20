@@ -2,7 +2,7 @@
 @import url('partials/_top-bar.css');
 @import url('partials/_media-picker.css');
 @import url('partials/_homepage.css');
-@import url('partials/_module-filters.css');
+@import url('partials/_module-rail.css');
 @import url('partials/_grid-view.css');
 @import url('partials/_table-view.css');
 @import url('partials/_date-picker.css');
@@ -11,4 +11,3 @@
 @import url('partials/_form-controls.css');
 @import url('partials/_field-multi-values.css');
 @import url('partials/_bulk-actions.css');
-@import url('partials/_module.css');

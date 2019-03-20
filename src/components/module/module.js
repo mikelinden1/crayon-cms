@@ -4,6 +4,7 @@ import { Message, Loader, Grid } from 'semantic-ui-react';
 
 
 import AddNew from 'components/add-new';
+import ViewSwitcher from 'components/view-switcher';
 import ModuleRail from 'components/module-rail';
 import CurrentView from 'components/current-view';
 import Paginator from 'components/paginator';
@@ -53,14 +54,17 @@ export default class Main extends React.PureComponent {
             const itemNamePlural = itemP ? itemP : itemName + 's';
             return <Message error>Error loading {itemNamePlural.toLowerCase()}</Message>;
         }
-        
+
         const { moduleName } = config;
 
         return (
             <Grid columns={2}>
                 <Grid.Column width={12}>
-                    <h1 style={{marginBottom: '20px' }}>{moduleName}</h1>
-                    <AddNew />
+                    <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '20px' }}>
+                        <h1 style={{ flexGrow: 1 }}>{moduleName}</h1>
+                        <ViewSwitcher />
+                        <AddNew />
+                    </div>
                     <CurrentView />
                     <Paginator />
                     <ItemsPerPage />

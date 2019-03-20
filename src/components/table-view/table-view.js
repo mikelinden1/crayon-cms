@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Alert } from 'reactstrap';
+import { Message, Table } from 'semantic-ui-react';
 
 import BulkActionApply from './bulk-action-apply';
 import TableHeader from './table-header';
@@ -12,16 +12,16 @@ export default class TableView extends React.PureComponent {
 
         if (!tableConfig) {
             console.error('Missing table view config');
-            return <Alert color="danger">Missing table view config</Alert>;
+            return <Message error>Missing table view config</Message>;
         }
 
         return (
             <div>
                 <BulkActionApply />
-                <table className="table table-striped">
+                <Table striped>
                     <TableHeader />
                     <TableBody />
-                </table>
+                </Table>
             </div>
         );
     }

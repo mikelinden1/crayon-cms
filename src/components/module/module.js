@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'reactstrap';
+import { Message, Loader, Grid, Rail } from 'semantic-ui-react';
 
-import Spinner from 'components/spinner';
 
 import AddNew from 'components/add-new';
 import FilterSortSearch from 'components/filter-sort-search';
@@ -46,27 +45,35 @@ export default class Main extends React.PureComponent {
         const { fetched, error, config } = this.props;
 
         if (!fetched) {
-           return <p><Spinner /> Loading items...</p>;
+            return <Loader active inline="centered" content='Loading Items' />;
         }
 
         if (error) {
             const { itemName, itemNamePlural: itemP } = config;
 
             const itemNamePlural = itemP ? itemP : itemName + 's';
-            return <Alert color="danger">Error loading {itemNamePlural.toLowerCase()}</Alert>;
+            return <Message error>Error loading {itemNamePlural.toLowerCase()}</Message>;
         }
 
         return (
             <div>
                 <AddNew />
-                <FilterSortSearch />
-                <Switchers />
-                <CurrentView />
-                <Paginator />
-                <ItemsPerPage />
-                <RecordCount />
-                <ItemModal />
-                <BulkAdd />
+                <Grid columns={2}>
+                    <Grid.Column width={12}>
+                        <div>
+                            <Switchers />
+                            <CurrentView />
+                            <Paginator />
+                            <ItemsPerPage />
+                            <RecordCount />
+                            <ItemModal />
+                            <BulkAdd />
+                        </div>
+                        <Rail position="right" close="very">
+                            <FilterSortSearch />
+                        </Rail>
+                    </Grid.Column>
+                </Grid>
             </div>
         );
     }

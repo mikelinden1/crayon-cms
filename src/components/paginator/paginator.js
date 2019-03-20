@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Button, Icon } from 'semantic-ui-react';
+
 export default class Paginator extends React.PureComponent {
     static propTypes = {
         currentPage: PropTypes.number.isRequired,
@@ -35,24 +37,18 @@ export default class Paginator extends React.PureComponent {
         }
 
         return (
-            <div style={{margin: '20px 0'}}>
-                <ul className="pagination" style={{justifyContent: 'center'}}>
-                    <li className={onFirstPage ? 'page-item disabled' : 'page-item'}>
-                      <button className="page-link" onClick={() => setCurrentPage(currentPage - 1)} disabled={onFirstPage}>&laquo;</button>
-                    </li>
+            <div style={{margin: '20px 0', textAlign: 'center'}}>
+                <Button.Group>
+                    <Button disabled={onFirstPage} icon onClick={() => setCurrentPage(currentPage - 1)}><Icon name="chevron left" /></Button>
                     {
                     [...Array(numOfPages)].map((e, i) => {
                         return (
-                            <li key={`paginator-link-${i}`} className={i === currentPage - 1 ? 'page-item active' : 'page-item'}>
-                                <button className="page-link" onClick={() => setCurrentPage(i + 1)}>{i + 1}</button>
-                            </li>
+                            <Button key={`page-${i}`} color={currentPage === i + 1 ? 'black' : null} onClick={() => setCurrentPage(i + 1)}>{i + 1}</Button>
                         );
                     })
                     }
-                    <li className={onLastPage ? 'page-item disabled' : 'page-item'}>
-                      <button className="page-link" onClick={() => setCurrentPage(currentPage + 1)} disabled={onLastPage}>&raquo;</button>
-                    </li>
-                </ul>
+                    <Button disabled={onLastPage} icon onClick={() => setCurrentPage(currentPage + 1)}><Icon name="chevron right" /></Button>
+                </Button.Group>
             </div>
         );
     }

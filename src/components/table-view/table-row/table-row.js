@@ -2,6 +2,7 @@ import React from 'react';
 import { SortableElement } from 'react-sortable-hoc';
 import PropTypes from 'prop-types';
 import { showBulkActions } from 'utils/show-bulk-actions';
+import { Table } from 'semantic-ui-react';
 
 import DragHandle from '../drag-handle';
 import TableCell from '../table-cell';
@@ -42,7 +43,7 @@ class TableRow extends React.PureComponent {
     render() {
         const { item } = this.props;
 
-        return <tr style={{width: '100%'}} key={`${item.id}-row`}>{this.mapColumns(item)}</tr>;
+        return <Table.Row style={{width: '100%'}} key={`${item.id}-row`}>{this.mapColumns(item)}</Table.Row>;
     }
 };
 

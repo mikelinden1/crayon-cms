@@ -39,7 +39,7 @@ export default class Login extends React.PureComponent {
             <div className='login-form'>
                 <Grid textAlign='center' style={{ height: '100%', marginTop: '30px' }} verticalAlign='middle'>
                     <Grid.Column style={{ maxWidth: 450 }}>
-                        <Header as='h2' textAlign='center'>Login to Your Account</Header>
+                        <Header as='h1' textAlign='center' style={{ textTransform: 'uppercase' }}>Login</Header>
                         <Form onSubmit={(e) => this.login(e)} size='large'>
                             <Segment stacked>
                                 <Message error={true} visible={error}>{error}</Message>

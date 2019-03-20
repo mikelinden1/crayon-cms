@@ -2,6 +2,7 @@ import React from 'react';
 import SortColumn from 'components/sort-column';
 import BulkMassCheck from 'components/table-view/bulk-mass-check';
 
+import { Table } from 'semantic-ui-react';
 import { showBulkActions } from 'utils/show-bulk-actions';
 
 export default class ColumnHeadings extends React.PureComponent {
@@ -9,42 +10,44 @@ export default class ColumnHeadings extends React.PureComponent {
         const { config: { views: { table: { columns: listColumns, showId } }, capabilities } } = this.props;
         const { reorderable } = capabilities;
 
-        const headingStyle = { display:'inline-block', verticalAlign: 'middle' };
-
         const cols = listColumns.map((column) => {
             const alignment = column.alignment ? `text-${column.alignment}` : 'text-left';
             return (
-                <th key={`${column.heading}-heading`} className={alignment}>
-                    <div style={headingStyle}>{column.heading}</div>
+                <Table.HeaderCell key={`${column.heading}-heading`} className={alignment}>
+                    {column.heading}
                     {
                     !column.noSort
                     ?   <SortColumn fieldName={column.name} />
                     : null
                     }
-                </th>
+                </Table.HeaderCell>
             );
         });
 
         if (showId) {
             cols.unshift(
-                <th key="id-heading">
-                    <div style={headingStyle}>ID</div>
+                <Table.HeaderCell key="id-heading">
+                    ID
                     <SortColumn fieldName="id" />
-                </th>
+                </Table.HeaderCell>
             );
         }
 
         if (showBulkActions(capabilities)) {
             // add bulk check col
-            cols.unshift(<th key="bulk-check-heading"><BulkMassCheck /></th>);
+            cols.unshift(<Table.HeaderCell key="bulk-check-heading"><BulkMassCheck /></Table.HeaderCell>);
         }
 
         if (reorderable) {
-            cols.unshift(<th key="sort-heading"></th>);
+            cols.unshift(<Table.HeaderCell key="sort-heading"></Table.HeaderCell>);
         }
 
-        cols.push(<th key="button-heading"></th>);
+        cols.push(<Table.HeaderCell key="button-heading"></Table.HeaderCell>);
 
-        return <thead><tr>{cols}</tr></thead>;
+        return (
+            <Table.Header>
+                <Table.Row>{cols}</Table.Row>
+            </Table.Header>
+        );
     }
 };

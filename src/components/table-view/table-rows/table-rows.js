@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TableRow from '../table-row';
 import { SortableContainer } from 'react-sortable-hoc';
+import { Table } from 'semantic-ui-react';
 
 class TableBody extends React.PureComponent {
     static propTypes = {
@@ -19,9 +20,9 @@ class TableBody extends React.PureComponent {
 
     render() {
         return (
-            <tbody>
+            <Table.Body>
                 {this.mapRows()}
-            </tbody>
+            </Table.Body>
         );
     }
 }

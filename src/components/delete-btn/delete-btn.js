@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'reactstrap'
-import Spinner from 'components/spinner';
+import { Button, Icon } from 'semantic-ui-react'
 
 export default class DeleteBtn extends React.PureComponent {
     static propTypes = {
@@ -21,8 +20,6 @@ export default class DeleteBtn extends React.PureComponent {
             return null;
         }
 
-        return  item.deleting
-                ? <Button color="danger" disabled={true}><Spinner /></Button>
-                : <Button color="danger" onClick={() => deleteItem(item)}>Delete</Button>;
+        return  <Button icon color="red" disabled={item.deleting} loading={item.deleting} onClick={() => deleteItem(item)}><Icon name="trash" /></Button>
     }
 }

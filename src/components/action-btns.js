@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Button } from 'semantic-ui-react';
 import EditBtn from 'components/edit-btn';
 import DeleteBtn from 'components/delete-btn';
 
@@ -13,10 +14,10 @@ export default class ActionBtns extends React.PureComponent {
         const { item } = this.props;
 
         return (
-            <div>
+            <Button.Group>
                 <EditBtn item={item} />
                 <DeleteBtn item={item} />
-            </div>
+            </Button.Group>
         );
     }
 }

@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'reactstrap';
-import { faBars, faTh } from '@fortawesome/fontawesome-free-solid';
-
-import Icon from 'components/icon';
+import { Button, Icon } from 'semantic-ui-react';
 
 export default class ViewSwitcher extends React.PureComponent {
     static propTypes = {
@@ -26,14 +23,14 @@ export default class ViewSwitcher extends React.PureComponent {
         const oppositeView = currentView === 'table' ? 'grid' : 'table';
 
         return (
-            <div className="btn-group" style={{border: '1px solid #1a1a1a'}} onClick={() => switchView(oppositeView)}>
-                <Button color={currentView === 'table' ? 'primary' : 'secondary'}>
-                    <Icon icon={faBars} />
+            <Button.Group onClick={() => switchView(oppositeView)}>
+                <Button color={currentView === 'table' ? 'blue' : null}>
+                    <Icon name="bars" />
                 </Button>
-                <Button color={currentView === 'grid' ? 'primary' : 'secondary'}>
-                    <Icon icon={faTh} />
+                <Button color={currentView === 'grid' ? 'blue' : null}>
+                    <Icon name="th" />
                 </Button>
-            </div>
+            </Button.Group>
         );
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'reactstrap'
+import { Button, Icon } from 'semantic-ui-react';
 
 export default class EditBtn extends React.PureComponent {
     static propTypes = {
@@ -19,6 +19,6 @@ export default class EditBtn extends React.PureComponent {
             return null;
         }
 
-        return <Button color="primary" disabled={item.deleting} onClick={() => editItem(item)}>Edit</Button>;
+        return <Button icon disabled={item.deleting} onClick={() => editItem(item)}><Icon name="pencil" /></Button>;
     }
 }

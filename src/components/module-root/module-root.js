@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Alert } from 'reactstrap';
+
 import checkConfigFile from 'utils/check-config';
 
-import Spinner from 'components/spinner';
+import { Message, Loader } from 'semantic-ui-react';
 import Module from 'components/module';
 
 export default class ModuleRoot extends React.PureComponent {
@@ -40,17 +40,17 @@ export default class ModuleRoot extends React.PureComponent {
         const { config, currentModule } = this.props;
 
         if (!currentModule) {
-            return <p><Spinner /> Loading module...</p>;
+            return <Loader active inline="centered" content='Loading Module' />;
         }
 
         if (!config) {
-            return <Alert color="danger">Missing config attributes.</Alert>;
+            return <Message error>Missing config attributes.</Message>;
         }
 
         const configIsValid = checkConfigFile(config.id);
 
         if (configIsValid) {
-            return <Alert color="danger">There are errors in the config file. See console.</Alert>;
+            return <Message error>There are errors in the config file. See console.</Message>;
         }
 
         const { moduleName } = config;

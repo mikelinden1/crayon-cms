@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
+import { Button } from 'semantic-ui-react';
 
 export default class ArchiveSwitcher extends React.PureComponent {
     static propTypes = {
@@ -26,17 +26,17 @@ export default class ArchiveSwitcher extends React.PureComponent {
         const nonArchiveText = nat ? nat : 'Active';
 
         return (
-            <div className="btn-group" style={{border: '1px solid #1a1a1a'}}>
-                <Button onClick={() => setArchive('all')} color={archiveMode === 'all' ? 'primary' : 'secondary'}>
+            <Button.Group>
+                <Button onClick={() => setArchive('all')} color={archiveMode === 'all' ? 'blue' : null}>
                     All {itemNamePlural}
                 </Button>
-                <Button onClick={() => setArchive('active')} color={archiveMode === 'active' ? 'primary' : 'secondary'}>
+                <Button onClick={() => setArchive('active')} color={archiveMode === 'active' ? 'blue' : null}>
                     {nonArchiveText}
                 </Button>
-                <Button onClick={() => setArchive('inactive')} color={archiveMode === 'inactive' ? 'primary' : 'secondary'}>
+                <Button onClick={() => setArchive('inactive')} color={archiveMode === 'inactive' ? 'blue' : null}>
                     {archiveText}
                 </Button>
-            </div>
+            </Button.Group>
         );
     }
 }

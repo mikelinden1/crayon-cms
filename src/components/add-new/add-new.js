@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'reactstrap';
-import { faPlus } from '@fortawesome/fontawesome-free-solid';
-
-import IconLeft from 'components/icon-left';
+import { Button, Icon } from 'semantic-ui-react';
 
 export default class AddNew extends React.PureComponent {
     static propTypes = {
@@ -22,7 +19,7 @@ export default class AddNew extends React.PureComponent {
             return (
                 <div className="jumbotron text-center">
                     <p className="lead">
-                        <Button color="primary" onClick={() => openItemModal()}>
+                        <Button color="blue" onClick={() => openItemModal()}>
                             Add The First {itemName}
                         </Button>
                     </p>
@@ -31,8 +28,9 @@ export default class AddNew extends React.PureComponent {
         }
 
         return (
-            <Button color="primary" className="add-new-btn btn-block" onClick={() => openItemModal()}>
-                <IconLeft icon={faPlus}>Add New</IconLeft>
+            <Button icon color="blue" className="add-new-btn" labelPosition="left" onClick={() => openItemModal()}>
+                <Icon name="plus" />
+                Add New
             </Button>
         );
     }

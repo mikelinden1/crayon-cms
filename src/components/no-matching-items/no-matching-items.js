@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Button } from 'reactstrap';
+import { Button, Message } from 'semantic-ui-react';
 
 export default class NoMatchingItems extends React.PureComponent {
     static propTypes = {
@@ -17,10 +17,11 @@ export default class NoMatchingItems extends React.PureComponent {
         const itemNamePlural = itemP ? itemP : itemName + 's';
 
         return (
-            <div className="jumbotron text-center">
-                <p className="lead">None of the {itemNamePlural.toLowerCase()} match your filtering.</p>
-                <Button color="primary" onClick={() => clearFilters()}>Clear Filters</Button>
-            </div>
+            <Message 
+                icon="thumbs down" 
+                header="Nothing to show." 
+                content={<div><p>None of the {itemNamePlural.toLowerCase()} match your filtering.</p><Button onClick={() => clearFilters()}>Clear Filters</Button></div>} 
+            />
         );
     }
 }

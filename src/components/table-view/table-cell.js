@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Table } from 'semantic-ui-react';
 import RenderPropValue from 'components/render-prop-value';
 
 export default class TableCell extends React.PureComponent {
@@ -19,6 +20,6 @@ export default class TableCell extends React.PureComponent {
         const { column, item } = this.props;
 
         const alignment = column.alignment ? `text-${column.alignment}` : 'text-left';
-        return <td key={`${item.id}-${column.name}-cell`} className={alignment}><RenderPropValue column={column} item={item} /></td>
+        return <Table.Cell key={`${item.id}-${column.name}-cell`} className={alignment}><RenderPropValue column={column} item={item} /></Table.Cell>
     }
 };

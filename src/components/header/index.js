@@ -8,7 +8,6 @@ import Header from './header';
 function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
-        user: state.userState.user,
         loggedIn: state.userState.loggedIn
     };
 }

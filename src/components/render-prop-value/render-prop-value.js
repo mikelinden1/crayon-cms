@@ -52,7 +52,7 @@ export default class RenderPropValue extends React.PureComponent {
                 if (displayType === 'boolean-labelright') {
                     return <IconLeft icon={icon}>{column.heading}</IconLeft>;
                 } else {
-                    return <div className="text-center" style={{fontSize: '20px'}}><Icon icon={icon} /></div>;
+                    return <div style={{fontSize: '20px'}}><Icon icon={icon} /></div>;
                 }
             case 'image-fullwidth':
             case 'image':

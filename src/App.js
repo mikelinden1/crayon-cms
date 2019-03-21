@@ -11,7 +11,6 @@ class App extends React.Component {
                 <div className="app-wrapper">
                     <Main />
                 </div>
-                <p style={{marginTop: '30px', textAlign: 'center', fontSize: '10px'}}><em>Powered by Crayon CMS by Mike Linden</em></p>
             </div>
         );
     }

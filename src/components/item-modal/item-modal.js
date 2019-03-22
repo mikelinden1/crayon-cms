@@ -96,11 +96,10 @@ export default class ItemModal extends React.Component {
         return (
             <Modal 
                 closeIcon 
-                size="small" 
                 open={open} 
                 dimmer="blurring"
                 onClose={() => this.closeModal()}>
-                <Header icon='archive' content={entireHeader} />
+                <Header content={entireHeader} />
                 <Modal.Content scrolling>
                     <form onSubmit={(e) => this.saveItem(e)}>
                         { bulkEdit ? <p><em>Fields with values will save for ALL items - empty fields will be ignored.</em></p> : null }

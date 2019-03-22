@@ -22,8 +22,11 @@ export default class Paginator extends React.PureComponent {
             return null;
         }
 
-
         const numOfPages = Math.ceil(numOfItems / itemsPerPage);
+
+        if (numOfPages <= 1) {
+            return null;
+        }
 
         if (currentPage > numOfPages) {
             setCurrentPage(currentPage - 1);
@@ -32,22 +35,36 @@ export default class Paginator extends React.PureComponent {
         const onFirstPage = currentPage === 1;
         const onLastPage = currentPage === numOfPages;
 
-        if (numOfPages <= 1 || !itemsPerPage) {
-            return null;
-        }
-
         return (
             <div style={{margin: '20px 0', textAlign: 'center'}}>
                 <Button.Group>
-                    <Button disabled={onFirstPage} icon onClick={() => setCurrentPage(currentPage - 1)}><Icon name="chevron left" /></Button>
+                    <Button 
+                        icon
+                        disabled={onFirstPage} 
+                        onClick={() => setCurrentPage(currentPage - 1)}
+                        >
+                        <Icon name="chevron left" />
+                    </Button>
                     {
                     [...Array(numOfPages)].map((e, i) => {
                         return (
-                            <Button key={`page-${i}`} color={currentPage === i + 1 ? 'blue' : null} onClick={() => setCurrentPage(i + 1)}>{i + 1}</Button>
+                            <Button 
+                                key={`page-${i}`} 
+                                color={currentPage === i + 1 ? 'blue' : null} 
+                                onClick={() => setCurrentPage(i + 1)}
+                                >
+                                {i + 1}
+                            </Button>
                         );
                     })
                     }
-                    <Button disabled={onLastPage} icon onClick={() => setCurrentPage(currentPage + 1)}><Icon name="chevron right" /></Button>
+                    <Button 
+                        icon 
+                        disabled={onLastPage} 
+                        onClick={() => setCurrentPage(currentPage + 1)}
+                        >
+                        <Icon name="chevron right" />
+                    </Button>
                 </Button.Group>
             </div>
         );

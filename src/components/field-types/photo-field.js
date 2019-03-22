@@ -42,8 +42,13 @@ export default class TextField extends React.PureComponent {
         img.onerror = () => this.setState({ previewImage: null });
     }
 
+    showMediaPicker(e) {
+        e.preventDefault();
+        this.props.showMediaPicker();
+    }
+
     render() {
-        const { name, value, disabled, onChange, showMediaPicker } = this.props;
+        const { name, value, disabled, onChange } = this.props;
 
         const { previewImage } = this.state;
 
@@ -60,8 +65,11 @@ export default class TextField extends React.PureComponent {
                     name={name}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
-                />
-                <Button disabled={disabled} onClick={() => showMediaPicker()}>Select</Button>
+                    action
+                >
+                    <input />
+                    <Button disabled={disabled} onClick={(e) => this.showMediaPicker(e)}>Select</Button>
+                </Input>
             </Form.Group>
         );
     }

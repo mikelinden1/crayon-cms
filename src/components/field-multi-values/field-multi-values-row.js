@@ -4,10 +4,8 @@ import { SortableElement } from 'react-sortable-hoc';
 
 import { getEnvVar } from 'utils/get-env-var';
 
-import { Button } from 'reactstrap';
-import { faTrash, faBars } from '@fortawesome/fontawesome-free-solid';
+import { Button, Icon } from 'semantic-ui-react';
 
-import Icon from 'components/icon';
 
 class FieldMultiValue extends React.PureComponent {
     static propTypes = {
@@ -31,8 +29,8 @@ class FieldMultiValue extends React.PureComponent {
                 }
                 <div className="item-name">{item}</div>
                 <div className="btns">
-                    <div className="drag-handle"><Icon icon={faBars} /></div>
-                    <Button color="danger" className="btn-sm" onClick={() => deleteItem()}><Icon icon={faTrash} /></Button>
+                    <div className="drag-handle"><Icon name="bars" /></div>
+                    <Button basic color="red" icon="trash" size="small" onClick={() => deleteItem()} />
                 </div>
             </li>
         );

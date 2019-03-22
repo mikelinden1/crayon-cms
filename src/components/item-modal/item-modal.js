@@ -100,9 +100,7 @@ export default class ItemModal extends React.Component {
         return (
             <form onSubmit={(e) => this.saveItem(e)}>
                 <Modal 
-                    closeIcon 
                     open={open} 
-                    dimmer="blurring"
                     onClose={() => this.closeModal()}>
                     <Header content={entireHeader} />
                     <Modal.Content>

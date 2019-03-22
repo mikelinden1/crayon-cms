@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'reactstrap';
+import { Button, Grid } from 'semantic-ui-react';
 
 import Field from 'components/field';
 import FieldMultiValues from 'components/field-multi-values';
@@ -57,14 +57,16 @@ export default class FieldMulti extends React.PureComponent {
 
         return (
             <div>
-                <div className="row">
-                    <div className="col-md-9">
-                        <Field {...fieldProps} />
-                    </div>
-                    <div className="col-md-3">
-                        <Button color="success" className="btn-block" onClick={(e) => this.addToMulti(e)}>Add</Button>
-                    </div>
-                </div>
+                <Grid>
+                    <Grid.Row>
+                        <Grid.Column width={12}>
+                            <Field {...fieldProps} />
+                        </Grid.Column>
+                        <Grid.Column width={4}>
+                            <Button color="green" fluid onClick={(e) => this.addToMulti(e)}>Add</Button>
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
                 <FieldMultiValues name={name} />
             </div>
         );

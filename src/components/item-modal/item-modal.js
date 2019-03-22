@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Message, Button, Modal, Header } from 'semantic-ui-react';
 
-import Spinner from 'components/spinner';
 import FieldGroup from 'components/field-group';
 
 import getPropByName from 'utils/get-prop-by-name';
@@ -83,37 +82,36 @@ export default class ItemModal extends React.Component {
     render() {
         const { open, saving, error, editMode, bulkEdit, hasValidationErrors, config: { itemName, itemNamePlural } } = this.props;
 
-        const createBtn =   saving
-                            ? <Button color="primary" disabled><Spinner /></Button>
-                            : <Button color="primary" type="submit">Save</Button>;
-
         const fields = this.renderFields();
 
         const headerAction = editMode ? 'Edit' : 'New';
         const entireHeader = bulkEdit ? `Bulk Edit ${itemNamePlural}` : `${headerAction} ${itemName}`;
 
         const errorAlert =  error
-                            ?   <Alert color="danger">{DEFAULT_ERROR_MESSAGE}</Alert>
+                            ?   <Message error>{DEFAULT_ERROR_MESSAGE}</Message>
                             :   hasValidationErrors
-                                ? <Alert color="danger">Please correct the fields outlined in red</Alert>
+                                ? <Message error>Please correct the fields outlined in red</Message>
                                 : null;
 
         return (
-            <Modal isOpen={open} toggle={() => this.closeModal()}>
-                <form onSubmit={(e) => this.saveItem(e)}>
-                    <ModalHeader toggle={() => this.closeModal()}>
-                        {entireHeader}
-                    </ModalHeader>
-                    <ModalBody>
+            <Modal 
+                closeIcon 
+                size="small" 
+                open={open} 
+                dimmer="blurring"
+                onClose={() => this.closeModal()}>
+                <Header icon='archive' content={entireHeader} />
+                <Modal.Content scrolling>
+                    <form onSubmit={(e) => this.saveItem(e)}>
                         { bulkEdit ? <p><em>Fields with values will save for ALL items - empty fields will be ignored.</em></p> : null }
                         {errorAlert}
                         {fields}
-                    </ModalBody>
-                    <ModalFooter>
-                        {createBtn} {' '}
-                        <Button color="secondary" onClick={() => this.closeModal()} disabled={saving}>Cancel</Button>
-                    </ModalFooter>
-                </form>
+                    </form>
+                </Modal.Content>
+                <Modal.Actions>
+                    <Button color="blue" loading={saving} type="submit">Save</Button>
+                    <Button onClick={() => this.closeModal()} disabled={saving}>Cancel</Button>
+                </Modal.Actions>
             </Modal>
         );
     }

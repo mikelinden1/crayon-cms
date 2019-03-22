@@ -1,11 +1,20 @@
-.form-group.has-error .control-label {
-    color: #d9534f;
+/* reset for react tags to override Semantic UI props */
+.react-tagsinput {
+    border-radius: .28571429rem;
+    -webkit-box-shadow: 0 0 0 0 transparent inset;
+    box-shadow: 0 0 0 0 transparent inset;
 }
 
-.form-group.has-error .form-control {
-    border-color: #d9534f;
+.react-tagsinput-input {
+    background: transparent !important;
+    border: 0 !important;
+    font-size: 13px !important;
+    font-weight: 400;
+    margin-bottom: 1px !important;
+    margin-top: 1px !important;
+    outline: none;
+    padding: 5px !important;
+    width: 80px !important;
+    vertical-align: middle !important;
 }
 
-.invalid-feedback {
-    display: block;
-}

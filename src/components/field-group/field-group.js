@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { Form, Label } from 'semantic-ui-react';
+
 import FieldSingle from 'components/field-single';
 import FieldMulti from 'components/field-multi';
 
@@ -37,25 +39,22 @@ export default class FieldGroup extends React.PureComponent {
             return field;
         }
 
-        const fieldClasses = ['form-group'];
-
         let errorText = '';
         if (validationErrors.length) {
-            fieldClasses.push('has-error');
             const errorTextP = validationErrors.map((e, i) => <p key={`errormsg-${e.itemName}-${i}`}>{e.msg}</p>);
 
-            errorText = <div className="invalid-feedback">{errorTextP}</div>;
+            errorText = <Label basic pointing color="red">{errorTextP}</Label>;
         }
 
         const helpText = help ? <p><small><em>{help}</em></small></p> : null;
 
         return (
-            <div className={fieldClasses.join(' ')}>
-                <label className="control-label">{label}</label>
+            <Form.Field error={validationErrors.length > 0}>
+                <label>{label}</label>
                 {field}
                 {helpText}
                 {errorText}
-            </div>
+            </Form.Field>
         );
     }
 }

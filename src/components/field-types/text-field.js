@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Input } from 'semantic-ui-react';
 
 export default class TextField extends React.PureComponent {
     static propTypes = {
@@ -12,6 +13,6 @@ export default class TextField extends React.PureComponent {
     render() {
         const { name, value, onChange, disabled } = this.props;
 
-        return <input type="text" disabled={disabled} name={name} value={value} onChange={(e) => onChange(e.target.value)} className="form-control" />;
+        return <Input type="text" disabled={disabled} name={name} value={value} onChange={(e) => onChange(e.target.value)} className="form-control" />;
     }
 }

@@ -6,7 +6,8 @@ import config from 'config';
 
 import { getCookie } from 'utils/get-cookie';
 
-import Spinner from 'components/spinner';
+import { Loader } from 'semantic-ui-react';
+
 import Login from 'components/login';
 
 import Homepage from 'components/homepage';
@@ -35,7 +36,7 @@ export default class Main extends React.PureComponent {
         const { loggedIn, validatingJwt } = this.props;
 
         if (validatingJwt) {
-            return <p><Spinner /> Logging in...</p>;
+            return <div className="padded-container"><Loader active inline="centered" content='Logging in' /></div>;
         }
 
         if (!loggedIn) {

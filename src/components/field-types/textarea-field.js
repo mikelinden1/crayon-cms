@@ -13,6 +13,6 @@ export default class TextareaField extends React.PureComponent {
         const { name, value, rows: r, disabled, onChange } = this.props;
         const rows = r ? r : 4;
 
-        return <textarea name={name} rows={rows} value={value} disabled={disabled} onChange={(e) => onChange(e.target.value)} className="form-control" />;
+        return <textarea name={name} rows={rows} value={value} disabled={disabled} onChange={(e) => onChange(e.target.value)}/>;
     }
 }

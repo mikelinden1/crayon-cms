@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Message, Button, Modal, Header } from 'semantic-ui-react';
+import { Form, Message, Button, Modal, Header, Grid } from 'semantic-ui-react';
 
 import FieldGroup from 'components/field-group';
 
@@ -37,9 +37,7 @@ export default class ItemModal extends React.Component {
         }
     }
 
-    saveItem(e) {
-        e.preventDefault();
-
+    saveItem() {
         const { newItem, editMode, bulkEdit, actions: { saveNewItem, saveBulkEdit, saveEditItem } } = this.props;
 
         if (editMode) {
@@ -60,9 +58,9 @@ export default class ItemModal extends React.Component {
             return itemProps.map((prop) => <FieldGroup key={`${prop.name}-field`} {...prop} />);
         }
 
-        return modalGrid.map((row, i) => {
+        const gridRows = modalGrid.map((row, i) => {
             const columnCount = row.length;
-            const columnClass = `col-md-${12/columnCount}`;
+            const columnWidth = Math.floor(16/columnCount);
 
             const rowHtml = row.map((col, e) => {
                 const field = getPropByName(currentModule, col);
@@ -72,11 +70,17 @@ export default class ItemModal extends React.Component {
                     return null;
                 }
 
-                return <div key={`col-${e}-row-${i}`} className={columnClass}><FieldGroup key={`${field.name}-field`} disabled={saving} {...field} /></div>;
+                return (
+                    <Grid.Column key={`col-${e}-row-${i}`} width={columnWidth}>
+                        <FieldGroup key={`${field.name}-field`} disabled={saving} {...field} />
+                    </Grid.Column>
+                );
             });
 
-            return <div key={`row-${i}`} className="row">{rowHtml}</div>;
+            return <Grid.Row key={`row-${i}`}>{rowHtml}</Grid.Row>;
         });
+
+        return <Grid>{gridRows}</Grid>;
     }
 
     render() {
@@ -94,24 +98,26 @@ export default class ItemModal extends React.Component {
                                 : null;
 
         return (
-            <Modal 
-                closeIcon 
-                open={open} 
-                dimmer="blurring"
-                onClose={() => this.closeModal()}>
-                <Header content={entireHeader} />
-                <Modal.Content scrolling>
-                    <form onSubmit={(e) => this.saveItem(e)}>
+            <form onSubmit={(e) => this.saveItem(e)}>
+                <Modal 
+                    closeIcon 
+                    open={open} 
+                    dimmer="blurring"
+                    onClose={() => this.closeModal()}>
+                    <Header content={entireHeader} />
+                    <Modal.Content>
                         { bulkEdit ? <p><em>Fields with values will save for ALL items - empty fields will be ignored.</em></p> : null }
                         {errorAlert}
-                        {fields}
-                    </form>
-                </Modal.Content>
-                <Modal.Actions>
-                    <Button color="blue" loading={saving} type="submit">Save</Button>
-                    <Button onClick={() => this.closeModal()} disabled={saving}>Cancel</Button>
-                </Modal.Actions>
-            </Modal>
+                        <Form loading={saving}>
+                            {fields}
+                        </Form>
+                    </Modal.Content>
+                    <Modal.Actions>
+                        <Button color="blue" loading={saving} onClick={() => this.saveItem()}>Save</Button>
+                        <Button onClick={() => this.closeModal()} disabled={saving}>Cancel</Button>
+                    </Modal.Actions>
+                </Modal>
+            </form>
         );
     }
 }

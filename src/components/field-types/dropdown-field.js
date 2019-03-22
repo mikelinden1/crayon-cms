@@ -59,8 +59,14 @@ export default class DropdownField extends React.PureComponent {
         }
 
         let value = inputValue;
-        if (multiple && value && typeof value === 'string') {
-            value = JSON.parse(value);
+        if (multiple) {
+            if (!value || value === '') {
+                value = [];
+            }
+
+            if (typeof value === 'string') {
+                value = JSON.parse(value);
+            }
         }
 
         // map options for semantic UI 

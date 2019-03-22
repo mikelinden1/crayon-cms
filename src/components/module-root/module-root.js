@@ -40,17 +40,17 @@ export default class ModuleRoot extends React.PureComponent {
         const { config, currentModule } = this.props;
 
         if (!currentModule) {
-            return <Loader active inline="centered" content='Loading Module' />;
+            return <div style={{ padding: '30px 25px' }}><Loader active inline="centered" content='Loading Module' /></div>;
         }
 
         if (!config) {
-            return <Message error>Missing config attributes.</Message>;
+            return <div style={{ padding: '30px 25px' }}><Message error>Missing config attributes.</Message></div>;
         }
 
         const configIsValid = checkConfigFile(config.id);
 
         if (configIsValid) {
-            return <Message error>There are errors in the config file. See console.</Message>;
+            return <div style={{ padding: '30px 25px' }}><Message error>There are errors in the config file. See console.</Message></div>;
         }
 
         return (

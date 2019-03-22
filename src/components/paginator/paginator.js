@@ -43,7 +43,7 @@ export default class Paginator extends React.PureComponent {
                     {
                     [...Array(numOfPages)].map((e, i) => {
                         return (
-                            <Button key={`page-${i}`} color={currentPage === i + 1 ? 'black' : null} onClick={() => setCurrentPage(i + 1)}>{i + 1}</Button>
+                            <Button key={`page-${i}`} color={currentPage === i + 1 ? 'blue' : null} onClick={() => setCurrentPage(i + 1)}>{i + 1}</Button>
                         );
                     })
                     }

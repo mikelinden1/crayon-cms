@@ -1,14 +1,14 @@
+.photo-picker {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
 .photo-picker-thumb {
-    width: 60px;
+    width: 50px;
     height: 100%;
     object-fit: cover;
+    border-radius: 0.28571429rem 0 0 0.28571429rem !important;
 }
 
-.photo-field input {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-.photo-field .btn {
-    height: 100%;
+.photo-picker-thumb ~ input {
+    border-radius: 0 0.28571429rem 0.28571429rem 0 !important;
 }

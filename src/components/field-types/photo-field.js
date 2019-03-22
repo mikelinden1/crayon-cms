@@ -53,12 +53,7 @@ export default class TextField extends React.PureComponent {
         const { previewImage } = this.state;
 
         return (
-            <Form.Group>
-                {
-                previewImage && previewImage !== ''
-                ?   <img src={previewImage} alt="Preview" className="photo-picker-thumb" />
-                :   null
-                }
+            <Form.Group className="photo-picker">
                 <Input
                     disabled={disabled}
                     type="text"
@@ -67,6 +62,11 @@ export default class TextField extends React.PureComponent {
                     onChange={(e) => onChange(e.target.value)}
                     action
                 >
+                    {
+                    previewImage && previewImage !== ''
+                    ?   <img src={previewImage} alt="Preview" className="photo-picker-thumb" />
+                    :   null
+                    }
                     <input />
                     <Button disabled={disabled} onClick={(e) => this.showMediaPicker(e)}>Select</Button>
                 </Input>

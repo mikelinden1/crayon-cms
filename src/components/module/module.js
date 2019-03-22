@@ -45,14 +45,14 @@ export default class Main extends React.PureComponent {
         const { fetched, error, config } = this.props;
 
         if (!fetched) {
-            return <Loader active inline="centered" content='Loading Items' />;
+            return <div className="padded-container"><Loader active inline="centered" content='Loading Items' /></div>;
         }
 
         if (error) {
             const { itemName, itemNamePlural: itemP } = config;
 
             const itemNamePlural = itemP ? itemP : itemName + 's';
-            return <Message error>Error loading {itemNamePlural.toLowerCase()}</Message>;
+            return <div className="padded-container"><Message error>Error loading {itemNamePlural.toLowerCase()}</Message></div>;
         }
 
         const { moduleName } = config;

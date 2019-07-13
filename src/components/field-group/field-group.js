@@ -29,7 +29,16 @@ export default class FieldGroup extends React.PureComponent {
     }
 
     render() {
-        const { label, type, helpText: help, validationErrors } = this.props;
+        const { label, type, helpText: help, validationErrors, hooks } = this.props;
+
+        const renderHook = hooks && hooks.render && typeof hooks.render === 'function';
+        if (renderHook) {
+            const hookResult = hooks.render(this.props.item);
+
+            if (!hookResult) {
+                return null;
+            }
+        }
 
         let field = this.getField();
 

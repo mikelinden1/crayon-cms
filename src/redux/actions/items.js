@@ -99,6 +99,16 @@ function validateItems(data, dispatch, moduleId) {
     const moduleConfig = config.modules[moduleId];
 
     moduleConfig.itemProps.forEach((item) => {
+        // run the render hook, if the item is not displayed do not validate that field
+        const renderHook = item.hooks && item.hooks.render && typeof item.hooks.render === 'function';
+        if (renderHook) {
+            const hookResult = item.hooks.render(data);
+
+            if (!hookResult) {
+                return null;
+            }
+        }
+
         const val = data[item.name] ? data[item.name] : '';
 
         if (item.required && val.trim() === '') {

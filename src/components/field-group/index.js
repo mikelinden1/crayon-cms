@@ -11,7 +11,8 @@ function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
         value: getPropValue(state, ownProps),
-        validationErrors: getPropValidationErrors(state, ownProps)
+        validationErrors: getPropValidationErrors(state, ownProps),
+        item: state[state.currentModule].modalItemProps
     };
 }
 

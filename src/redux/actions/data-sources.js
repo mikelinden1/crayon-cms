@@ -1,6 +1,7 @@
 import { ActionTypes } from 'utils/constants';
 import axios from 'axios';
 
+import { getEnvVar } from 'utils/get-env-var';
 import getPropByName from 'utils/get-prop-by-name';
 
 export function fetchDatasource(name, source) {
@@ -12,9 +13,12 @@ export function fetchDatasource(name, source) {
             payload: { name }
         });
 
-        axios.get(source.url).then((res) => {
+        let sourceUrl = source.url;
 
+        const API_BASE = getEnvVar('apiBase');
+        sourceUrl = sourceUrl.replace('[API_BASE]', API_BASE);
 
+        axios.get(sourceUrl).then((res) => {
             const sourceProp = getPropByName(state.currentModule, name);
 
             if (!sourceProp) {

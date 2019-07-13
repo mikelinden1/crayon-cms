@@ -1,7 +1,7 @@
 import { ActionTypes } from 'utils/constants';
 import config from 'config';
 import { getEnvVar } from 'utils/get-env-var';
-
+import { getModuleHook } from 'utils/get-module-hooks';
 import axios from 'axios';
 
 import { arrayMove } from 'react-sortable-hoc';
@@ -14,7 +14,14 @@ export function fetchItems(moduleId) {
 
         dispatch({ type: `${actionBase}_PENDING` });
 
-        axios.get(`${API_BASE}/${moduleId}?transform=1`).then((payload) => {
+        let fetchUrl = `${API_BASE}/${moduleId}?transform=1`;
+        const fetchUrlHook = getModuleHook(moduleId, 'overrideFetchUrl');
+
+        if (fetchUrlHook) {
+            fetchUrl = fetchUrlHook(fetchUrl, API_BASE);
+        }
+
+        axios.get(fetchUrl).then((payload) => {
             dispatch({
                 type: `${actionBase}_FULFILLED`,
                 payload
@@ -121,6 +128,14 @@ function validateItems(data, dispatch, moduleId) {
                 msg: item.regexErrorText
             });
         }
+
+        if (item.hooks && item.hooks.validation && typeof item.hooks.validation === 'function') {
+            const hookError = item.hooks.validation(data);
+
+            if (hookError) {
+                errors.push(hookError);
+            }
+        }
     });
 
     dispatch({
@@ -147,6 +162,12 @@ export function saveNewItem(data) {
 
             data = stringifyArrays(data);
 
+            const preSaveHook = getModuleHook(moduleId, 'preSave');
+            if (preSaveHook) {
+                const items = (state[moduleId] && state[moduleId].items && state[moduleId].items.items) || [];
+                data = preSaveHook(data, items);
+            }
+
             const action = {};
 
             action.type = `${ActionTypes.SAVE_NEW_ITEM}_${moduleId}`;
@@ -161,6 +182,12 @@ export function editItem(item) {
     return (dispatch, getState) => {
         const state = getState();
         const moduleId = state.currentModule;
+
+        const preSaveHook = getModuleHook(moduleId, 'preSave');
+        if (preSaveHook) {
+            const items = (state[moduleId] && state[moduleId].items && state[moduleId].items.items) || [];
+            item = preSaveHook(item, items);
+        }
 
         dispatch({
             type: `${ActionTypes.EDIT_ITEM}_${moduleId}`,
@@ -209,9 +236,20 @@ export function saveBulkEdit(data) {
             }
         });
 
+        const preSaveHook = getModuleHook(moduleId, 'preSave');
+        if (preSaveHook) {
+            const items = (state[moduleId] && state[moduleId].items && state[moduleId].items.items) || [];
+            data = preSaveHook(data, items);
+        }
+
         // the api expects the data for all items being updated, so we need to duplicate the data for each item selected
         let dataDuplicated = selectedItems.reduce((allData, item) => {
-            allData.push(data);
+            const itemData = {
+                ...data,
+                id: item.id
+            };
+
+            allData.push(itemData);
             return allData;
         }, []);
 
@@ -238,6 +276,18 @@ export function deleteItem(item) {
 
         const { capabilities, itemName } = moduleConfig;
 
+        const preDeleteHook = getModuleHook(moduleId, 'preDelete');
+
+        if (preDeleteHook) {
+            const items = (state[moduleId] && state[moduleId].items && state[moduleId].items.items) || [];
+            const hookResponse = preDeleteHook(item, items);
+
+            if (hookResponse) {
+                alert(hookResponse);
+                return false;
+            }
+        }
+        
         const localDeleteIdProp = capabilities.deleteIdProp ? capabilities.deleteIdProp : 'name';
         const name = item[localDeleteIdProp];
 

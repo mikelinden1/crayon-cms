@@ -1,5 +1,6 @@
 import { ActionTypes } from 'utils/constants';
 import axios from 'axios';
+import { getModuleHook } from 'utils/get-module-hooks';
 
 import { getEnvVar } from 'utils/get-env-var';
 
@@ -74,7 +75,13 @@ export function saveBulkItems(items) {
         const state = getState();
         const moduleId = state.currentModule;
 
-        dispatch({ type: `${ActionTypes.SAVE_BULK_ITEMS}_${moduleId}_PENDING` })
+        dispatch({ type: `${ActionTypes.SAVE_BULK_ITEMS}_${moduleId}_PENDING` });
+
+        const preSaveHook = getModuleHook(moduleId, 'preSave');
+        if (preSaveHook) {
+            const currentItems = (state[moduleId] && state[moduleId].items && state[moduleId].items.items) || [];
+            items = items.map((item) => preSaveHook(item, currentItems));
+        }
 
         axios.post(`${API_BASE}/${moduleId}`, items).then((res) => {
             const newIds = res.data;

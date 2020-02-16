@@ -16,7 +16,7 @@ export default class RenderPropValue extends React.PureComponent {
         column: PropTypes.shape({
             heading: PropTypes.string,
             name: PropTypes.string.isRequired,
-            displayType: PropTypes.string,
+            displayType: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
             altProp: PropTypes.string
         }).isRequired
     };
@@ -40,6 +40,10 @@ export default class RenderPropValue extends React.PureComponent {
 
         if (!displayType) {
             return value ? value : null;
+        }
+
+        if (typeof displayType === 'function') {
+            return displayType(value, item);
         }
 
         switch (displayType) {

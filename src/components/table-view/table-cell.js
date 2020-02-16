@@ -9,7 +9,7 @@ export default class TableCell extends React.PureComponent {
         column: PropTypes.shape({
             heading: PropTypes.string,
             name: PropTypes.string.isRequired,
-            displayType: PropTypes.string,
+            displayType: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
             altProp: PropTypes.string,
             alignment: PropTypes.string
         }).isRequired

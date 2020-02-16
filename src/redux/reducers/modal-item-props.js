@@ -5,7 +5,7 @@ function modalItemPropsCreator(id) {
     const moduleConfig = config.modules[id];
     const isReorderable = moduleConfig.capabilities.reorderable;
 
-    const initialState = isReorderable ? { sort: 9999999 } : {};
+    const initialState = isReorderable ? { sort: 9999 } : {};
 
     return function modalItemProps(state = initialState, action) {
         switch (action.type) {

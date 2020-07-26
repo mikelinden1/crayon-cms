@@ -111,7 +111,7 @@ function validateItems(data, dispatch, moduleId) {
 
         const val = data[item.name] ? data[item.name] : '';
 
-        if (item.required && val.trim() === '') {
+        if (item.required && val === '') {
             errors.push({
                 itemName: item.name,
                 msg: `${item.label} is required`

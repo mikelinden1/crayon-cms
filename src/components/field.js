@@ -10,7 +10,8 @@ import {
     CheckboxField,
     TextAreaField,
     RteField,
-    TagsField
+    TagsField,
+    RepeaterField
 } from 'components/field-types';
 
 export default class Field extends React.PureComponent {
@@ -40,6 +41,8 @@ export default class Field extends React.PureComponent {
                 return <TagsField {...fieldProps} />;
             case 'rte':
                 return <RteField {...fieldProps} />;
+            case 'repeater':
+                return <RepeaterField {...fieldProps} />;
             default:
                 return null;
         }

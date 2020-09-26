@@ -17,13 +17,15 @@ export default class FieldSingle extends React.PureComponent {
         const { name, validationErrors, actions: { setItemProp, validateOnChange } } = this.props;
         const fieldProps = {...this.props};
 
-        fieldProps.onChange = (val) => {
-            setItemProp(name, val);
+        if (!fieldProps.onChange) {
+            fieldProps.onChange = (val) => {
+                setItemProp(name, val);
 
-            if (validationErrors.length) {
-                validateOnChange();
-            }
-        };
+                if (validationErrors.length) {
+                    validateOnChange();
+                }
+            };
+        }
 
         return <Field {...fieldProps} />;
     }

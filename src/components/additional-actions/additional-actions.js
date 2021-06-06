@@ -18,6 +18,12 @@ export default class AdditionalActions extends React.PureComponent {
         return (
             <React.Fragment>
                 {additionalActions.map((btn, i) => {
+                    if (btn.shouldRender && typeof btn.shouldRender === 'function') {
+                        if (!btn.shouldRender(item)) {
+                            return null;
+                        }
+                    }
+
                     return <Button key={`additional-action-${i}`} color={btn.color || 'primary'} disabled={item.deleting} onClick={() => btn.action(item)}>{btn.label}</Button>;
                 })}
             </React.Fragment>

@@ -5,10 +5,10 @@ import Dropzone from 'react-dropzone'
 import { getEnvVar } from 'utils/get-env-var';
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import Icon from 'components/icon';
 
 import Spinner from 'components/spinner';
 import MediaFilters from 'components/media-filters';
+import Icon from 'components/icon';
 import { faFilePdf } from '@fortawesome/fontawesome-free-solid';
 
 export default class MediaPicker extends React.PureComponent {

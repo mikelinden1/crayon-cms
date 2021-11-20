@@ -34,6 +34,20 @@
     cursor: pointer;
 }
 
+.media-grid .media-item.non-image {
+    background-color: #eee;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    font-size: 11px;
+}
+.media-grid .media-item.non-image .icon {
+    font-size: 30px;
+}
+
 .media-module {
     display: flex;
     justify-content: space-between;

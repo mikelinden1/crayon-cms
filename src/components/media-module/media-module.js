@@ -7,6 +7,8 @@ import { getEnvVar } from 'utils/get-env-var';
 import Spinner from 'components/spinner';
 import MediaFilters from 'components/media-filters';
 import MediaInspector from 'components/media-inspector';
+import Icon from 'components/icon';
+import { faFilePdf } from '@fortawesome/fontawesome-free-solid';
 
 export default class MediaModule extends React.PureComponent {
     static propTypes = {

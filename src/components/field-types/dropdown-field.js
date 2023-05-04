@@ -34,7 +34,7 @@ export default class DropdownField extends React.PureComponent {
     }
 
     handleChange(val) {
-        const { onChange } = this.props;
+        const { onChange, multiple } = this.props;
 
         let output;
         if (val && val.length) {
@@ -43,7 +43,11 @@ export default class DropdownField extends React.PureComponent {
                 return all;
             }, []);
         } else {
-            output = val ? val.value : '';
+            if (multiple) {
+                output = [];
+            } else {
+                output = val ? val.value : '';
+            }
         }
 
         onChange(output);

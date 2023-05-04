@@ -7,6 +7,9 @@ import { getEnvVar } from 'utils/get-env-var';
 import Spinner from 'components/spinner';
 import MediaFilters from 'components/media-filters';
 import MediaInspector from 'components/media-inspector';
+import Icon from 'components/icon';
+import { faFilePdf } from '@fortawesome/fontawesome-free-solid';
+
 export default class MediaModule extends React.PureComponent {
     static propTypes = {
         open: PropTypes.bool,
@@ -38,6 +41,17 @@ export default class MediaModule extends React.PureComponent {
             if (selectedItem && selectedItem.id === item.id) {
                 classes.push('selected');
             }
+
+            if (item.filename.includes('.pdf')) {
+                classes.push('non-image');
+                return (
+                    <div key={`media-item-${item.id}`} onClick={() => clickItem(item)} className={classes.join(' ')}>
+                        <div className="icon"><Icon icon={faFilePdf} /></div>
+                        {item.filename}
+                    </div>
+                );
+            }
+            
             return (
                 <div key={`media-item-${item.id}`} onClick={() => clickItem(item)} className={classes.join(' ')}>
                     <img src={`${getEnvVar('uploadFullPath')}/thumb_${item.filename}`} alt="Media picker item" />

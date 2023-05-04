@@ -15,7 +15,7 @@ import FieldSingle from './field-single';
 function mapStateToProps(state, ownProps) {
     return {
         ...ownProps,
-        value: getPropValue(state, ownProps),
+        value: ownProps.valueOverride || getPropValue(state, ownProps),
         datasources: getModuleReduxProp(state, 'datasources'),
         validationErrors: getPropValidationErrors(state, ownProps)
     };

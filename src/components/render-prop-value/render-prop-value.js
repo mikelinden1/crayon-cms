@@ -21,8 +21,19 @@ export default class RenderPropValue extends React.PureComponent {
         }).isRequired
     };
 
+    componentWillMount() {
+        const { column: { displayType, name, source }, datasources, actions: { fetchDatasource } } = this.props;
+
+        if (displayType === 'datasource') {
+          
+            if (!datasources[name]) {
+                fetchDatasource(name, source);
+            }
+        }
+    }
+
     render() {
-        const { column, item, config: { id: moduleId, itemName } } = this.props;
+        const { column, item, config: { id: moduleId, itemName }, datasources } = this.props;
         const columnProp = getPropByName(moduleId, column.name);
 
         let value = item[column.name];
@@ -102,6 +113,21 @@ export default class RenderPropValue extends React.PureComponent {
                 }
 
                 return clipped;
+            case 'datasource':
+                const datasource = datasources[column.name];
+                console.log({ datasource });
+
+                if (!datasource || datasource.fetching) {
+                    return 'Loading...';
+                }
+
+                const valueItem = datasource.data.find(line => line.value === value);
+
+                if (!valueItem) {
+                    return <p><em>Not found</em></p>;
+                }
+
+                return valueItem.label;
             default:
                 if (value && value.length) {
                     return value;

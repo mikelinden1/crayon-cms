@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TagsInput from 'react-tagsinput'
+import { readString } from 'react-papaparse'
 
 import { Alert, Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -45,8 +46,8 @@ export default class BulkAdd extends React.Component {
             return;
         }
 
-        const rows = csvContents.split('\n');
-        const data = rows.map((row) => row.split(',').map((value) => value.trim()));
+        const csvParsed = readString(csvContents);
+        const data = csvParsed.data;
 
         if (!data.length) {
             throwBulkError('Empty CSV file');

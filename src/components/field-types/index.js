@@ -8,3 +8,4 @@ export { default as CheckboxField } from './checkbox-field';
 export { default as TextAreaField } from './textarea-field';
 export { default as RteField } from './rte-field';
 export { default as TagsField } from './tags-field';
+export { default as RepeaterField } from './repeater-field';

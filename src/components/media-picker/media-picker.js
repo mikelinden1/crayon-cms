@@ -8,6 +8,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import Spinner from 'components/spinner';
 import MediaFilters from 'components/media-filters';
+import Icon from 'components/icon';
+import { faFilePdf } from '@fortawesome/fontawesome-free-solid';
 
 export default class MediaPicker extends React.PureComponent {
     static propTypes = {
@@ -42,6 +44,17 @@ export default class MediaPicker extends React.PureComponent {
             if (selectedItem && selectedItem.id === item.id) {
                 classes.push('selected');
             }
+
+            if (item.filename.includes('.pdf')) {
+                classes.push('non-image');
+                return (
+                    <div key={`media-item-${item.id}`} onClick={() => clickItem(item)} className={classes.join(' ')}>
+                        <div className="icon"><Icon icon={faFilePdf} /></div>
+                        {item.filename}
+                    </div>
+                );
+            }
+
             return (
                 <div key={`media-item-${item.id}`} onClick={() => clickItem(item)} className={classes.join(' ')}>
                     <img src={`${getEnvVar('uploadFullPath')}/thumb_${item.filename}`} alt="Media picker item" />

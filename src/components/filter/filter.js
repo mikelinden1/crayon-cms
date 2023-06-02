@@ -25,18 +25,18 @@ export default class Filter extends React.PureComponent {
         }
 
         return filters.map((filter) => {
-            const filterProps = getPropByName(currentModule, filter);
+            const props = getPropByName(currentModule, filter);
 
-            if (!filterProps) {
+            if (!props) {
                 console.error('Missing prop in filters', filter);
                 return null;
             }
 
+            const filterProps = Object.assign({}, props);
             filterProps.onChange = (val) => actions.setFilter(filterProps.name, val);
             filterProps.actions = actions;
             filterProps.datasources = datasources;
             filterProps.value = filterVals[filterProps.name] ? filterVals[filterProps.name] : (filterProps.multiple ? [] : '');
-
             return <DropdownField placeholder={`${filterProps.label} Filter`} key={`${filterProps.name}-filter`} {...filterProps} />;
         });
     }

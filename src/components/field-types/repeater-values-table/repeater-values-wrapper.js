@@ -14,10 +14,10 @@ class RepeaterValuesWrapper extends React.PureComponent {
     }
 
     render() {
-        const { items, name } = this.props;
+        const { items, label } = this.props;
 
         if (!items || !items.length || typeof items === 'string') {
-            return <p><em>No {name} added.</em></p>;
+            return <p><em>No {label} added.</em></p>;
         }
 
         return (

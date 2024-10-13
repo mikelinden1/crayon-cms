@@ -1,6 +1,4 @@
 import { ActionTypes } from 'utils/constants';
-import { setItemProp, setMultiItemProp } from 'redux/actions/modal-item-props';
-import getPropByName from 'utils/get-prop-by-name';
 import { getEnvVar } from 'utils/get-env-var';
 
 import axios from 'axios';
@@ -17,14 +15,17 @@ export function fetchMedia() {
         dispatch(action);
     };
 };
-export function showMediaPicker(fieldName) {
+export function showMediaPicker(onChange) {
+    window.mediaPickerCallback = onChange;
+
     return {
-        type: ActionTypes.SHOW_MEDIA_PICKER,
-        payload: fieldName
+        type: ActionTypes.SHOW_MEDIA_PICKER
     };
 };
 
 export function closeMediaPicker() {
+    window.mediaPickerCallback = null;
+
     return {
         type: ActionTypes.CLOSE_MEDIA_PICKER
     };
@@ -39,19 +40,16 @@ export function mediaPickerClickItem(item) {
 
 export function mediaPickerSelectedItem(val) {
     return (dispatch, getState) => {
-        const state = getState();
-        const target = state.mediaPicker.target;
-        const moduleId = state.currentModule;
+        const onChange = window.mediaPickerCallback;
 
-        const targetProps = getPropByName(moduleId, target);
-
-        dispatch({ type: ActionTypes.MEDIA_PICKER_SELECTED_ITEM });
-
-        if (targetProps.many) {
-            dispatch(setMultiItemProp(target, val));
-        } else {
-            dispatch(setItemProp(target, val));
+        if (onChange && typeof onChange === 'function') {
+            onChange(val);
         }
+
+        dispatch({
+            type: ActionTypes.MEDIA_PICKER_SELECTED_ITEM,
+            payload: val
+        });
     };
 }
 

@@ -11,8 +11,7 @@ export default function mediaPicker(state = initialState, action) {
         case ActionTypes.SHOW_MEDIA_PICKER: {
             return {
                 ...state,
-                open: true,
-                target: action.payload
+                open: true
             }
         }
         case ActionTypes.CLOSE_MEDIA_PICKER:
@@ -20,7 +19,6 @@ export default function mediaPicker(state = initialState, action) {
             return {
                 ...state,
                 open: false,
-                target: null,
                 selectedItem: null,
                 editingTitle: false,
                 newName: null

@@ -55,13 +55,17 @@ export default class RepeaterField extends React.PureComponent {
 
 
     render() {
-        const { itemProps, label, singleLabel } = this.props;
+        const { itemProps, label, singleLabel, tableLabelProp, datasources, actions: { fetchDatasource } } = this.props;
                  
         return (
             <React.Fragment>
                 <RepeaterValuesTable 
                     items={this.state.value} 
                     label={label} 
+                    tableLabelProp={tableLabelProp}
+                    itemProps={itemProps}
+                    datasources={datasources}
+                    fetchDatasource={fetchDatasource}
                     onChange={val => this.updateValueFromTable(val)} 
                     editItem={(i, item) => this.editItem(i, item)}
                 />

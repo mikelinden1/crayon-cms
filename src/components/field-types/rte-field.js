@@ -22,7 +22,8 @@ export default class RteField extends React.PureComponent {
 
         const ckConfig = {
             filebrowserUploadUrl: `${getEnvVar('apiBase')}/ck-upload?uploadFullPath=${getEnvVar('uploadFullPath')}&uploadPath=${getEnvVar('uploadPath')}`,
-            allowedContent: true
+            allowedContent: true,
+            versionCheck: false
         };
 
         return  <CKEditor

@@ -14,7 +14,7 @@ class RepeaterValuesWrapper extends React.PureComponent {
     }
 
     render() {
-        const { items, label } = this.props;
+        const { items, label, tableLabelProp, itemProps, datasources, fetchDatasource } = this.props;
 
         if (!items || !items.length || typeof items === 'string') {
             return <p><em>No {label} added.</em></p>;
@@ -27,6 +27,10 @@ class RepeaterValuesWrapper extends React.PureComponent {
                                 index={i}
                                 key={`repeater-item-${i}`}
                                 item={item}
+                                tableLabelProp={tableLabelProp}
+                                itemProps={itemProps}
+                                datasources={datasources}
+                                fetchDatasource={fetchDatasource}
                                 editItem={() => this.props.editItem(i, item)}
                                 deleteItem={() => this.deleteItem(i)} />
                 })}

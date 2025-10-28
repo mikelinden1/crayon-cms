@@ -16,13 +16,11 @@ export default class FieldGroup extends React.PureComponent {
     };
 
     getField() {
-        const { many, type, name, actions: { showMediaPicker } } = this.props;
+        const { many, type, actions: { showMediaPicker } } = this.props;
         const fieldProps = {...this.props};
 
         if (type === 'photo') {
-            fieldProps.showMediaPicker = () => {
-                showMediaPicker(name);
-            };
+            fieldProps.showMediaPicker = showMediaPicker;
         }
 
         return many ? <FieldMulti {...fieldProps} /> : <FieldSingle {...fieldProps} />;

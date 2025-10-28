@@ -16,7 +16,7 @@ export default class AddNew extends React.PureComponent {
     };
 
     render() {
-        const { displayAsJumbotron, config: { itemName }, actions: { openItemModal } } = this.props;
+        const { displayAsJumbotron, config: { itemName, capabilities: { disableNew } }, actions: { openItemModal } } = this.props;
 
         if (displayAsJumbotron) {
             return (
@@ -28,6 +28,10 @@ export default class AddNew extends React.PureComponent {
                     </p>
                 </div>
             );
+        }
+
+        if (disableNew) {
+            return null;
         }
 
         return (
